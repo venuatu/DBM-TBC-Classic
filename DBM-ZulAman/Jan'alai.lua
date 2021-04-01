@@ -26,14 +26,14 @@ local timerAdds			= mod:NewNextTimer(92, 43962)
 
 local berserkTimer		= mod:NewBerserkTimer(600)
 
-mod:AddSetIconOption("FlameIcon", 43140, true, false, {8})
+mod:AddSetIconOption("FlameIcon", 43140, true, false, {1})
 
 function mod:FlameTarget()
 	local targetname = self:GetBossTarget(23578)
 	if not targetname then return end
 	warnFlame:Show(targetname)
 	if self.Options.FlameIcon and mod:LatencyCheck() then--Latency check when using icons with target scanning to reduce false icons on tanks
-		self:SetIcon(targetname, 8, 8)
+		self:SetIcon(targetname, 1, 1)
 	end
 end
 

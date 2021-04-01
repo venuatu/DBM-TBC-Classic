@@ -23,7 +23,7 @@ local timerStormCD		= mod:NewCDTimer(55, 43648)
 local berserkTimer		= mod:NewBerserkTimer(600)
 
 mod:AddBoolOption("RangeFrame", true)
-mod:AddSetIconOption("StormIcon", 43648, true, false, {8})
+mod:AddSetIconOption("StormIcon", 43648, true, false, {1})
 
 function mod:OnCombatStart(delay)
 	warnStormSoon:Schedule(43)
@@ -54,7 +54,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			end)
 		end
 		if self.Options.StormIcon then
-			self:SetIcon(args.destName, 8, 8)
+			self:SetIcon(args.destName, 1, 1)
 		end
 	end
 end
