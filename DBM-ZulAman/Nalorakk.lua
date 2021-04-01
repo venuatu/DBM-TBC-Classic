@@ -32,7 +32,6 @@ end
 function mod:SPELL_AURA_APPLIED(args)
 	if args:IsSpellID(42398) and self:AntiSpam(4, 1) then
 		warnSilence:Show()
-		silenceSpam = GetTime()
 	end
 end
 
