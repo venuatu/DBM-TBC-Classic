@@ -8287,7 +8287,7 @@ do
 			["HasInterrupt"] = true,
 			["HasImmunity"] = true,
 			["RemoveCurse"] = true,
-			["MagicDispeller"] = true,--Spellsteal in TBC
+			["MagicDispeller"] = IsSpellKnown(30449),--Spellsteal in TBC
 		},
 		["PALADIN1"] = {	--Holy Paladin
 			["Healer"] = true,
