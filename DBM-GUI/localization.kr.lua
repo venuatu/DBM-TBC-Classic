@@ -14,7 +14,6 @@ L.OTabDungeons	= "파티/1인"--1-5 person content (Dungeons, MoP Scenarios, Wor
 L.OTabPlugins	= "핵심 플러그인"
 L.OTabAbout		= "소개"
 
-L.TabCategory_SHADOWLANDS	= "어둠땅"
 L.TabCategory_OTHER			= "기타 모드"
 
 L.BossModLoaded 			= "%s 통계"
