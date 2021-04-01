@@ -1,7 +1,7 @@
 ﻿local mod	= DBM:NewMod("Janalai", "DBM-ZulAman")
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision(("$Revision$"):sub(12, -3))
+mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(23578)
 mod:SetZone()
 mod:SetUsedIcons(8)
@@ -26,7 +26,7 @@ local timerAdds			= mod:NewNextTimer(92, 43962)
 
 local berserkTimer		= mod:NewBerserkTimer(600)
 
-mod:AddBoolOption("FlameIcon", true)
+mod:AddSetIconOption("FlameIcon", 43140, true, false, {1})
 
 function mod:FlameTarget()
 	local targetname = self:GetBossTarget(23578)
@@ -34,7 +34,7 @@ function mod:FlameTarget()
 	warnFlame:Show(targetname)
 	if self.Options.FlameIcon and mod:LatencyCheck() then--Latency check when using icons with target scanning to reduce false icons on tanks
 		self:SetIcon(targetname, 8, 8)
-	end	
+	end
 end
 
 function mod:OnCombatStart(delay)

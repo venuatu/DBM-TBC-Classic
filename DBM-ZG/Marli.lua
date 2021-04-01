@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("Marli", "DBM-ZG", 1)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision(("$Revision$"):sub(12, -3))
+mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(14510)
 mod:SetEncounterID(786)
 mod:RegisterCombat("combat")

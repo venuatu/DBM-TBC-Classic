@@ -52,7 +52,6 @@ L:SetTimerLocalization{
 }
 
 L:SetOptionLocalization{
-	StormIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43648),
 	RangeFrame	= "Mostrar distancia"
 }
 
@@ -75,7 +74,6 @@ L:SetTimerLocalization{
 }
 
 L:SetOptionLocalization{
-	FlameIcon		= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43140)
 }
 
 L:SetMiscLocalization{

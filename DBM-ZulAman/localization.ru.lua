@@ -52,7 +52,6 @@ L:SetTimerLocalization{
 }
 
 L:SetOptionLocalization{
-	StormIcon	= DBM_CORE_AUTO_ICONS_OPTION_TEXT:format(43648),
 	RangeFrame	= "Показать окно контроля диапазона"
 }
 

@@ -1,7 +1,7 @@
 local mod	= DBM:NewMod("Venoxis", "DBM-ZG", 1)
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision(("$Revision$"):sub(12, -3))
+mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(14507)
 mod:SetEncounterID(784)
 mod:SetHotfixNoticeRev(20200724000000)--2020, 7, 24

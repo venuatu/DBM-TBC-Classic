@@ -1,7 +1,7 @@
 ﻿local mod	= DBM:NewMod("Akilzon", "DBM-ZulAman")
 local L		= mod:GetLocalizedStrings()
 
-mod:SetRevision(("$Revision$"):sub(12, -3))
+mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(23574)
 mod:SetZone()
 mod:SetUsedIcons(8)
@@ -23,7 +23,7 @@ local timerStormCD		= mod:NewCDTimer(55, 43648)
 local berserkTimer		= mod:NewBerserkTimer(600)
 
 mod:AddBoolOption("RangeFrame", true)
-mod:AddBoolOption("StormIcon", true)
+mod:AddSetIconOption("StormIcon", 43648, true, false, {1})
 
 function mod:OnCombatStart(delay)
 	warnStormSoon:Schedule(43)
