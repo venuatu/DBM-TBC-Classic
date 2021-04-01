@@ -15,13 +15,6 @@ L.OTabPlugins	= "핵심 플러그인"
 L.OTabAbout		= "소개"
 
 L.TabCategory_SHADOWLANDS	= "어둠땅"
-L.TabCategory_BFA	 		= "격전의 아제로스"
-L.TabCategory_LEG	 		= "군단"
-L.TabCategory_WOD	 		= "드레노어의 전쟁군주"
-L.TabCategory_MOP	 		= "판다리아의 안개"
-L.TabCategory_CATA	 		= "대격변"
-L.TabCategory_WOTLK 		= "리치 왕의 분노"
-L.TabCategory_BC 			= "불타는 성전"
 L.TabCategory_OTHER			= "기타 모드"
 
 L.BossModLoaded 			= "%s 통계"
