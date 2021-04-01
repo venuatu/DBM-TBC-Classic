@@ -11,6 +11,7 @@ ignore = {
 	"211/L", -- Unused local variable "L"
 	"211/CL", -- Unused local variable "CL"
 	"212", -- Unused argument
+	"311", -- Value assigned to a local variable is unused (Only DBM-Party-BC is hitting this)
 	"43.", -- Shadowing an upvalue, an upvalue argument, an upvalue loop variable.
 --    "431", -- shadowing upvalue
 	"542", -- An empty if branch
@@ -116,6 +117,7 @@ globals = {
 	"RAID_TARGET_8",
 	"SCENARIO_STAGE",
 	"SHARE_QUEST_ABBREV",
+	"SHIELDSLOT",
 	"SHORT",
 	"SMALL",
 	"SOUNDKIT",
@@ -158,6 +160,7 @@ globals = {
 	"C_EncounterJournal.GetSectionIconFlags",
 	"C_EncounterJournal.GetSectionInfo",
 	"C_FriendList.GetFriendInfo",
+	"C_GossipInfo.GetOptions",
 	"C_Map.GetBestMapForUnit",
 	"C_Map.GetMapInfo",
 	"C_Map.GetPlayerMapPosition",
@@ -166,6 +169,7 @@ globals = {
 	"C_NamePlate.GetNamePlates",
 	"C_Timer.After",
 	"C_Timer.NewTicker",
+	"C_UIWidgetManager.GetIconAndTextWidgetVisualizationInfo",
 	"AcceptGroup",
 	"Ambiguate",
 	"BNGetFriendGameAccountInfo",
@@ -267,6 +271,7 @@ globals = {
 	"UnitAffectingCombat",
 	"UnitAura",
 	"UnitBuff",
+	"UnitCastingInfo",
 	"UnitCharacterPoints",
 	"UnitClass",
 	"UnitDebuff",
