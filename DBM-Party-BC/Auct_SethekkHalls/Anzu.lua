@@ -1,7 +1,7 @@
 local mod = DBM:NewMod(542, "DBM-Party-BC", 9, 252)
 local L = mod:GetLocalizedStrings()
 
-mod.statTypes = "heroic,timewalker"
+mod.statTypes = "heroic"
 
 mod:SetRevision("@file-date-integer@")
 
