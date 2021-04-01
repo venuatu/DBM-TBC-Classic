@@ -3,34 +3,33 @@ local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(23863)
+mod:SetEncounterID(2487)--Data says Daakara, but it's not daakara in TBC it's Zul'jin
 mod:SetZone()
 
 mod:RegisterCombat("combat")
 
-mod:RegisterEvents(
-	"SPELL_AURA_APPLIED",
-	"SPELL_CAST_SUCCESS",
+mod:RegisterEventsInCombat(
+	"SPELL_AURA_APPLIED 43093 43150 43213",
+	"SPELL_CAST_SUCCESS 43095",
 	"CHAT_MSG_MONSTER_YELL"
 )
 
-local warnThrow			= mod:NewTargetAnnounce(43093, 3)
+local warnThrow			= mod:NewTargetNoFilterAnnounce(43093, 3, nil, "Tank|Healer")
 local warnParalyze		= mod:NewSpellAnnounce(43095, 4)
 local warnParalyzeSoon	= mod:NewPreWarnAnnounce(43095, 5, 3)
-local warnClaw			= mod:NewTargetAnnounce(43150, 3)
+local warnClaw			= mod:NewTargetNoFilterAnnounce(43150, 3)
 local warnFlame			= mod:NewSpellAnnounce(43213, 3)
-local warnPhase2		= mod:NewPhaseAnnounce(2)
-local warnPhase3		= mod:NewPhaseAnnounce(3)
-local warnPhase4		= mod:NewPhaseAnnounce(4)
-local warnPhase5		= mod:NewPhaseAnnounce(5)
+local warnPhase			= mod:NewPhaseChangeAnnounce(2, nil, nil, nil, nil, nil, 2)
 
-local specWarnParalyze	= mod:NewSpecialWarningSpell(43095)
+local specWarnParalyze	= mod:NewSpecialWarningDispel(43095, "RemoveMagic", nil, nil, 1, 2)
 
-local timerParalyzeCD	= mod:NewCDTimer(27, 43095)
-local timerParalyze		= mod:NewBuffActiveTimer(5, 43095)
+local timerParalyzeCD	= mod:NewCDTimer(27, 43095, nil, nil, nil, 3, nil, DBM_CORE_L.MAGIC_ICON)
 
---function mod:OnCombatStart(delay)
+mod.vb.phase = 1
 
---end
+function mod:OnCombatStart(delay)
+	self.vb.phase = 1
+end
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args:IsSpellID(43093) then
@@ -44,24 +43,35 @@ end
 
 function mod:SPELL_CAST_SUCCESS(args)
 	if args:IsSpellID(43095) then
-		warnParalyze:Show()
 		warnParalyzeSoon:Schedule(22)
-		specWarnParalyze:Show()
-		timerParalyze:Start()
+		if self.Options.SpecWarn43095dispel and self:CheckDispelFilter() then
+			specWarnParalyze:Show(DBM_CORE_L.ALLIES)
+			specWarnParalyze:Play("helpdispel")
+		else
+			warnParalyze:Show()
+		end
 		timerParalyzeCD:Start()
 	end
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if msg == L.YellPhase2 or msg:find(L.YellPhase2) then
-		warnPhase2:Show()
+		warnPhase:Show(DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.stage:format(2))
+		warnPhase:Play("ptwo")
+		self.vb.phase = 2
 	elseif msg == L.YellPhase3 or msg:find(L.YellPhase3) then
 		warnParalyzeSoon:Cancel()
 		timerParalyzeCD:Cancel()
-		warnPhase3:Show()
+		warnPhase:Show(DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.stage:format(3))
+		warnPhase:Play("pthree")
+		self.vb.phase = 3
 	elseif msg == L.YellPhase4 or msg:find(L.YellPhase4) then
-		warnPhase4:Show()
+		warnPhase:Show(DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.stage:format(4))
+		warnPhase:Play("pfour")
+		self.vb.phase = 4
 	elseif msg == L.YellPhase5 or msg:find(L.YellPhase5) then
-		warnPhase5:Show()
+		warnPhase:Show(DBM_CORE_L.AUTO_ANNOUNCE_TEXTS.stage:format(5))
+		warnPhase:Play("pfive")
+		self.vb.phase = 5
 	end
 end

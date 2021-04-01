@@ -3,12 +3,13 @@ local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(23576)
+mod:SetEncounterID(2483)
 mod:SetZone()
 
 mod:RegisterCombat("combat")
 
-mod:RegisterEvents(
-	"SPELL_AURA_APPLIED",
+mod:RegisterEventsInCombat(
+	"SPELL_AURA_APPLIED 42398",
 	"CHAT_MSG_MONSTER_YELL"
 )
 
@@ -18,8 +19,8 @@ local warnNormal		= mod:NewAnnounce("WarnNormal", 4, 39414)
 local warnNormalSoon	= mod:NewAnnounce("WarnNormalSoon", 3, 39414)
 local warnSilence		= mod:NewSpellAnnounce(42398, 3)
 
-local timerBear			= mod:NewTimer(45, "TimerBear", 39414)
-local timerNormal		= mod:NewTimer(30, "TimerNormal", 39414)
+local timerBear			= mod:NewTimer(45, "TimerBear", 39414, nil, nil, 6)
+local timerNormal		= mod:NewTimer(30, "TimerNormal", 39414, nil, nil, 6)
 
 local berserkTimer		= mod:NewBerserkTimer(600)
 

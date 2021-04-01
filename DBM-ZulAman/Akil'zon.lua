@@ -3,26 +3,27 @@ local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(23574)
+mod:SetEncounterID(2482)
 mod:SetZone()
-mod:SetUsedIcons(8)
+mod:SetUsedIcons(1)
 
 mod:RegisterCombat("combat")
 
-mod:RegisterEvents(
+mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED 43648"
 )
 
 local warnStorm			= mod:NewTargetNoFilterAnnounce(43648, 4)
 local warnStormSoon		= mod:NewSoonAnnounce(43648, 5, 3)
 
-local specWarnStorm		= mod:NewSpecialWarningSpell(43648)
+local specWarnStorm		= mod:NewSpecialWarningSpell(43648, nil, nil, nil, 2, 2)
 
-local timerStorm		= mod:NewCastTimer(8, 43648)
-local timerStormCD		= mod:NewCDTimer(55, 43648)
+local timerStorm		= mod:NewCastTimer(8, 43648, nil, nil, nil, 2, nil, DBM_CORE_L.HEALER_ICON)
+local timerStormCD		= mod:NewCDTimer(55, 43648, nil, nil, nil, 3)
 
 local berserkTimer		= mod:NewBerserkTimer(600)
 
-mod:AddBoolOption("RangeFrame", true)
+mod:AddRangeFrameOption("10")
 mod:AddSetIconOption("StormIcon", 43648, true, false, {1})
 
 function mod:OnCombatStart(delay)
@@ -44,12 +45,13 @@ function mod:SPELL_AURA_APPLIED(args)
 	if args:IsSpellID(43648) then
 		warnStorm:Show(args.destName)
 		specWarnStorm:Show()
+		specWarnStorm:Play("specialsoon")
 		timerStorm:Start()
 		warnStormSoon:Schedule(50)
 		timerStormCD:Start()
 		if self.Options.RangeFrame then
 			DBM.RangeCheck:Hide()
-			mod:Schedule(10, function()
+			self:Schedule(10, function()
 				DBM.RangeCheck:Show()
 			end)
 		end

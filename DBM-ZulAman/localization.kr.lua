@@ -45,19 +45,6 @@ L:SetGeneralLocalization{
 	name = "아킬존"
 }
 
-L:SetWarningLocalization{
-}
-
-L:SetTimerLocalization{
-}
-
-L:SetOptionLocalization{
-	RangeFrame	= "거리 프레임 보기"
-}
-
-L:SetMiscLocalization{
-}
-
 ---------------
 --  Jan'alai --
 ---------------
@@ -65,15 +52,6 @@ L = DBM:GetModLocalization("Janalai")
 
 L:SetGeneralLocalization{
 	name = "잔알라이"
-}
-
-L:SetWarningLocalization{
-}
-
-L:SetTimerLocalization{
-}
-
-L:SetOptionLocalization{
 }
 
 L:SetMiscLocalization{
@@ -95,9 +73,6 @@ L:SetWarningLocalization{
 	WarnNormal	= "보통 단계"
 }
 
-L:SetTimerLocalization{
-}
-
 L:SetOptionLocalization{
 	WarnSpirit	= "영혼 단계 경고 보기",
 	WarnNormal	= "보통 단계 경고 보기"
@@ -117,15 +92,6 @@ L:SetGeneralLocalization{
 	name = "주술군주 말라크라스"
 }
 
-L:SetWarningLocalization{
-}
-
-L:SetTimerLocalization{
-}
-
-L:SetOptionLocalization{
-}
-
 L:SetMiscLocalization{
 	YellPull	= "너희에게 그림자가 드리우리라..."
 }
@@ -137,15 +103,6 @@ L = DBM:GetModLocalization("ZulJin")
 
 L:SetGeneralLocalization{
 	name = "줄진"
-}
-
-L:SetWarningLocalization{
-}
-
-L:SetTimerLocalization{
-}
-
-L:SetOptionLocalization{
 }
 
 L:SetMiscLocalization{

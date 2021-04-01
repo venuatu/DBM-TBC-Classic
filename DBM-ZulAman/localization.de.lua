@@ -45,19 +45,6 @@ L:SetGeneralLocalization{
 	name = "Akil'zon"
 }
 
-L:SetWarningLocalization{
-}
-
-L:SetTimerLocalization{
-}
-
-L:SetOptionLocalization{
-	RangeFrame	= "Range Frame anzeigen"
-}
-
-L:SetMiscLocalization{
-}
-
 ---------------
 --  Jan'alai --
 ---------------
@@ -65,15 +52,6 @@ L = DBM:GetModLocalization("Janalai")
 
 L:SetGeneralLocalization{
 	name = "Jan'alai"
-}
-
-L:SetWarningLocalization{
-}
-
-L:SetTimerLocalization{
-}
-
-L:SetOptionLocalization{
 }
 
 L:SetMiscLocalization{
@@ -95,9 +73,6 @@ L:SetWarningLocalization{
 	WarnNormal	= "Geist despawned"
 }
 
-L:SetTimerLocalization{
-}
-
 L:SetOptionLocalization{
 	WarnSpirit	= "Show warning for Spirit phase",--Translate
 	WarnNormal	= "Show warning for Normal phase"--Translate
@@ -117,15 +92,6 @@ L:SetGeneralLocalization{
 	name = "Hexlord Malacrass"
 }
 
-L:SetWarningLocalization{
-}
-
-L:SetTimerLocalization{
-}
-
-L:SetOptionLocalization{
-}
-
 L:SetMiscLocalization{
 	YellPull	= "Der Schatten wird Euch verschlingen..."
 }
@@ -137,15 +103,6 @@ L = DBM:GetModLocalization("ZulJin")
 
 L:SetGeneralLocalization{
 	name = "Zul'jin"
-}
-
-L:SetWarningLocalization{
-}
-
-L:SetTimerLocalization{
-}
-
-L:SetOptionLocalization{
 }
 
 L:SetMiscLocalization{

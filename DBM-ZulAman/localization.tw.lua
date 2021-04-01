@@ -45,19 +45,6 @@ L:SetGeneralLocalization{
 	name = "阿奇爾森"
 }
 
-L:SetWarningLocalization{
-}
-
-L:SetTimerLocalization{
-}
-
-L:SetOptionLocalization{
-	RangeFrame	= "顯示距離框"
-}
-
-L:SetMiscLocalization{
-}
-
 ---------------
 --  Jan'alai --
 ---------------
@@ -65,15 +52,6 @@ L = DBM:GetModLocalization("Janalai")
 
 L:SetGeneralLocalization{
 	name = "賈納雷"
-}
-
-L:SetWarningLocalization{
-}
-
-L:SetTimerLocalization{
-}
-
-L:SetOptionLocalization{
 }
 
 L:SetMiscLocalization{
@@ -95,9 +73,6 @@ L:SetWarningLocalization{
 	WarnNormal	= "靈魂消失了"
 }
 
-L:SetTimerLocalization{
-}
-
 L:SetOptionLocalization{
 	WarnSpirit	= "Show warning for Spirit phase",--Translate
 	WarnNormal	= "Show warning for Normal phase"--Translate
@@ -117,15 +92,6 @@ L:SetGeneralLocalization{
 	name = "妖術領主瑪拉克雷斯"
 }
 
-L:SetWarningLocalization{
-}
-
-L:SetTimerLocalization{
-}
-
-L:SetOptionLocalization{
-}
-
 L:SetMiscLocalization{
 	YellPull	= "Da shadow gonna fall on you...."--Translate
 }
@@ -137,15 +103,6 @@ L = DBM:GetModLocalization("ZulJin")
 
 L:SetGeneralLocalization{
 	name = "祖爾金"
-}
-
-L:SetWarningLocalization{
-}
-
-L:SetTimerLocalization{
-}
-
-L:SetOptionLocalization{
 }
 
 L:SetMiscLocalization{

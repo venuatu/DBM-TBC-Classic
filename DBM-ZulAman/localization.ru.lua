@@ -45,19 +45,6 @@ L:SetGeneralLocalization{
 	name = "Акил'зон"
 }
 
-L:SetWarningLocalization{
-}
-
-L:SetTimerLocalization{
-}
-
-L:SetOptionLocalization{
-	RangeFrame	= "Показать окно контроля диапазона"
-}
-
-L:SetMiscLocalization{
-}
-
 ---------------
 --  Jan'alai --
 ---------------
@@ -65,15 +52,6 @@ L = DBM:GetModLocalization("Janalai")
 
 L:SetGeneralLocalization{
 	name = "Джан'алаи"
-}
-
-L:SetWarningLocalization{
-}
-
-L:SetTimerLocalization{
-}
-
-L:SetOptionLocalization{
 }
 
 L:SetMiscLocalization{
@@ -95,9 +73,6 @@ L:SetWarningLocalization{
 	WarnNormal	= "Дух исчезает"
 }
 
-L:SetTimerLocalization{
-}
-
 L:SetOptionLocalization{
 	WarnSpirit	= "Show warning for Spirit phase",--Translate
 	WarnNormal	= "Show warning for Normal phase"--Translate
@@ -117,15 +92,6 @@ L:SetGeneralLocalization{
 	name = "Повелитель проклятий Малакрасс"
 }
 
-L:SetWarningLocalization{
-}
-
-L:SetTimerLocalization{
-}
-
-L:SetOptionLocalization{
-}
-
 L:SetMiscLocalization{
 	YellPull	= "На вас падет тень..."
 }
@@ -137,15 +103,6 @@ L = DBM:GetModLocalization("ZulJin")
 
 L:SetGeneralLocalization{
 	name = "Зул'джин"
-}
-
-L:SetWarningLocalization{
-}
-
-L:SetTimerLocalization{
-}
-
-L:SetOptionLocalization{
 }
 
 L:SetMiscLocalization{

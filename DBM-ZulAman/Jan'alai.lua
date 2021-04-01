@@ -3,36 +3,42 @@ local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(23578)
+mod:SetEncounterID(2484)
 mod:SetZone()
-mod:SetUsedIcons(8)
+mod:SetUsedIcons(1)
 
 mod:RegisterCombat("combat")
 
-mod:RegisterEvents(
-	"SPELL_CAST_START",
+mod:RegisterEventsInCombat(
+	"SPELL_CAST_START 43140",
 	"CHAT_MSG_MONSTER_YELL"
 )
 
-local warnFlame			= mod:NewTargetAnnounce(43140, 3)
-local warnAdds			= mod:NewSpellAnnounce(43962, 4)
+local warnFlame			= mod:NewTargetNoFilterAnnounce(43140, 3)
 local warnAddsSoon		= mod:NewSoonAnnounce(43962, 3)
-local warnFireBomb		= mod:NewSpellAnnounce(42630, 3)
 
-local specWarnAdds		= mod:NewSpecialWarningSpell(43962)
-local specWarnBomb		= mod:NewSpecialWarningSpell(42630)
+local specWarnAdds		= mod:NewSpecialWarningSpell(43962, "dps", nil, nil, 1, 2)
+local specWarnBomb		= mod:NewSpecialWarningDodge(42630, nil, nil, nil, 2, 2)
+local specWarnBreath	= mod:NewSpecialWarningYou(43140, nil, nil, nil, 1, 2)
+local yellFlamebreath	= mod:NewYell(43140)
 
-local timerBomb			= mod:NewCastTimer(12, 42630)
-local timerAdds			= mod:NewNextTimer(92, 43962)
+local timerBomb			= mod:NewCastTimer(12, 42630, nil, nil, nil, 3)--Cast bar?
+local timerAdds			= mod:NewNextTimer(92, 43962, nil, nil, nil, 1, nil, DBM_CORE_L.DAMAGE_ICON)
 
 local berserkTimer		= mod:NewBerserkTimer(600)
 
 mod:AddSetIconOption("FlameIcon", 43140, true, false, {1})
 
-function mod:FlameTarget()
-	local targetname = self:GetBossTarget(23578)
+function mod:FlameTarget(targetname, uId)
 	if not targetname then return end
-	warnFlame:Show(targetname)
-	if self.Options.FlameIcon and mod:LatencyCheck() then--Latency check when using icons with target scanning to reduce false icons on tanks
+	if targetname == UnitName("player") then
+		specWarnBreath:Show()
+		specWarnBreath:Play("targetyou")
+		yellFlamebreath:Yell()
+	else
+		warnFlame:Show(targetname)
+	end
+	if self.Options.FlameIcon then
 		self:SetIcon(targetname, 1, 1)
 	end
 end
@@ -44,19 +50,18 @@ end
 
 function mod:SPELL_CAST_START(args)
 	if args:IsSpellID(43140) then
-		self:ScheduleMethod(0.2, "FlameTarget")
+		self:BossTargetScanner(args.sourceGUID, "FlameTarget", 0.1, 8)
 	end
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if msg == L.YellAdds or msg:find(L.YellAdds) then
-		warnAdds:Show()
 		specWarnAdds:Show()
 		warnAddsSoon:Schedule(82)
 		timerAdds:Start()
 	elseif msg == L.YellBomb or msg:find(L.YellBomb) then
-		warnFireBomb:Show()
 		specWarnBomb:Show()
+		specWarnBomb:Play("watchstep")
 		timerBomb:Start()
 	end
 end
