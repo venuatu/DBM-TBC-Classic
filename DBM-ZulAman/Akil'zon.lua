@@ -23,7 +23,7 @@ local timerStormCD		= mod:NewCDTimer(55, 43648)
 local berserkTimer		= mod:NewBerserkTimer(600)
 
 mod:AddBoolOption("RangeFrame", true)
-mod:AddSetIconOption("StormIcon", 43648, true, false, {1})
+mod:AddSetIconOption("StormIcon", 43648, true, false, {8})
 
 function mod:OnCombatStart(delay)
 	warnStormSoon:Schedule(43)

@@ -26,7 +26,7 @@ local timerAdds			= mod:NewNextTimer(92, 43962)
 
 local berserkTimer		= mod:NewBerserkTimer(600)
 
-mod:AddSetIconOption("FlameIcon", 43140, true, false, {1})
+mod:AddSetIconOption("FlameIcon", 43140, true, false, {8})
 
 function mod:FlameTarget()
 	local targetname = self:GetBossTarget(23578)
