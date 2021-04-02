@@ -31,24 +31,18 @@ function mod:OnCombatStart(delay)
 	timerPoisonBoltVolleyCD:Start(12.9, 1)
 end
 
-do
-	local PoisonBoltVolley = DBM:GetSpellInfo(25991)
-	function mod:SPELL_CAST_SUCCESS(args)
-		if args.spellName == PoisonBoltVolley then
-			self.vb.volleyCount = self.vb.volleyCount + 1
-			warnPoisonBoltVolley:Show(self.vb.volleyCount)
-			timerPoisonBoltVolleyCD:Start(11, self.vb.volleyCount+1)
-		end
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 25991 then
+		self.vb.volleyCount = self.vb.volleyCount + 1
+		warnPoisonBoltVolley:Show(self.vb.volleyCount)
+		timerPoisonBoltVolleyCD:Start(11, self.vb.volleyCount+1)
 	end
 end
 
-do
-	local Toxin = DBM:GetSpellInfo(25989)
-	function mod:SPELL_AURA_APPLIED(args)
-		if args.spellName == Toxin and args:IsPlayer() and self:AntiSpam(3, 2) then
-			specWarnGTFO:Show(args.spellName)
-			specWarnGTFO:Play("watchfeet")
-		end
+function mod:SPELL_AURA_APPLIED(args)
+	if args.spellId == 25989 and args:IsPlayer() and self:AntiSpam(3, 2) then
+		specWarnGTFO:Show(args.spellName)
+		specWarnGTFO:Play("watchfeet")
 	end
 end
 

@@ -24,34 +24,25 @@ local yellOrder			= mod:NewYell(25471)
 local timerOrder		= mod:NewTargetTimer(10, 25471, nil, nil, nil, 3)
 local timerCloud		= mod:NewBuffActiveTimer(15, 26550, nil, nil, nil, 3)--? Good color?
 
-do
-	local AttackOrder = DBM:GetSpellInfo(25471)
-	function mod:SPELL_AURA_APPLIED(args)
-		--if args.spellId == 25471 then
-		if args.spellName == AttackOrder then
-			timerOrder:Start(args.destName)
-			if args:IsPlayer() then
-				specWarnOrder:Show()
-				specWarnOrder:Play("targetyou")
-				yellOrder:Yell()
-			else
-				warnOrder:Show(args.destName)
-			end
+function mod:SPELL_AURA_APPLIED(args)
+	if args.spellId == 25471 then
+		timerOrder:Start(args.destName)
+		if args:IsPlayer() then
+			specWarnOrder:Show()
+			specWarnOrder:Play("targetyou")
+			yellOrder:Yell()
+		else
+			warnOrder:Show(args.destName)
 		end
 	end
 end
 
-do
-	local LightningCloud, Thundercrash = DBM:GetSpellInfo(26550), DBM:GetSpellInfo(25599)
-	function mod:SPELL_CAST_SUCCESS(args)
-		--if args.spellId == 26550 then
-		if args.spellName == LightningCloud then
-			warnCloud:Show()
-			timerCloud:Start()
-		--elseif args.spellId == 25599 then
-		elseif args.spellName == Thundercrash then
-			warnThundercrash:Show()
-		end
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 26550 then
+		warnCloud:Show()
+		timerCloud:Start()
+	elseif args.spellId == 25599 then
+		warnThundercrash:Show()
 	end
 end
 
