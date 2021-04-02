@@ -18,7 +18,7 @@
 ## Author: Tandanu and Nitram and MysticalOS
 ## X-Website: http://www.deadlybossmods.com
 ## X-Curse-Project-ID: 3358
-## X-WoWI-ID: 24921
+## X-WoWI-ID: 25929
 ## X-Wago-ID: qv633o6b
 ## Version: @project-version@
 
