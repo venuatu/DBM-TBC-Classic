@@ -144,7 +144,7 @@ function mod:EyeBeamTarget(targetname, uId)
 end
 
 function mod:SPELL_CAST_START(args)
-	if spellId == 26134 and args:IsSrcTypeHostile() then
+	if args.spellId == 26134 and args:IsSrcTypeHostile() then
 		-- the eye target can change to the correct target a tiny bit after the cast starts
 		self:ScheduleMethod(0.1, "BossTargetScanner", args.sourceGUID, "EyeBeamTarget", 0.1, 3)
 	end
