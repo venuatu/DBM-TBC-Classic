@@ -47,57 +47,44 @@ function mod:OnCombatEnd()
 	end
 end
 
-do
-	local PoisonCloud = DBM:GetSpellInfo(23861)
-	function mod:SPELL_CAST_SUCCESS(args)
-		--if args:IsSpellID(23861) then
-		if args.spellName == PoisonCloud then
-			warnCloud:Show()
-			timerCloud:Start()
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 23861 then
+		warnCloud:Show()
+		timerCloud:Start()
+	end
+end
+
+function mod:SPELL_CAST_START(args)
+	if args.spellId == 23860 and args:IsSrcTypeHostile() then
+		if self:CheckInterruptFilter(args.sourceGUID, false, true) then
+			specWarnHolyFire:Show(args.sourceName)
+			specWarnHolyFire:Play("kickcast")
 		end
 	end
 end
 
-do
-	local Renew, HolyFire, ParasiticSerpent = DBM:GetSpellInfo(23895), DBM:GetSpellInfo(23860), DBM:GetSpellInfo(23865)
-	function mod:SPELL_CAST_START(args)
-		--if args:IsSpellID(23860) then
-		if args.spellName == HolyFire and args:IsSrcTypeHostile() then
-			if self:CheckInterruptFilter(args.sourceGUID, false, true) then
-				specWarnHolyFire:Show(args.sourceName)
-				specWarnHolyFire:Play("kickcast")
-			end
+function mod:SPELL_AURA_APPLIED(args)
+	if args.spellId == 23895 and args:IsDestTypeHostile() then
+		if self.Options.SpecWarn23895dispel then
+			specWarnRenew:Show(args.destName)
+			specWarnRenew:Play("dispelboss")
+		else
+			warnRenew:Show(args.destName)
 		end
+		timerRenew:Start(args.destName)
+	elseif args.spellId == 23860 and args:IsDestTypePlayer() then
+		warnFire:Show(args.destName)
+		timerFire:Start(args.destName)
+	elseif args.spellId == 23865 then
+		warnSerpent:Show(args.destName)
 	end
+end
 
-	function mod:SPELL_AURA_APPLIED(args)
-		--if args:IsSpellID(23895) then
-		if args.spellName == Renew and args:IsDestTypeHostile() then
-			if self.Options.SpecWarn23895dispel then
-				specWarnRenew:Show(args.destName)
-				specWarnRenew:Play("dispelboss")
-			else
-				warnRenew:Show(args.destName)
-			end
-			timerRenew:Start(args.destName)
-		--elseif args:IsSpellID(23860) then
-		elseif args.spellName == HolyFire and args:IsDestTypePlayer() then
-			warnFire:Show(args.destName)
-			timerFire:Start(args.destName)
-		--elseif args:IsSpellID(23865) then
-		elseif args.spellName == ParasiticSerpent then
-			warnSerpent:Show(args.destName)
-		end
-	end
-
-	function mod:SPELL_AURA_REMOVED(args)
-		--if args:IsSpellID(23895) then
-		if args.spellName == Renew and args:IsDestTypeHostile() then
-			timerRenew:Stop(args.destName)
-		--elseif args:IsSpellID(23860) then
-		elseif args.spellName == HolyFire and args:IsDestTypePlayer() then
-			timerFire:Stop(args.destName)
-		end
+function mod:SPELL_AURA_REMOVED(args)
+	if args.spellId == 23895 and args:IsDestTypeHostile() then
+		timerRenew:Stop(args.destName)
+	elseif args.spellId == 23860 and args:IsDestTypePlayer() then
+		timerFire:Stop(args.destName)
 	end
 end
 
