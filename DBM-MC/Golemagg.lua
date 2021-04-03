@@ -14,12 +14,8 @@ mod:RegisterEventsInCombat(
 --TODO, quake not in combat log on classic?
 local warnQuake		= mod:NewSpellAnnounce(20553)
 
-do
-	local Quake = DBM:GetSpellInfo(20553)
-	function mod:SPELL_AURA_APPLIED(args)
-		--if args.spellId == 20553 then
-		if args.spellName == Quake then
-			warnQuake:Show()
-		end
+function mod:SPELL_AURA_APPLIED(args)
+	if args.spellId == 20553 then
+		warnQuake:Show()
 	end
 end
