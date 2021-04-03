@@ -14,7 +14,7 @@ mod:AddNamePlateOption("NPAuraOnVulnerable", 22277)
 local vulnerabilities = {
 	-- [guid] = school
 }
---redudnant, but fuck it, thie code in this mod is already shit
+--redudnant, but fuck it, the code in this mod is already shit
 local lastAnnounce = {
 	-- [guid] = school
 }
