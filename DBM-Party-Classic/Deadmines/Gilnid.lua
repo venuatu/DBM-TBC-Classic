@@ -20,19 +20,14 @@ function mod:OnCombatStart(delay)
 	timerMoltenMetalCD:Start(1-delay)
 end
 
-do
-	local MoltenMetal = DBM:GetSpellInfo(5213)
-	function mod:SPELL_CAST_SUCCESS(args)
-		--if args.spellId == 5213 then
-		if args.spellName == MoltenMetal then
-			timerMoltenMetalCD:Start()
-		end
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 5213 then
+		timerMoltenMetalCD:Start()
 	end
+end
 
-	function mod:SPELL_AURA_APPLIED(args)
-		--if args.spellId == 5213 then
-		if args.spellName == MoltenMetal then
-			warningMoltenMetal:Show(args.destName)
-		end
+function mod:SPELL_AURA_APPLIED(args)
+	if args.spellId == 5213 then
+		warningMoltenMetal:Show(args.destName)
 	end
 end

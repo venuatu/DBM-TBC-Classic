@@ -20,19 +20,14 @@ function mod:OnCombatStart(delay)
 	timerSlowCD:Start(1-delay)
 end
 
-do
-	local Slow = DBM:GetSpellInfo(246)
-	function mod:SPELL_CAST_SUCCESS(args)
-		--if args.spellId == 246 and args:IsSrcTypeHostile() then
-		if args.spellName == Slow and args:IsSrcTypeHostile() then
-			timerSlowCD:Start()
-		end
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 246 and args:IsSrcTypeHostile() then
+		timerSlowCD:Start()
 	end
+end
 
-	function mod:SPELL_AURA_APPLIED(args)
-		--if args.spellId == 246 and args:IsDestTypePlayer() then
-		if args.spellName == Slow and args:IsDestTypePlayer() then
-			warningSlow:Show(args.destName)
-		end
+function mod:SPELL_AURA_APPLIED(args)
+	if args.spellId == 246 and args:IsDestTypePlayer() then
+		warningSlow:Show(args.destName)
 	end
 end

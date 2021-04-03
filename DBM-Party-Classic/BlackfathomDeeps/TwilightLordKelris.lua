@@ -21,19 +21,14 @@ function mod:OnCombatStart(delay)
 	timerSleepCD:Start(1-delay)
 end
 
-do
-	local Sleep = DBM:GetSpellInfo(8399)
-	function mod:SPELL_CAST_START(args)
-		--if args.spellId == 8399 and args:IsSrcTypeHostile() then
-		if args.spellName == Sleep and args:IsSrcTypeHostile() then
-			timerSleepCD:Start()
-		end
+function mod:SPELL_CAST_START(args)
+	if args.spellId == 8399 and args:IsSrcTypeHostile() then
+		timerSleepCD:Start()
 	end
+end
 
-	function mod:SPELL_AURA_APPLIED(args)
-		--if args.spellId == 8399 and args:IsDestTypePlayer() then
-		if args.spellName == Sleep and args:IsDestTypePlayer() then
-			warningSleep:Show(args.destName)
-		end
+function mod:SPELL_AURA_APPLIED(args)
+	if args.spellId == 8399 and args:IsDestTypePlayer() then
+		warningSleep:Show(args.destName)
 	end
 end

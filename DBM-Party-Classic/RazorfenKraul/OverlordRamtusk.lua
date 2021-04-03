@@ -13,16 +13,8 @@ mod:RegisterEventsInCombat(
 
 local warningWhirlingBarrage		= mod:NewCastAnnounce(8259, 2)
 
---function mod:OnCombatStart(delay)
-
---end
-
-do
-	local WhirlingBarrage = DBM:GetSpellInfo(8259)
-	function mod:SPELL_CAST_START(args)
-		--if args.spellId == 8259 and self:AntiSpam(3, 1) then
-		if args.spellName == WhirlingBarrage and self:AntiSpam(3, 1) then
-			warningWhirlingBarrage:Show()
-		end
+function mod:SPELL_CAST_START(args)
+	if args.spellId == 8259 and self:AntiSpam(3, 1) then
+		warningWhirlingBarrage:Show()
 	end
 end

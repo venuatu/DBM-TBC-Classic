@@ -19,13 +19,9 @@ function mod:OnCombatStart(delay)
 	timerSandStormsCD:Start(1-delay)
 end
 
-do
-	local SandStorms = DBM:GetSpellInfo(10132)
-	function mod:SPELL_CAST_SUCCESS(args)
-		--if args.spellId == 10132 or args.spellId == 10094 then
-		if args.spellName == SandStorms then
-			warningSandStorms:Show()
-			timerSandStormsCD:Start()
-		end
+function mod:SPELL_CAST_SUCCESS(args)
+	if args:IsSpellID(10132, 10094) then
+		warningSandStorms:Show()
+		timerSandStormsCD:Start()
 	end
 end

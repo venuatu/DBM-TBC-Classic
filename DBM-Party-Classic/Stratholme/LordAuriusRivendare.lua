@@ -21,14 +21,10 @@ function mod:OnCombatStart(delay)
 	timerRaiseDeadCD:Start(1-delay)
 end
 
-do
-	local RaiseDead = DBM:GetSpellInfo(17480)
-	function mod:SPELL_SUMMON(args)
-		--if args.spellId == 17480 and self:AntiSpam(5, 1) then
-		if args.spellName == RaiseDead and self:AntiSpam(5, 1) then
-			warningRaiseDead:Show()
-			timerDeathPactCD:Start()
-			timerRaiseDeadCD:Start()
-		end
+function mod:SPELL_SUMMON(args)
+	if args.spellId == 17480 and self:AntiSpam(5, 1) then
+		warningRaiseDead:Show()
+		timerDeathPactCD:Start()
+		timerRaiseDeadCD:Start()
 	end
 end

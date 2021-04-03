@@ -24,30 +24,21 @@ function mod:OnCombatStart(delay)
 	timerFireNovaCD:Start(1-delay)
 end
 
-do
-	local FireNova = DBM:GetSpellInfo(17366)
-	function mod:SPELL_CAST_SUCCESS(args)
-		--if args.spellId == 17366 then
-		if args.spellName == FireNova and args:IsSrcTypeHostile() then
-			warningFireNova:Show()
-			timerFireNovaCD:Start()
-		end
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 17366 and args:IsSrcTypeHostile() then
+		warningFireNova:Show()
+		timerFireNovaCD:Start()
 	end
 end
 
-do
-	local BurningWinds = DBM:GetSpellInfo(17293)
-	function mod:SPELL_CAST_START(args)
-		--if args.spellId == 17293 then
-		if args.spellName == BurningWinds then
-			timerBurningWindsCD:Start()
-		end
+function mod:SPELL_CAST_START(args)
+	if args.spellId == 17293 then
+		timerBurningWindsCD:Start()
 	end
+end
 
-	function mod:SPELL_AURA_APPLIED(args)
-		--if args.spellId == 17293 then
-		if args.spellName == BurningWinds then
-			warningBurningWinds:Show(args.destName)
-		end
+function mod:SPELL_AURA_APPLIED(args)
+	if args.spellId == 17293 then
+		warningBurningWinds:Show(args.destName)
 	end
 end

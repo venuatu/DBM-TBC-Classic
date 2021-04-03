@@ -20,13 +20,9 @@ function mod:OnCombatStart(delay)
 	timerSummonRisenRiflemanCD:Start(1-delay)
 end
 
-do
-	local SummonRisenRifleman = DBM:GetSpellInfo(17279)
-	function mod:SPELL_CAST_SUCCESS(args)
-		--if args.spellId == 17279 then
-		if args.spellName == SummonRisenRifleman then
-			warningSummonRisenRifleman:Show()
-			timerSummonRisenRiflemanCD:Start()
-		end
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 17279 then
+		warningSummonRisenRifleman:Show()
+		timerSummonRisenRiflemanCD:Start()
 	end
 end

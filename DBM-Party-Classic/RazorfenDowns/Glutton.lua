@@ -14,18 +14,8 @@ mod:RegisterEventsInCombat(
 --TODO, add Disease Cloud when data is known
 local warningEnrage					= mod:NewSpellAnnounce(12795, 2)
 
---[[
-function mod:OnCombatStart(delay)
-
-end
---]]
-
-do
-	local Enrage = DBM:GetSpellInfo(12795)
-	function mod:SPELL_CAST_SUCCESS(args)
-		--if args.spellId == 12795 then
-		if args.spellName == Enrage and args:IsSrcTypeHostile() then
-			warningEnrage:Show()
-		end
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 12795 and args:IsSrcTypeHostile() then
+		warningEnrage:Show()
 	end
 end

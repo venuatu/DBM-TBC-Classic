@@ -22,17 +22,12 @@ function mod:OnCombatStart(delay)
 	timerFireNovaCD:Start(1-delay)
 end
 
-do
-	local Uppercut, FireNova = DBM:GetSpellInfo(18072), DBM:GetSpellInfo(11970)
-	function mod:SPELL_CAST_SUCCESS(args)
-		--if args.spellId == 18072 then
-		if args.spellName == Uppercut then
-			warningUppercut:Show()
-			timerUppercutCD:Start()
-		--elseif args.spellId == 11970 then
-		elseif args.spellName == FireNova then
-			warningFireNova:Show()
-			timerFireNovaCD:Start()
-		end
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 18072 then
+		warningUppercut:Show()
+		timerUppercutCD:Start()
+	elseif args.spellId == 11970 then
+		warningFireNova:Show()
+		timerFireNovaCD:Start()
 	end
 end

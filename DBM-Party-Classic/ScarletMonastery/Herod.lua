@@ -21,17 +21,12 @@ function mod:OnCombatStart(delay)
 	timerWhirlwindCD:Start(10.5-delay)
 end
 
-do
-	local Whirlwind = DBM:GetSpellInfo(8989)
-	local Enrage = DBM:GetSpellInfo(8269)
-	function mod:SPELL_AURA_APPLIED(args)
-		--if args.spellId == 8269 then
-		if args.spellName == Whirlwind and args:IsDestTypeHostile() then
-			specWarnWhirlwind:Show()
-			specWarnWhirlwind:Play("justrun")
-			timerWhirlwindCD:Start()
-		elseif args.spellName == Enrage and args:IsDestTypeHostile() then
-			warningEnrage:Show(args.destName)
-		end
+function mod:SPELL_AURA_APPLIED(args)
+	if args.spellId == 8269 and args:IsDestTypeHostile() then
+		specWarnWhirlwind:Show()
+		specWarnWhirlwind:Play("justrun")
+		timerWhirlwindCD:Start()
+	elseif args.spellId == 8269 and args:IsDestTypeHostile() then
+		warningEnrage:Show(args.destName)
 	end
 end

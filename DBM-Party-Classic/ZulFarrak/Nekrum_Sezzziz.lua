@@ -29,50 +29,36 @@ function mod:OnCombatStart(delay)
 	timerPsychicScreamCD:Start(1-delay)
 end
 
-do
-	local Renew, Heal = DBM:GetSpellInfo(8362), DBM:GetSpellInfo(12039)
-	function mod:SPELL_CAST_START(args)
-		--if args.spellId == 8362 then
-		if args.spellName == Renew and args:IsSrcTypeHostile() then
-			timerRenewCD:Start()
-			if self:CheckInterruptFilter(args.sourceGUID, false, true) then
-				specWarnRenew:Show(args.sourceName)
-				specWarnRenew:Play("kickcast")
-			end
-		--elseif args.spellId == 12039 then
-		elseif args.spellName == Heal and args:IsSrcTypeHostile() then
-			timerHealCD:Start()
-			if self:CheckInterruptFilter(args.sourceGUID, false, true) then
-				specWarnHeal:Show(args.sourceName)
-				specWarnHeal:Play("kickcast")
-			end
+function mod:SPELL_CAST_START(args)
+	if args.spellId == 8362 and args:IsSrcTypeHostile() then
+		timerRenewCD:Start()
+		if self:CheckInterruptFilter(args.sourceGUID, false, true) then
+			specWarnRenew:Show(args.sourceName)
+			specWarnRenew:Play("kickcast")
+		end
+	elseif args.spellId == 12039 and args:IsSrcTypeHostile() then
+		timerHealCD:Start()
+		if self:CheckInterruptFilter(args.sourceGUID, false, true) then
+			specWarnHeal:Show(args.sourceName)
+			specWarnHeal:Play("kickcast")
 		end
 	end
 end
 
-do
-	local PsychicScream = DBM:GetSpellInfo(13704)
-	function mod:SPELL_CAST_SUCCESS(args)
-		--if args.spellId == 13704 then
-		if args.spellName == PsychicScream and args:IsSrcTypeHostile() then
-			timerPsychicScreamCD:Start()
-		end
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 13704 and args:IsSrcTypeHostile() then
+		timerPsychicScreamCD:Start()
 	end
 end
 
-do
-	local FeveredPlague = DBM:GetSpellInfo(8600)
-	function mod:SPELL_AURA_APPLIED(args)
-		--if args.spellId == 8600 and self:CheckDispelFilter() then
-		if args.spellName == FeveredPlague and args:IsDestTypePlayer() and self:CheckDispelFilter() then
-			warningFeveredPlague:Show(args.destName)
-		end
+function mod:SPELL_AURA_APPLIED(args)
+	if args.spellId == 8600 and args:IsDestTypePlayer() and self:CheckDispelFilter() then
+		warningFeveredPlague:Show(args.destName)
 	end
 end
 
 function mod:UNIT_DIED(args)
-	local cid = self:GetCIDFromGUID(args.destGUID)
-	if cid == 7275 then--sezzziz
+	if self:GetCIDFromGUID(args.destGUID) == 7275 then--sezzziz
 		timerRenewCD:Stop()
 		timerHealCD:Stop()
 		timerPsychicScreamCD:Stop()

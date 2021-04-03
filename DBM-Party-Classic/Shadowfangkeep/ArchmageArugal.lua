@@ -22,23 +22,17 @@ function mod:OnCombatStart(delay)
 	timerShadowPortCD:Start(1-delay)
 end
 
-do
-	local ArugalsCurse, ShadowPort = DBM:GetSpellInfo(7621), DBM:GetSpellInfo(7587)
-	function mod:SPELL_CAST_SUCCESS(args)
-		--if args.spellId == 7621 then
-		if args.spellName == ArugalsCurse then
-			timerArugalsCurseCD:Start()
-		--elseif args.spellId == 7587 then
-		elseif args.spellName == ShadowPort then
-			warningShadowPort:Show()
-			timerShadowPortCD:Start()
-		end
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 7621 then
+		timerArugalsCurseCD:Start()
+	elseif args.spellId == 7587 then
+		warningShadowPort:Show()
+		timerShadowPortCD:Start()
 	end
+end
 
-	function mod:SPELL_AURA_APPLIED(args)
-		--if args.spellId == 7621 then
-		if args.spellName == ArugalsCurse then
-			warningArugalsCurse:Show(args.destName)
-		end
+function mod:SPELL_AURA_APPLIED(args)
+	if args.spellId == 7621 then
+		warningArugalsCurse:Show(args.destName)
 	end
 end

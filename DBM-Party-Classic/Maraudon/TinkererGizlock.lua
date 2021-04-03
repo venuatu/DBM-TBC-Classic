@@ -21,13 +21,9 @@ function mod:OnCombatStart(delay)
 	timerGoblinDragonGunCD:Start(12.8-delay)
 end
 
-do
-	local GoblinDragonGun = DBM:GetSpellInfo(21833)
-	function mod:SPELL_CAST_SUCCESS(args)
-		--if args.spellId == 21833 then
-		if args.spellName == GoblinDragonGun then
-			warningGoblinDragonGun:Show()
-			timerGoblinDragonGunCD:Start()
-		end
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 21833 then
+		warningGoblinDragonGun:Show()
+		timerGoblinDragonGunCD:Start()
 	end
 end

@@ -17,23 +17,16 @@ local warnSacrifice				= mod:NewTargetNoFilterAnnounce(22651, 4)
 
 local yellSacrifice				= mod:NewYell(22651)
 
---function mod:OnCombatStart(delay)
-
---end
-
-do
-	local sacrifice = DBM:GetSpellInfo(22651)
-	function mod:SacTarget(targetname, uId)
-		if not targetname then return end
-		warnSacrifice:Show(targetname)
-		if targetname == UnitName("player") then
-			yellSacrifice:Yell()
-		end
+function mod:SacTarget(targetname, uId)
+	if not targetname then return end
+	warnSacrifice:Show(targetname)
+	if targetname == UnitName("player") then
+		yellSacrifice:Yell()
 	end
+end
 
-	function mod:SPELL_CAST_START(args)
-		if args.spellName == sacrifice and args:IsSrcTypeHostile() then
-			self:BossTargetScanner(args.sourceGUID, "SacTarget", 0.1, 8)
-		end
+function mod:SPELL_CAST_START(args)
+	if args.spellId == 22651 and args:IsSrcTypeHostile() then
+		self:BossTargetScanner(args.sourceGUID, "SacTarget", 0.1, 8)
 	end
 end

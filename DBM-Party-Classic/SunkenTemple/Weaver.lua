@@ -23,17 +23,12 @@ function mod:OnCombatStart(delay)
 	timerAcidBreathCD:Start(1-delay)
 end
 
-do
-	local WingFlap, AcidBreath = DBM:GetSpellInfo(12882), DBM:GetSpellInfo(12884)
-	function mod:SPELL_CAST_SUCCESS(args)
-		--if args.spellId == 12882 then
-		if args.spellName == WingFlap and args:IsSrcTypeHostile() then
-			warnWingFlap:Show()
-			timerWingFlapCD:Start()
-		--elseif args.spellId == 12884 then
-		elseif args.spellName == AcidBreath then
-			warnAcidBreath:Show()
-			timerAcidBreathCD:Start()
-		end
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 12882 and args:IsSrcTypeHostile() then
+		warnWingFlap:Show()
+		timerWingFlapCD:Start()
+	elseif args.spellId == 12884 then
+		warnAcidBreath:Show()
+		timerAcidBreathCD:Start()
 	end
 end

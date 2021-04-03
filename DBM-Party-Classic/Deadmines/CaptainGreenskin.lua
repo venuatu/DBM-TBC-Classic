@@ -21,19 +21,14 @@ function mod:OnCombatStart(delay)
 	timerPoisonedHarpoonCD:Start(1-delay)
 end
 
-do
-	local Harpoon = DBM:GetSpellInfo(5208)
-	function mod:SPELL_CAST_SUCCESS(args)
-		--if args.spellId == 5208 then
-		if args.spellName == Harpoon then
-			timerPoisonedHarpoonCD:Start()
-		end
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 5208 then
+		timerPoisonedHarpoonCD:Start()
 	end
+end
 
-	function mod:SPELL_AURA_APPLIED(args)
-		--if args.spellId == 5208 then
-		if args.spellName == Harpoon then
-			warningPoisonedHarpoon:Show(args.destName)
-		end
+function mod:SPELL_AURA_APPLIED(args)
+	if args.spellId == 5208 then
+		warningPoisonedHarpoon:Show(args.destName)
 	end
 end

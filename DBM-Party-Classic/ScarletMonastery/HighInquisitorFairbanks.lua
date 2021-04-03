@@ -13,12 +13,8 @@ mod:RegisterEventsInCombat(
 
 local warningCurseofBlood			= mod:NewTargetNoFilterAnnounce(8282, 2, nil, "RemoveCurse")
 
-do
-	local CurseofBlood = DBM:GetSpellInfo(8282)
-	function mod:SPELL_AURA_APPLIED(args)
-		--if args.spellId == 8282 then
-		if args.spellName == CurseofBlood then
-			warningCurseofBlood:Show(args.destName)
-		end
+function mod:SPELL_AURA_APPLIED(args)
+	if args.spellId == 8282 then
+		warningCurseofBlood:Show(args.destName)
 	end
 end
