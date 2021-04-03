@@ -28,51 +28,38 @@ local enrageTimer		= mod:NewBerserkTimer(420)
 function mod:OnCombatStart(delay)
 	timerRoarCD:Start(19.4 - delay)
 	enrageTimer:Start(420 - delay)
---	warnDecimateSoon:Schedule(100 - delay)
+	--warnDecimateSoon:Schedule(100 - delay)
 end
 
-do
-	local Roar = DBM:GetSpellInfo(29685)
-	function mod:SPELL_CAST_SUCCESS(args)
-		--if args.spellId == 29685 then
-		if args.spellName == Roar then
-			warnRoar:Show()
-			timerRoarCD:Start()
-		end
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 29685 then
+		warnRoar:Show()
+		timerRoarCD:Start()
 	end
 end
 
-do
-	local Enrage = DBM:GetSpellInfo(28371)
-	function mod:SPELL_AURA_APPLIED(args)
-		--if args.spellId == 28371 then
-		if args.spellName == Enrage and args:IsDestTypeHostile() then
-			if self.Options.SpecWarn19451dispel then
-				specWarnEnrage:Show(args.destName)
-				specWarnEnrage:Play("enrage")
-			else
-				warnEnrage:Show(args.destName)
-			end
-			timerEnrage:Start()
+function mod:SPELL_AURA_APPLIED(args)
+	if args.spellId == 28371 and args:IsDestTypeHostile() then
+		if self.Options.SpecWarn19451dispel then
+			specWarnEnrage:Show(args.destName)
+			specWarnEnrage:Play("enrage")
+		else
+			warnEnrage:Show(args.destName)
 		end
-	end
-
-	function mod:SPELL_AURA_REMOVED(args)
-		--if args.spellId == 28371 then
-		if args.spellName == Enrage and args:IsDestTypeHostile() then
-			timerEnrage:Stop()
-		end
+		timerEnrage:Start()
 	end
 end
 
-do
-	local Decimate = DBM:GetSpellInfo(28375)
-	function mod:SPELL_DAMAGE(_, _, _, _, _, _, _, _, spellId, spellName)
-		--if spellId == 28375 and self:AntiSpam(20) then
-		if spellName == Decimate and self:AntiSpam(20) then
-			warnDecimateNow:Show()
---			timerDecimate:Start()
---			warnDecimateSoon:Schedule(96)
-		end
+function mod:SPELL_AURA_REMOVED(args)
+	if args.spellId == 28371 and args:IsDestTypeHostile()  then
+		timerEnrage:Stop()
+	end
+end
+
+function mod:SPELL_DAMAGE(_, _, _, _, _, _, _, _, spellId)
+	if spellId == 28375 and self:AntiSpam(20) then
+		warnDecimateNow:Show()
+		--timerDecimate:Start()
+		--warnDecimateSoon:Schedule(96)
 	end
 end
