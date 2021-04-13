@@ -19,7 +19,7 @@
 ## X-DBM-Mod-Category: Classic
 ## X-DBM-StatTypes: normal
 ## X-DBM-Mod-MapID: 509
-## X-DBM-Mod-Sort: 10
+## X-DBM-Mod-Sort: 1110
 ## X-DBM-Mod-MinCoreRevision: 12473
 ## X-DBM-Mod-MinExpansion: 0
 localization.en.lua
