@@ -18,7 +18,7 @@ local warnEvo			= mod:NewSpellAnnounce(30254, 2)
 local warnArcaneInfusion= mod:NewSpellAnnounce(30403, 4)
 
 local timerEvo			= mod:NewBuffActiveTimer(20, 30254, nil, nil, nil, 6)
---local timerNextEvo		= mod:NewNextTimer(115, 30254, nil, nil, nil, 6)
+local timerNextEvo		= mod:NewNextTimer(115, 30254, nil, nil, nil, 6)
 
 local berserkTimer		= mod:NewBerserkTimer(720)
 
@@ -29,7 +29,7 @@ local addGUIDS = {}
 function mod:OnCombatStart(delay)
 	table.wipe(addGUIDS)
 	berserkTimer:Start(-delay)
---	timerNextEvo:Start(109-delay)
+	timerNextEvo:Start(109-delay)
 	if self.Options.RangeFrame then
 		DBM.RangeCheck:Show(10)
 	end
@@ -45,10 +45,10 @@ function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 30254 then
 		warnEvo:Show()
 		timerEvo:Start()
---		timerNextEvo:Start()
+		timerNextEvo:Start()
 	elseif args.spellId == 30403 then
 		warnArcaneInfusion:Show()
---		timerNextEvo:Stop()
+		timerNextEvo:Stop()
 	end
 end
 
