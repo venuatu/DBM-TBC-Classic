@@ -3,7 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(16457)
-mod:SetEncounterID(654)
+mod:SetEncounterID(654, 2446)
 mod:SetModelID(16198)
 mod:RegisterCombat("combat")
 
@@ -13,6 +13,9 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_REMOVED 29522"
 )
 
+--TODO, rependance timer is consistent but there is an unknown trigger that happens once per kill where the timer resets?
+--Maybe reaching a health threshold resets the CD?
+--ability.id = 29511 and type = "begincast"
 local warningRepentance		= mod:NewSpellAnnounce(29511, 4)
 local warningHolyFire		= mod:NewTargetNoFilterAnnounce(29522, 2)
 
