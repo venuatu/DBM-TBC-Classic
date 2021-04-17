@@ -51,7 +51,7 @@ function mod:SPELL_CAST_START(args)
 end
 
 function mod:SPELL_CAST_SUCCESS(args)
-	if args.spellId == 30511 then
+	if args.spellId == 30511 and self:AntiSpam(3, 1) then
 		warningInfernal:Show()
 	end
 end
