@@ -13,7 +13,7 @@ mod:RegisterEventsInCombat(
 --	"SPELL_MISSED 37363",
 	"RAID_BOSS_EMOTE",
 	"UNIT_DIED",
-	"UNIT_SPELLCAST_SUCCEEDED boss1"
+	"UNIT_SPELLCAST_SUCCEEDED"
 )
 
 --UNIT_SPELLCAST_SUCCEEDED is invalid in classic TBC, it needs to be reverted there
@@ -118,6 +118,7 @@ mod.SPELL_MISSED = mod.SPELL_DAMAGE
 --]]
 
 function mod:OnSync(msg)
+	if not self:IsInCombat() then return end
 	if msg == "Submerge" then
 		self.vb.submerged = true
 		self.vb.guardianKill = 0

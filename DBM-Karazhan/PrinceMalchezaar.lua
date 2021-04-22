@@ -11,13 +11,15 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 30852",
 	"SPELL_CAST_SUCCESS 30843",
 	"SPELL_AURA_APPLIED 30854 30898 39095 30843 30859",
-	"CHAT_MSG_MONSTER_YELL"
+	"CHAT_MSG_MONSTER_YELL",
+	"UNIT_SPELLCAST_SUCCEEDED"
 )
 
 --TODO, improve phase change timer updates, I don't really feel like it right now
 --TODO, also switch to pre changed timers, these are probably wrong for classic TBC, they were changed on retail
 local warningNovaCast			= mod:NewCastAnnounce(30852, 3)
 local warningInfernal			= mod:NewSpellAnnounce(37277, 2)
+local warningHellfire			= mod:NewSpellAnnounce(30859, 3)
 local warningEnfeeble			= mod:NewTargetNoFilterAnnounce(30843, 4)
 local warnPhase2				= mod:NewPhaseAnnounce(2)
 local warnPhase3				= mod:NewPhaseAnnounce(3)
@@ -37,7 +39,8 @@ mod.vb.phase = 1
 
 function mod:OnCombatStart(delay)
 	self.vb.phase = 1
-	timerNextInfernal:Start(14.5-delay)
+	timerNextInfernal:Start(14.5-delay)--14-21?
+	timerEnfeebleCD:Start(30-delay)
 end
 
 function mod:SPELL_CAST_START(args)
@@ -71,7 +74,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			specWarnEnfeeble:Play("targetyou")
 		end
 	elseif args.spellId == 30859 and not args:IsDestTypePlayer() then--Hellfire applied to Infernals
-		warningInfernal:Show()
+		warningHellfire:Show()
 		-- (during TBC there was like a 5 second delay between landing and gaining hellfire, but at some point they changed it to gain instantly
 		--If this changes on classic TBC, this will probably need adjustment
 	end
@@ -79,9 +82,29 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if msg == L.DBM_PRINCE_YELL_INF1 or msg == L.DBM_PRINCE_YELL_INF2 then
-		timerHellfire:Start(14.5)
-		timerNextInfernal:Start(self.vb.phase == 3 and 19.3 or 44.7)
+		warningInfernal:Show()
+		timerHellfire:Start(14.5)--14-16
+		timerNextInfernal:Start(self.vb.phase == 3 and 19.3 or 44.7)--44-48
 	elseif msg == L.DBM_PRINCE_YELL_P3 then
+		self:SendSync("Phase3")
+	elseif msg == L.DBM_PRINCE_YELL_P2 then
+		self.vb.phase = 2
+		warnPhase2:Show()
+		--Doesn't seem to affect any timers.
+	end
+end
+
+--"<275.31 12:32:09> [UNIT_SPELLCAST_SUCCEEDED] Prince Malchezaar(Deafstroket) -Summon Axes- [[target:Cast-3-4615-532-1222-30891-0000F6542B:30891]]", -- [3138]
+--"<275.56 12:32:10> [CHAT_MSG_MONSTER_YELL] How can you hope to stand against such overwhelming power?#Prince Malchezaar#####0#0##0#1766#nil#0#false#false#false#false", -- [3146]
+function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, spellId)
+	if spellId == 30891 and self:AntiSpam(3, 1) then--Summon Axes
+		self:SendSync("Phase3")
+	end
+end
+
+function mod:OnSync(msg)
+	if not self:IsInCombat() then return end
+	if msg == "Phase3" then
 		self.vb.phase = 3
 		warnPhase3:Show()
 		timerNovaCD:Stop()
@@ -91,9 +114,5 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		--"<326.45 01:12:48> [DBM_Announce] Stage 3#136116#stage#3#Prince#false", -- [759]
 		--"<366.46 01:13:28> [CHAT_MSG_MONSTER_YELL] You face not Malchezaar alone, but the legions I command!#Prince Malchezaar#####0#0##0#163#nil#0#false#false#false#false", -- [883]
 		timerNextInfernal:Start(40)
-	elseif msg == L.DBM_PRINCE_YELL_P2 then
-		self.vb.phase = 2
-		warnPhase2:Show()
-		--Doesn't seem to affect any timers.
 	end
 end

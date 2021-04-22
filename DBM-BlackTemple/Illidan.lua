@@ -94,7 +94,7 @@ function mod:OnCombatStart(delay)
 		self:RegisterShortTermEvents(
 			"SPELL_DAMAGE 40841",
 			"SPELL_MISSED 40841",
-			"UNIT_HEALTH boss1"
+			"UNIT_HEALTH"
 		)
 	end
 end

@@ -206,6 +206,7 @@ function mod:CHAT_MSG_LOOT(msg)
 end
 
 function mod:OnSync(event, playerName)
+	if not self:IsInCombat() then return end
 	if event == "LootMsg" and playerName then
 		playerName = DBM:GetUnitFullName(playerName)
 		if self:AntiSpam(2, playerName) then

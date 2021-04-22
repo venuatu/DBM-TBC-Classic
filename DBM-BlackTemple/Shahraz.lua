@@ -14,7 +14,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED 41001",
 	"SPELL_AURA_REMOVED 41001",
 	"SPELL_CAST_SUCCESS 40823",
-	"UNIT_SPELLCAST_SUCCEEDED boss1"
+	"UNIT_SPELLCAST_SUCCEEDED"
 )
 
 --TODO, announce auras?
@@ -102,10 +102,12 @@ end
 
 --["40869-Fatal Attraction"] = "pull:24.4, 26.8, 28.0, 20.7, 21.9, 26.6, 22.0, 23.2, 23.0, 25.7, 26.6, 26.8, 25.6, 23.1, 26.8, 25.4",
 function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, spellId)
-	if aura[spellId] then
-		local spellName = DBM:GetSpellInfo(spellId)
-		timerAura:Start(spellName)
-	elseif spellId == 40869 then--Cast event not in combat log, only applied and that can be resisted (especially on non timewalker). this ensures timer always exists
-		timerFACD:Start()
+	if self:AntiSpam(3, spellId) then
+		if aura[spellId] then
+			local spellName = DBM:GetSpellInfo(spellId)
+			timerAura:Start(spellName)
+		elseif spellId == 40869 then--Cast event not in combat log, only applied and that can be resisted (especially on non timewalker). this ensures timer always exists
+			timerFACD:Start()
+		end
 	end
 end

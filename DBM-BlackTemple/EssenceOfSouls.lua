@@ -17,7 +17,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_DAMAGE 41545",
 	"SPELL_MISSED 41545",
 	"CHAT_MSG_MONSTER_YELL",
-	"UNIT_SPELLCAST_SUCCEEDED boss1 boss2 boss3 target mouseover"
+	"UNIT_SPELLCAST_SUCCEEDED"
 )
 
 --maybe a warning for Seethe if tanks mess up in phase 3
@@ -149,6 +149,7 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 end
 
 function mod:OnSync(msg)
+	if not self:IsInCombat() then return end
 	if msg == "PhaseEnd" then
 		warnFrenzyEnd:Cancel()
 		warnFrenzySoon:Cancel()

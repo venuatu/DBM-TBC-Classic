@@ -71,7 +71,7 @@ function mod:OnCombatStart(delay)
 	self:RegisterShortTermEvents(
 		"SWING_DAMAGE",
 		"SWING_MISSED",
-		"UNIT_SPELLCAST_SUCCEEDED boss1 boss2"
+		"UNIT_SPELLCAST_SUCCEEDED"
 	)
 	self:Schedule(1, defenderLoop, self)
 	self:Schedule(1, sorcLoop, self)
@@ -109,7 +109,7 @@ end
 mod.SWING_MISSED = mod.SWING_DAMAGE
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, spellId)
-	if (spellId == 40607 or spellId == 40955) and self.vb.phase == 1 then--Fixate/Summon Shade of Akama Trigger
+	if (spellId == 40607 or spellId == 40955) and self.vb.phase == 1 and self:AntiSpam(3, 1) then--Fixate/Summon Shade of Akama Trigger
 		self:UnregisterShortTermEvents()
 		self.vb.phase = 2
 		warnPhase2:Show()

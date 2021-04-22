@@ -15,7 +15,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_SUMMON 45392",
 	"RAID_BOSS_EMOTE",
 	"CHAT_MSG_MONSTER_YELL",
-	"UNIT_SPELLCAST_SUCCEEDED boss1"
+	"UNIT_SPELLCAST_SUCCEEDED"
 )
 
 local warnEncaps			= mod:NewTargetAnnounce(45665, 4)
