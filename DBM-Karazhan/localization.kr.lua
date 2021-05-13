@@ -9,7 +9,6 @@ L:SetGeneralLocalization{
 }
 
 L:SetMiscLocalization{
-	DBM_ATH_YELL_1		= "이랴! 이 오합지졸을 데리고 실컷 놀아보자!"
 }
 
 

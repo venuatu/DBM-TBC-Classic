@@ -11,7 +11,7 @@ mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
 	"SPELL_CAST_SUCCESS 29711 29833",
-	"CHAT_MSG_MONSTER_YELL",
+	"SPELL_SUMMON 29714 29799",
 	"UNIT_DIED"
 )
 
@@ -36,11 +36,12 @@ function mod:SPELL_CAST_SUCCESS(args)
 	end
 end
 
-function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if msg == L.DBM_ATH_YELL_1 then
+function mod:SPELL_SUMMON(args)
+	if args.spellId == 29799 then
 		self.vb.phase = 2
 		warnPhase2:Show()
 		timerCurseCD:Start(25)
+	-- elseif args.spellId == 29714 then -- when attument arrives
 	end
 end
 
