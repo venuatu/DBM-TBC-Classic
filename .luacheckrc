@@ -225,6 +225,7 @@ globals = {
 	"GetNumTalentTabs",
 	"GetPartyAssignment",
 	"GetPlayerFacing",
+	"GetQuestLogTitle",
 	"GetRaidRosterInfo",
 	"GetRaidTargetIndex",
 	"GetRealmName",
