@@ -40,7 +40,7 @@ function mod:SPELL_SUMMON(args)
 	if args.spellId == 29799 then
 		self.vb.phase = 2
 		warnPhase2:Show()
-		timerCurseCD:Start(25)
+		timerCurseCD:Start(20)
 	-- elseif args.spellId == 29714 then -- when attument arrives
 	end
 end
