@@ -32,7 +32,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 		warnKnockdown:Show()
 	elseif args.spellId == 29833 then
 		warningCurse:Show()
-		timerCurseCD:Start(self.vb.phase == 2 and 30.5 or 27)
+		timerCurseCD:Start(self.vb.phase == 2 and 30.5 or 27.8)
 	end
 end
 
@@ -40,7 +40,7 @@ function mod:SPELL_SUMMON(args)
 	if args.spellId == 29799 then
 		self.vb.phase = 2
 		warnPhase2:Show()
-		timerCurseCD:Start(25)
+		timerCurseCD:Start(20.2)
 	-- elseif args.spellId == 29714 then -- when attument arrives
 	end
 end
