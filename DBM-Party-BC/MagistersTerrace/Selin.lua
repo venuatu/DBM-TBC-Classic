@@ -13,9 +13,9 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_APPLIED 44320"
 )
 
-local specWarnChannel		= mod:NewSpecialWarningSwitch("ej5081", "-Healer", nil, 3, 1, 2)
+local specWarnChannel		= mod:NewSpecialWarning("warningFelCrystal", "-Healer", nil, nil, 1, 2)
 
-local timerChannelCD		= mod:NewCDTimer(47, "ej5081", nil, nil, nil, 1, 44320)
+local timerChannelCD		= mod:NewTimer(47, "timerFelCrystal", 44320, nil, nil, 1)
 
 function mod:OnCombatStart(delay)
 	timerChannelCD:Start(15-delay)
