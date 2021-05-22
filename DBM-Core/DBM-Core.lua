@@ -4765,6 +4765,7 @@ do
 	do
 		local accessList = {}
 		local savedSender
+		local bossesEngaged = {}
 
 		local inspopup = CreateFrame("Frame", "DBMPopupLockout", UIParent, DBM:IsShadowlands() and "BackdropTemplate")
 		inspopup.backdropInfo = {
@@ -4880,7 +4881,8 @@ do
 		syncHandlers["GCB"] = function(sender, modId, ver, difficulty, name)
 			if not DBM.Options.ShowGuildMessages or not difficulty then return end
 			if not ver or not (ver == "5") then return end--Ignore old versions
-			if DBM:AntiSpam(10, "GCB") then
+			if not bossesEngaged[modId] then
+				bossesEngaged[modId] = true
 				if IsInInstance() then return end--Simple filter, if you are inside an instance, just filter it, if not in instance, good to go.
 				--difficulty = tonumber(difficulty)--Will be used in WoTLK
 				modId = tonumber(modId)
@@ -4892,7 +4894,8 @@ do
 		syncHandlers["GCE"] = function(sender, modId, ver, wipe, time, difficulty, name, wipeHP)
 			if not DBM.Options.ShowGuildMessages or not difficulty then return end
 			if not ver or not (ver == "8") then return end--Ignore old versions
-			if DBM:AntiSpam(5, "GCE") then
+			if bossesEngaged[modId] then
+				bossesEngaged[modId] = nil
 				if IsInInstance() then return end--Simple filter, if you are inside an instance, just filter it, if not in instance, good to go.
 				--difficulty = tonumber(difficulty)--Will be used in WoTLK
 				modId = tonumber(modId)
