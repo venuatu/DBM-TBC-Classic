@@ -8,8 +8,8 @@ mod:SetModelID(16110)
 mod:RegisterCombat("combat")--Maybe change to a yell later so pull detection works if you chain pull him from tash gauntlet
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED 29184 29195 29197 29199",
-	"SPELL_AURA_REMOVED 29184 29195 29197 29199",
+	"SPELL_AURA_APPLIED 29201 29195 29197 29199",
+	"SPELL_AURA_REMOVED 29201 29195 29197 29199",
 	"SPELL_CAST_SUCCESS 29234 29204 30281",
 	"UNIT_DIED"
 )
@@ -124,8 +124,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	-- Got to double check spell ids as there is a buff with the same name that triggers the actual 60 sec debuff
-	if args.spellId == 29184 and DBM:UnitDebuff(args.destName, 29184, 29195, 29197, 29199) then
+	if args.spellId == 29201 and DBM:UnitDebuff(args.destName, 29184, 29195, 29197, 29199) then
 		hadCorrupted[args.destName] = GetTime() + 60
 		if args:IsPlayer() then
 			warnHealSoon:Schedule(55)
@@ -134,7 +133,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:SPELL_AURA_REMOVED(args)
-	if args.spellId == 29184 and not DBM:UnitDebuff(args.destName, 29184, 29195, 29197, 29199) then
+	if args.spellId == 29201 and not DBM:UnitDebuff(args.destName, 29184, 29195, 29197, 29199) then
 		if args:IsPlayer() then
 			warnHealNow:Show()
 		end
