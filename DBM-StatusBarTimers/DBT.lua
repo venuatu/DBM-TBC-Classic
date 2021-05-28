@@ -393,7 +393,7 @@ do
 			DBT_AllPersistentOptions = {}
 		end
 		local DBM_UsedProfile = DBM_UsedProfile
-		if not id or not DBT_AllPersistentOptions[DBM_UsedProfile] or not DBT_AllPersistentOptions[DBM_UsedProfile][id] then
+		if not id or not DBM_AllSavedOptions[DBM_UsedProfile] or not DBM_AllSavedOptions[DBM_UsedProfile][id] then
 			DBM:AddMsg(DBM_CORE_L.PROFILE_APPLY_ERROR:format(id or DBM_CORE_L.UNKNOWN))
 			return
 		end
@@ -411,7 +411,7 @@ do
 		end
 		local DBM_UsedProfile = DBM_UsedProfile
 		if not hasPrinted then
-			if not name or not DBT_AllPersistentOptions[name] then
+			if not name or not DBM_AllSavedOptions[name] then
 				DBM:AddMsg(DBM_CORE_L.PROFILE_COPY_ERROR:format(name or DBM_CORE_L.UNKNOWN))
 				return
 			elseif name == DBM_UsedProfile then
@@ -1114,10 +1114,16 @@ do
 		if skins[id] then
 			error("Skin '" .. id .. "' is already registered.", 2)
 		end
+		local DBM_UsedProfile = DBM_UsedProfile
+		if not DBT_AllPersistentOptions then
+			DBT_AllPersistentOptions = {}
+		end
+		if not DBT_AllPersistentOptions[DBM_UsedProfile] then
+			DBT_AllPersistentOptions[DBM_UsedProfile] = {}
+		end
 		local obj = setmetatable({
 			name		= id,
-			loaded		= true, -- @Deprecated
-			defaults	= {}, -- @Deprecated
+			Defaults	= {},
 			Options		= {}
 		}, skin)
 		skins[id] = obj
@@ -1138,7 +1144,10 @@ do
 			DBT_AllPersistentOptions[DBM_UsedProfile] = {}
 		end
 		if not DBT_AllPersistentOptions[DBM_UsedProfile][id] then
-			DBT_AllPersistentOptions[DBM_UsedProfile][id] = DBT_AllPersistentOptions[DBM_UsedProfile].DBM
+			DBT_AllPersistentOptions[DBM_UsedProfile][id] = DBT_AllPersistentOptions[DBM_UsedProfile].DBM or {}
+			for option, value in pairs(skin.Defaults) do
+				DBT_AllPersistentOptions[DBM_UsedProfile][id][option] = value
+			end
 		end
 		self:ApplyProfile(id, true)
 		for option, value in pairs(skin.Options) do
