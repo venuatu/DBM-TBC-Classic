@@ -1114,13 +1114,6 @@ do
 		if skins[id] then
 			error("Skin '" .. id .. "' is already registered.", 2)
 		end
-		local DBM_UsedProfile = DBM_UsedProfile
-		if not DBT_AllPersistentOptions then
-			DBT_AllPersistentOptions = {}
-		end
-		if not DBT_AllPersistentOptions[DBM_UsedProfile] then
-			DBT_AllPersistentOptions[DBM_UsedProfile] = {}
-		end
 		local obj = setmetatable({
 			name		= id,
 			Defaults	= {},
