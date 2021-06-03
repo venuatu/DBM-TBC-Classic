@@ -218,6 +218,15 @@ L:SetGeneralLocalization{
 
 ------------------
 --  Mana-Tombs  --
+------------------
+--    Trash     --
+------------------
+L = DBM:GetModLocalization("AuctTombsTrash")
+
+L:SetGeneralLocalization{
+	name 		= "Trash"
+}
+
 -------------------
 --  Pandemonius  --
 -------------------
