@@ -1617,7 +1617,7 @@ do
 				"BOSS_KILL",
 				"UNIT_DIED",
 				"UNIT_DESTROYED",
-				"UNIT_HEALTH mouseover target player",--focus
+				"UNIT_HEALTH",
 				"CHAT_MSG_WHISPER",
 				"CHAT_MSG_BN_WHISPER",
 				"CHAT_MSG_MONSTER_YELL",
