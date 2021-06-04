@@ -96,7 +96,7 @@ L:SetGeneralLocalization{
 	name 		= "Warchief Kargath Bladefist"
 }
 
-L:SetWarningLocaliation({
+L:SetWarningLocalization({
 	warnHeathen			= "Heathen Guard",
 	warnReaver			= "Reaver Guard",
 	warnSharpShooter	= "Sharpshooter Guard",
