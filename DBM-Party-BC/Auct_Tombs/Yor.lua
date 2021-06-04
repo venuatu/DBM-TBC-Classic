@@ -6,7 +6,7 @@ mod.statTypes = "heroic"
 
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(22930)
---mod:SetEncounterID(250)--Verify before enable
+mod:SetEncounterID(250)
 
 mod:RegisterCombat("combat")
 
