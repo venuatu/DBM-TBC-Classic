@@ -13,9 +13,9 @@ mod:RegisterEventsInCombat(
 
 local specWarnFocusFire	= mod:NewSpecialWarningMove(11528, nil, nil, nil, 1, 2)
 
-function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, _, _, target, _, _, _, spellId)
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, _, _, target)
 	local targetname = DBM:GetUnitFullName(target) or target
-	if spellId == 11528 and targetname == UnitName("player") then
+	if targetname == UnitName("player") then
 		specWarnFocusFire:Show()
 	end
 end
