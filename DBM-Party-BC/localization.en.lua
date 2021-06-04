@@ -96,6 +96,27 @@ L:SetGeneralLocalization{
 	name 		= "Warchief Kargath Bladefist"
 }
 
+L:SetWarningLocaliation({
+	warnHeathen			= "Heathen Guard",
+	warnReaver			= "Reaver Guard",
+	warnSharpShooter	= "Sharpshooter Guard",
+})
+
+L:SetTimerLocalization({
+	timerHeathen		= "Heathen Guard: %s",
+	timerReaver			= "Reaver Guard: %s",
+	timerSharpShooter	= "Sharpshooter Guard: %s"
+})
+
+L:SetOptionLocalization({
+	warnHeathen			= "Show warning for Heathen Guard",
+	timerHeathen		= "Show timer for Heathen Guard",
+	warnReaver			= "Show warning for Reaver Guard",
+	timerReaver			= "Show timer for Reaver Guard",
+	warnSharpShooter	= "Show warning for Sharpshooter Guard",
+	timerSharpShooter	= "Show timer for Sharpshooter Guard"
+})
+
 ------------------
 --  Slave Pens  --
 --------------------------
@@ -182,6 +203,14 @@ L = DBM:GetModLocalization(574)
 L:SetGeneralLocalization{
 	name 		= "Mekgineer Steamrigger"
 }
+
+L:SetWarningLocalization({
+	warnSummon	= "Steamrigger Mechanics"
+})
+
+L:SetOptionLocalization({
+	warnSummon	= "Show warning for Steamrigger Mechanics"
+})
 
 L:SetMiscLocalization({
 	Mechs	= "Tune 'em up good boys!"
@@ -274,6 +303,14 @@ L:SetGeneralLocalization{
 	name 		= "Darkweaver Syth"
 }
 
+L:SetWarningLocalization({
+	warnSummon	= "Summon Elementals"
+})
+
+L:SetOptionLocalization({
+	warnSummon	= "Show warning for summoned elementals"
+})
+
 ------------
 --  Anzu  --
 ------------
@@ -284,10 +321,12 @@ L:SetGeneralLocalization{
 }
 
 L:SetWarningLocalization({
+	warnBrood	= "Brood of Anzu",
 	warnStoned	= "%s returned to stone"
 })
 
 L:SetOptionLocalization({
+	warnBrood	= "Show warning for Brood of Anzu",
 	warnStoned	= "Show warning for spirits returning to stone"
 })
 
@@ -400,6 +439,14 @@ L:SetGeneralLocalization{
 	name 		= "Aeonus"
 }
 
+L:SetWarningLocalization({
+	warnEnrage	= "Enrage"
+})
+
+L:SetOptionLocalization({
+	warnEnrage	= "Show enrage warning"
+})
+
 L:SetMiscLocalization({
     AeonusFrenzy	= "%s goes into a frenzy!"
 })
@@ -506,6 +553,14 @@ L:SetGeneralLocalization{
 	name 		= "High Botanist Freywinn"
 }
 
+L:SetWarningLocalization({
+	warnTranq	= "Frayer Protector"
+})
+
+L:SetOptionLocalization({
+	warnTranq	= "Show warning for Frayer Protector"
+})
+
 -----------------------------
 --  Thorngrin the Tender  --
 -----------------------------
@@ -571,6 +626,14 @@ L:SetGeneralLocalization{
 	name 		= "Harbinger Skyriss"
 }
 
+L:SetWarningLocalization({
+	warnSplit	= "Harbinger's Illusion"
+})
+
+L:SetOptionLocalization({
+	warnSplit	= "Show warning for Harbinger's Illusion"
+})
+
 L:SetMiscLocalization({
 	Split	= "We span the universe, as countless as the stars!"
 })
@@ -607,6 +670,14 @@ L = DBM:GetModLocalization(531)
 L:SetGeneralLocalization{
 	name 		= "Vexallus"
 }
+
+L:SetWarningLocalization({
+	warnEnergy	= "Pure Energy"
+})
+
+L:SetOptionLocalization({
+	warnEnergy	= "Show warning for Pure Energy"
+})
 
 --------------------------
 --  Priestess Delrissa  --

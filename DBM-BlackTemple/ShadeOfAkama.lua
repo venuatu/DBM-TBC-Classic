@@ -18,15 +18,15 @@ mod:RegisterEvents(
 )
 
 local warnPhase2		= mod:NewPhaseAnnounce(2)
-local warnDefender		= mod:NewSpellAnnounce("ej15615", 2, 41180)
-local warnSorc			= mod:NewSpellAnnounce("ej15606", 2, 40520)
+local warnDefender		= mod:NewSpellAnnounce("warnAshtongueDefender", 2, 41180)
+local warnSorc			= mod:NewSpellAnnounce("warnAshtongueSorcerer", 2, 40520)
 
 local specWarnAdds		= mod:NewSpecialWarningAddsCustom(216726, "-Healer", nil, nil, 1, 2)
 
 local timerCombatStart	= mod:NewCombatTimer(12)
 local timerAddsCD		= mod:NewAddsCustomTimer(25, 216726)--NewAddsCustomTimer
-local timerDefenderCD	= mod:NewNextTimer(25, "ej15615", nil, nil, nil, 1, 41180)
-local timerSorcCD		= mod:NewNextTimer(25, "ej15606", nil, nil, nil, 1, 40520)
+local timerDefenderCD	= mod:NewNextTimer(25, "timerAshtongueDefender", nil, nil, nil, 1, 41180)
+local timerSorcCD		= mod:NewNextTimer(25, "timerAshtongueSorcerer", nil, nil, nil, 1, 40520)
 
 mod.vb.phase = 1
 mod.vb.AddsWestCount = 0

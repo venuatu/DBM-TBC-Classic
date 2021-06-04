@@ -14,7 +14,7 @@ mod:RegisterEventsInCombat(
 )
 
 --TODO, actual CD timers
-local warnFrenzy		= mod:NewSpellAnnounce("ej5348", 3)
+local warnFrenzy		= mod:NewSpellAnnounce("warnEnrage", 3)
 local warnTimeStop		= mod:NewSpellAnnounce(31422, 3)
 
 local timerTimeStop		= mod:NewBuffActiveTimer(4, 31422, nil, nil, nil, 3)

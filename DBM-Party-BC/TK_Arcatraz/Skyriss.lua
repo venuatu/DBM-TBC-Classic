@@ -15,8 +15,8 @@ mod:RegisterEventsInCombat(
 	"UNIT_HEALTH"
 )
 
-local warnSplitSoon     = mod:NewSoonAnnounce("ej5335", 2)
-local warnSplit         = mod:NewSpellAnnounce("ej5335", 3)
+local warnSplitSoon     = mod:NewSoonAnnounce("warnSplit", 2)
+local warnSplit         = mod:NewSpellAnnounce("warnSplit", 3)
 local warnMindControl   = mod:NewTargetNoFilterAnnounce(39019, 4)
 local warnMindRend      = mod:NewTargetAnnounce(39017, 2)
 
