@@ -25,8 +25,8 @@ local specWarnAdds		= mod:NewSpecialWarningAddsCustom(216726, "-Healer", nil, ni
 
 local timerCombatStart	= mod:NewCombatTimer(12)
 local timerAddsCD		= mod:NewAddsCustomTimer(25, 216726)--NewAddsCustomTimer
-local timerDefenderCD	= mod:NewTimer(25, "timerAshtongueDefender", 41180, nil, nil, nil, 1)
-local timerSorcCD		= mod:NewTimer(25, "timerAshtongueSorcerer", 40520, nil, nil, nil, 1)
+local timerDefenderCD	= mod:NewTimer(25, "timerAshtongueDefender", 41180, nil, nil, 1)
+local timerSorcCD		= mod:NewTimer(25, "timerAshtongueSorcerer", 40520, nil, nil, 1)
 
 mod.vb.phase = 1
 mod.vb.AddsWestCount = 0
