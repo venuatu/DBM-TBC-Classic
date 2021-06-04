@@ -11,11 +11,12 @@ mod:RegisterEventsInCombat(
 	"CHAT_MSG_RAID_BOSS_EMOTE"
 )
 
-local specWarnFocusFire	= mod:NewSpecialWarningMove(32300, nil, nil, nil, 1, 2)
+local specWarnFocusFire	= mod:NewSpecialWarningDodge(32300, nil, nil, nil, 2, 2)
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, _, _, target)
 	local targetname = DBM:GetUnitFullName(target) or target
 	if targetname == UnitName("player") then
 		specWarnFocusFire:Show()
+		specWarnFocusFire:Play("watchstep")
 	end
 end
