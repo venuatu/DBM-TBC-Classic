@@ -17,7 +17,6 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_SUCCESS 23040 19873",
 	"SPELL_AURA_APPLIED 23023",
 	"CHAT_MSG_MONSTER_EMOTE",
---	"CHAT_MSG_MONSTER_YELL",
 	"UNIT_DIED"
 )
 
@@ -84,18 +83,6 @@ function mod:CHAT_MSG_MONSTER_EMOTE(msg)
 		self:SendSync("Phase2")
 	end
 end
-
---[[
-function mod:CHAT_MSG_MONSTER_YELL(msg)
-	if ((msg == L.YellEgg1 or msg:find(L.YellEgg1))
-	or (msg == L.YellEgg2 or msg:find(L.YellEgg2))
-	or (msg == L.YellEgg3) or msg:find(L.YellEgg3))
-	and self.vb.phase < 2 then
-		self.vb.eggsLeft = self.vb.eggsLeft - 2
-		warnEggsLeft:Show(string.format("%d/%d",30-self.vb.eggsLeft,30))
-	end
-end
---]]
 
 function mod:UNIT_DIED(args)
 	local cid = self:GetCIDFromGUID(args.destGUID)

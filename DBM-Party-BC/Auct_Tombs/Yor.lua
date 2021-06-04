@@ -1,6 +1,4 @@
 local mod	= DBM:NewMod(536, "DBM-Party-BC", 8, 250)
-local L		= mod:GetLocalizedStrings()
-
 
 mod.statTypes = "heroic"
 

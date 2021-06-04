@@ -82,10 +82,7 @@ function mod:SPELL_AURA_REMOVED(args)
 	end
 end
 
---TODO, switch to these events if blizzard enables boss1
---	"<231.31 20:53:15> [UNIT_SPELLCAST_SUCCEEDED] Kael'thas Sunstrider(Omegal) [[target:Clear Flight::0:44232]]", -- [530]
---	"<231.31 20:53:15> [UNIT_SPELLCAST_SUCCEEDED] Kael'thas Sunstrider(Omegal) [[target:Power Feedback::0:47109]]", -- [531]
-function mod:UNIT_SPELLCAST_SUCCEEDED(uId, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, spellId)
 	if spellId == 47109 and self.vb.phase < 2 then--Power Feedback
 		self.vb.phase = 2
 		timerShockBarrior:Stop()

@@ -1,5 +1,4 @@
 local mod	= DBM:NewMod(537, "DBM-Party-BC", 8, 250)
-local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(18344)
@@ -20,7 +19,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, spellId)
 end
 
 function mod:OnSync(msg)
-	if msg == "Adds" then
+	if msg == "Adds" and self:AntiSpam(5, 1) then
 		specWarnAdds:Show()
 		specWarnAdds:Play("killmob")
 	end
