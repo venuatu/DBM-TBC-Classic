@@ -13,15 +13,15 @@ mod:RegisterEventsInCombat(
 )
 
 --186782 Some Random Orc Icon. Could not find red fel orc icon. Only green orcs or brown orcs. Brown closer to red than green is.
-local warnHeathenGuard			= mod:NewCountAnnounce("warnHeathen", 2, 186782)
-local warnReaverGuard			= mod:NewCountAnnounce("warnReaver", 2, 186782)
-local warnSharpShooterGuard		= mod:NewCountAnnounce("warnSharpShooter", 2, 186782)
+local warnHeathenGuard			= mod:NewAnnounce("warnHeathen", 2, 186782)
+local warnReaverGuard			= mod:NewAnnounce("warnReaver", 2, 186782)
+local warnSharpShooterGuard		= mod:NewAnnounce("warnSharpShooter", 2, 186782)
 
 local specWarnBladeDance		= mod:NewSpecialWarningSpell(30739, nil, nil, nil, 2, 2)
 
-local timerHeathenCD			= mod:NewNextTimer(21, "timerHeathen", nil, nil, nil, 1, 186782)
-local timerReaverCD				= mod:NewNextTimer(21, "timerReaver", nil, nil, nil, 1, 186782)
-local timerSharpShooterCD		= mod:NewNextTimer(21, "timerSharpShooter", nil, nil, nil, 1, 186782)
+local timerHeathenCD			= mod:NewTimer(21, "timerHeathen", 186782, nil, nil, 1)
+local timerReaverCD				= mod:NewTimer(21, "timerReaver", 186782, nil, nil, 1)
+local timerSharpShooterCD		= mod:NewTimer(21, "timerSharpShooter", 186782, nil, nil, 1)
 local timerBladeDanceCD			= mod:NewCDTimer(35, 30739, nil, nil, nil, 2)
 
 mod.vb.addSet = 0

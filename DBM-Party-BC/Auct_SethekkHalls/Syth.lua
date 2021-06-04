@@ -12,7 +12,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_SUMMON 33537 33538 33539 33540"
 )
 
-local warnSummon   = mod:NewSpellAnnounce("warnSummon", 3)
+local warnSummon   = mod:NewAnnounce("warnSummon", 3)
 
 function mod:SPELL_SUMMON(args)
 	if args:IsSpellID(33537, 33538, 33539, 33540) and self:AntiSpam() then
