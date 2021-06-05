@@ -206,7 +206,7 @@ L:SetGeneralLocalization{
 }
 
 L:SetWarningLocalization({
-	warnSummon	= "스팀리거 정비사"
+	warnSummon	= "스팀리거 정비사 - 대상 변경"
 })
 
 L:SetOptionLocalization({
@@ -555,7 +555,7 @@ L:SetGeneralLocalization{
 }
 
 L:SetWarningLocalization({
-	warnTranq	= "껍질덩굴손 파수꾼"
+	warnTranq	= "껍질덩굴손 파수꾼 - 대상 변경"
 })
 
 L:SetOptionLocalization({
@@ -628,10 +628,12 @@ L:SetGeneralLocalization{
 }
 
 L:SetWarningLocalization({
+	warnSplitSoon	= "곧 선구자의 환영",
 	warnSplit	= "선구자의 환영"
 })
 
 L:SetOptionLocalization({
+	warnSplitSoon	= "곧 선구자의 환영 경고 보기",
 	warnSplit	= "선구자의 환영 경고 보기"
 })
 
@@ -651,7 +653,7 @@ L:SetGeneralLocalization{
 }
 
 L:SetWarningLocalization({
-    warningFelCrystal	= "지옥 수정 - 점사"
+    warningFelCrystal	= "지옥 수정 - 대상 변경"
 })
 
 L:SetTimerLocalization({
@@ -659,8 +661,8 @@ L:SetTimerLocalization({
 })
 
 L:SetOptionLocalization({
-	warningFelCrystal	= "지옥 수정 점사 특수 경고 보기",
-    timerFelCrystal		= "지옥 수정 타이머 바 보기"
+	warningFelCrystal	= "지옥 수정 대상 변경 특수 경고 보기",
+	timerFelCrystal		= "지옥 수정 타이머 바 보기"
 })
 
 ----------------
@@ -673,7 +675,7 @@ L:SetGeneralLocalization{
 }
 
 L:SetWarningLocalization({
-	warnEnergy	= "순수한 에너지"
+	warnEnergy	= "순수한 에너지 - 대상 변경"
 })
 
 L:SetOptionLocalization({
