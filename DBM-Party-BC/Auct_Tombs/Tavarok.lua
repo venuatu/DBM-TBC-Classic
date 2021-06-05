@@ -3,9 +3,10 @@ local mod	= DBM:NewMod(535, "DBM-Party-BC", 8, 250)
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(18343)
 mod:SetEncounterID(1901)
+mod:SetModelID(19332)
+mod:SetModelScale(0.5)
 mod:DisableEEKillDetection() -- EE instantly fires
 mod:SetMinSyncRevision(20210604000000)--2021, 06, 04
-
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(

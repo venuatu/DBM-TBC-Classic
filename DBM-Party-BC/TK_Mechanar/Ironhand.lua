@@ -4,7 +4,7 @@ local L		= mod:GetLocalizedStrings()
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(19710)
 mod:SetEncounterID(1934)
-mod:SetModelID(21191)--Bad angle, but not terrible enough to disable i guess
+mod:SetModelID(21191)
 
 mod:RegisterCombat("combat")
 

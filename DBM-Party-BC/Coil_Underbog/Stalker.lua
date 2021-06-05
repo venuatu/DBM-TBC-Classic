@@ -3,7 +3,8 @@ local mod	= DBM:NewMod(579, "DBM-Party-BC", 5, 262)
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(17882)
 mod:SetEncounterID(1948)
-
+mod:SetModelID(18194)
+mod:SetModelOffset(-0.4, 1.5, -0.3)
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(

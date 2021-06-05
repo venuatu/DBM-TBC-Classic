@@ -5,7 +5,9 @@ mod.statTypes = "heroic"
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(22930)
 mod:SetEncounterID(250)
-
+mod:SetModelID(14173)
+mod:SetModelScale(0.8)
+mod:SetModelOffset(0, 1, 2)
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(

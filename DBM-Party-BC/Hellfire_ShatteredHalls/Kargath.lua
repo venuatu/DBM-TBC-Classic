@@ -1,11 +1,11 @@
 local mod	= DBM:NewMod(569, "DBM-Party-BC", 3, 259)
 local L		= mod:GetLocalizedStrings()
 
-
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(16808)
 mod:SetEncounterID(1938)
-
+mod:SetModelID(19799)
+mod:SetModelOffset(-0.4, 0.1, -0.4)
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(

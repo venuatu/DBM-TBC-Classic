@@ -4,10 +4,11 @@ local L = mod:GetLocalizedStrings()
 mod.statTypes = "heroic"
 
 mod:SetRevision("@file-date-integer@")
-
 mod:SetCreatureID(23035)
 mod:SetEncounterID(1904)
-
+mod:SetModelID(21492)
+mod:SetModelScale(0.5)
+mod:SetModelOffset(0, 1, 3)
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
