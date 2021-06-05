@@ -180,7 +180,7 @@ function mod:WaveFunction(currentWave)
 				elseif currentWave == 2 then
 					warnWave:Show(L.WarnWave_3:format(currentWave, 5, L.Ghoul, 8, L.Gargoyle, 1, L.Wyrm))
 				elseif currentWave == 3 then
-					warnWave:Show(L.WarnWave_2:format(currentWave, 4, L.Ghoul, 8, L.Infernal))
+					warnWave:Show(L.WarnWave_2:format(currentWave, 6, L.Ghoul, 8, L.Infernal))
 				elseif currentWave == 4 then
 					warnWave:Show(L.WarnWave_2:format(currentWave, 8, L.Stalker, 6, L.Infernal))
 				elseif currentWave == 5 then
