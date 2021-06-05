@@ -205,7 +205,7 @@ L:SetGeneralLocalization{
 }
 
 L:SetWarningLocalization({
-	warnSummon	= "Steamrigger Mechanics"
+	warnSummon	= "Steamrigger Mechanics - Switch Targets"
 })
 
 L:SetOptionLocalization({
@@ -554,7 +554,7 @@ L:SetGeneralLocalization{
 }
 
 L:SetWarningLocalization({
-	warnTranq	= "Frayer Protector"
+	warnTranq	= "Frayer Protector - Switch Targets"
 })
 
 L:SetOptionLocalization({
@@ -627,11 +627,13 @@ L:SetGeneralLocalization{
 }
 
 L:SetWarningLocalization({
-	warnSplit	= "Harbinger's Illusion"
+	warnSplitSoon	= "Harbinger's Illusion Soon",
+	warnSplit		= "Harbinger's Illusion"
 })
 
 L:SetOptionLocalization({
-	warnSplit	= "Show warning for Harbinger's Illusion"
+	warnSplitSoon	= "Show warning for Harbinger's Illusion soon",
+	warnSplit		= "Show warning for Harbinger's Illusion"
 })
 
 L:SetMiscLocalization({
@@ -672,7 +674,7 @@ L:SetGeneralLocalization{
 }
 
 L:SetWarningLocalization({
-	warnEnergy	= "Pure Energy"
+	warnEnergy	= "Pure Energy - Switch Targets"
 })
 
 L:SetOptionLocalization({
