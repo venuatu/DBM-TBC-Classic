@@ -65,6 +65,8 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 	elseif msg == L.DBM_MAG_YELL_PHASE3 or msg:find(L.DBM_MAG_YELL_PHASE3) then
 		self.vb.phase = 3
 		warnPhase3:Show()
+		timerBlastNovaCD:Stop()
+		timerBlastNovaCD:Start(29)--NOT VERIFIED
 		timerDebris:Start()
 	end
 end
