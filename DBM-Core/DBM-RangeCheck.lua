@@ -24,8 +24,8 @@ local function setCompatibleRestrictedRange(range)
 		range = 10
 	elseif range <= 11 then
 		range = 11
---	elseif range <= 13 then
---		range = 13
+	elseif range <= 13 then
+		range = 13
 	elseif range <= 18 then
 		range = 18
 	elseif range <= 23 then
@@ -36,12 +36,12 @@ local function setCompatibleRestrictedRange(range)
 		range = 33
 	elseif range <= 43 then
 		range = 43
---	elseif range <= 48 then
---		range = 48
+	elseif range <= 48 then
+		range = 48
 --	elseif range <= 53 then
 --		range = 53
---	elseif range <= 60 then
---		range = 60
+	elseif range <= 60 then
+		range = 60
 --	elseif range <= 80 then
 --		range = 80
 	end
@@ -55,18 +55,18 @@ do
 	-- All ranges are tested and compared against UnitDistanceSquared.
 	-- Example: Worgsaw has a tooltip of 6 but doesn't factor in hitboxes/etc. It doesn't return false until UnitDistanceSquared of 8.
 	local itemRanges = {
-	--	[4] = 90175,--Gin-Ji Knife Set
-	--	[6] = 37727,--Ruby Acorn
+	--	[4] = 90175,--Gin-Ji Knife Set (MoP)
+	--	[6] = 37727,--Ruby Acorn (WotLK)
 		[8] = 8149,--Voodoo Charm
-	--	[13] = 32321,--Sparrowhawk Net
+		[13] = 32321,--Sparrowhawk Net
 		[18] = 6450,--Silk Bandage
 		[23] = 21519,--Mistletoe
 		[33] = 1180,--Scroll of Stamina
-	--	[43] = 34471,--Vial of the Sunwell (UnitInRange api alternate if item checks break)
-	--	[48] = 32698,--Wrangling Rope
-	--	[53] = 116139,--Haunting Memento
-	--	[60] = 32825,--Soul Cannon
-	--	[80] = 35278,--Reinforced Net
+		[43] = 34471,--Vial of the Sunwell (UnitInRange api alternate if item checks break)
+		[48] = 32698,--Wrangling Rope
+	--	[53] = 116139,--Haunting Memento (WoD)
+		[60] = 32825,--Soul Cannon
+	--	[80] = 35278,--Reinforced Net (WotLK)
 	}
 
 	local apiRanges = {
