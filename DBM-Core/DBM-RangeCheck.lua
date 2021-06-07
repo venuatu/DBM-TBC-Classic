@@ -97,15 +97,15 @@ do
 			if IsItemInRange(8149, uId) then return 8
 			elseif CheckInteractDistance(uId, 3) then return 10
 			elseif CheckInteractDistance(uId, 2) then return 11
-	--		elseif IsItemInRange(32321, uId) then return 13
+			elseif IsItemInRange(32321, uId) then return 13
 			elseif IsItemInRange(6450, uId) then return 18
 			elseif IsItemInRange(21519, uId) then return 23
 	--		elseif CheckInteractDistance(uId, 1) then return 30
 			elseif IsItemInRange(1180, uId) then return 33
 			elseif UnitInRange(uId) then return 43
-	--		elseif IsItemInRange(32698, uId) then return 48
+			elseif IsItemInRange(32698, uId) then return 48
 	--		elseif IsItemInRange(116139, uId) then return 53
-	--		elseif IsItemInRange(32825, uId) then return 60
+			elseif IsItemInRange(32825, uId) then return 60
 	--		elseif IsItemInRange(35278, uId) then return 80
 			else return 1000 end--Just so it has a numeric value, even if it's unknown to protect from nil errors
 		end
