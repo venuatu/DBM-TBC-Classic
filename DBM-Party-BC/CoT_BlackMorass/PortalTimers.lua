@@ -18,7 +18,7 @@ local warnBossPortal		= mod:NewAnnounce("WarnBossPortal", 4, 33341)
 
 local timerNextPortal		= mod:NewTimer(120, "TimerNextPortal", 57687, nil, nil, 6)
 
---mod:AddBoolOption("ShowAllPortalTimers", false, "timer")
+mod:AddBoolOption("ShowAllPortalTimers", false, "timer")
 
 local lastPortal = 0
 
@@ -51,10 +51,10 @@ function mod:UPDATE_UI_WIDGET(table)
 			warnBossPortal:Show()
 		else
 			warnWavePortal:Show(currentPortal)
---[[		if self.Options.ShowAllPortalTimers then
-				timerNextPortal:Start(122, currentPortal + 1)--requires complete overhaul I haven't patience to do.
-				warnWavePortalSoon:Schedule(112)--because portals spawn faster and faster each time.
-			end--]]
+			if self.Options.ShowAllPortalTimers then
+				timerNextPortal:Start(122, currentPortal + 1)
+				warnWavePortalSoon:Schedule(112)
+			end
 		end
 		lastPortal = currentPortal
 	elseif currentPortal < lastPortal then
