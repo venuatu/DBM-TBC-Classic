@@ -66,7 +66,7 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		self.vb.phase = 3
 		warnPhase3:Show()
 		timerBlastNovaCD:Stop()
-		timerBlastNovaCD:Start(29)--NOT VERIFIED
+		timerBlastNovaCD:Start(20)--NOT VERIFIED
 		timerDebris:Start()
 	end
 end
