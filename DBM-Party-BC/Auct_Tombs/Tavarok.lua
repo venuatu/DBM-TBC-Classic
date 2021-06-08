@@ -15,7 +15,7 @@ mod:RegisterEventsInCombat(
 	"SPELL_AURA_REMOVED 32361"
 )
 
-local WarnPrison		= mod:NewTargetAnnounce(32361, 3)
+local WarnPrison		= mod:NewTargetNoFilterAnnounce(32361, 3)
 
 local specWarnQuake		= mod:NewSpecialWarningSpell(33919, nil, nil, nil, 2, 2)
 
