@@ -28,13 +28,14 @@ local timerGroundSlamCD	= mod:NewCDTimer(74, 33525, nil, nil, nil, 2)--74-80 sec
 local timerShatterCD	= mod:NewNextTimer(10, 33654, nil, nil, nil, 2, nil, DBM_CORE_L.DEADLY_ICON, nil, 1, 4)--10 seconds after ground slam
 local timerSilenceCD	= mod:NewCDTimer(32, 36297, nil, nil, nil, 5, nil, DBM_CORE_L.HEALER_ICON)--Also showing a HUGE variation of 32-48 seconds.
 
-mod:AddRangeFrameOption(18, 33654)
+mod:AddDropdownOption("RangeDistance", {"Smaller", "Safe"}, "Safe", "misc")
+mod:AddRangeFrameOption(mod.Options.RangeDistance == "Smaller" and 11 or 18, 33654)
 
 function mod:OnCombatStart(delay)
 	timerGrowthCD:Start(-delay)
 	timerGroundSlamCD:Start(40-delay)
 	if self.Options.RangeFrame then
-		DBM.RangeCheck:Show(18)
+		DBM.RangeCheck:Show(self.Options.RangeDistance == "Smaller" and 11 or 18)
 	end
 end
 
