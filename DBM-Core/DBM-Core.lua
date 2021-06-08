@@ -780,7 +780,7 @@ do
 	local args = setmetatable({}, argsMT)
 
 	function argsMT.__index:IsSpellID(...)
-		return tIndexOf({...}, args.spellId) ~= nil
+		return tIndexOf({...}, self.spellId) ~= nil
 	end
 
 	function argsMT.__index:IsPlayer()
