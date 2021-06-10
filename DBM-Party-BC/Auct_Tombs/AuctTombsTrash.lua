@@ -8,7 +8,7 @@ mod:RegisterEvents(
 	"SPELL_AURA_APPLIED 34925"
 )
 
-local warningCurseOfImpotence	= mod:NewTargetNoFilterAnnounce(53925, 2)
+local warningCurseOfImpotence	= mod:NewTargetNoFilterAnnounce(34925, 2)
 
 function mod:SPELL_AURA_APPLIED(args)
 	if args.spellId == 34925 then
