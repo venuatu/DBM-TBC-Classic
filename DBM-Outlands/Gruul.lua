@@ -73,7 +73,7 @@ function mod:SPELL_AURA_APPLIED(args)
 			timerSilenceCD:Start(15)
 		end
 	elseif args.spellId == 36240 and args:IsPlayer() and not self:IsTrivial() then--Cave In
-		specWarnCaveIn:Show()
+		specWarnCaveIn:Show(args.spellName)
 		specWarnCaveIn:Play("watchfeet")
 	end
 end
