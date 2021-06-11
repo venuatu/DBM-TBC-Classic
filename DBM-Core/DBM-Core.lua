@@ -4909,7 +4909,7 @@ do
 		end
 
 		syncHandlers["WBE"] = function(sender, modId, realm, health, ver, name)
-			if not ver or not (ver == "8") then return end--Ignore old versions
+			if not ver or not (ver == "9") then return end--Ignore old versions
 			if lastBossEngage[modId..realm] and (GetTime() - lastBossEngage[modId..realm] < 30) then return end--We recently got a sync about this boss on this realm, so do nothing.
 			lastBossEngage[modId..realm] = GetTime()
 			if realm == playerRealm and DBM.Options.WorldBossAlert and not IsEncounterInProgress() then
@@ -4920,7 +4920,7 @@ do
 		end
 
 		syncHandlers["WBD"] = function(sender, modId, realm, ver, name)
-			if not ver or not (ver == "8") then return end--Ignore old versions
+			if not ver or not (ver == "9") then return end--Ignore old versions
 			if lastBossDefeat[modId..realm] and (GetTime() - lastBossDefeat[modId..realm] < 30) then return end
 			lastBossDefeat[modId..realm] = GetTime()
 			if realm == playerRealm and DBM.Options.WorldBossAlert and not IsEncounterInProgress() then
@@ -4950,7 +4950,7 @@ do
 
 		--YAY duplicate code (to handle all world boss/buff stuff for whisper handler)
 		whisperSyncHandlers["WBE"] = function(sender, modId, realm, health, ver, name)
-			if not ver or not (ver == "8") then return end--Ignore old versions
+			if not ver or not (ver == "9") then return end--Ignore old versions
 			if lastBossEngage[modId..realm] and (GetTime() - lastBossEngage[modId..realm] < 30) then return end
 			lastBossEngage[modId..realm] = GetTime()
 			if realm == playerRealm and DBM.Options.WorldBossAlert and #inCombat == 0 then
@@ -4962,7 +4962,7 @@ do
 		end
 
 		whisperSyncHandlers["WBD"] = function(sender, modId, realm, ver, name)
-			if not ver or not (ver == "8") then return end--Ignore old versions
+			if not ver or not (ver == "9") then return end--Ignore old versions
 			if lastBossDefeat[modId..realm] and (GetTime() - lastBossDefeat[modId..realm] < 30) then return end
 			lastBossDefeat[modId..realm] = GetTime()
 			if realm == playerRealm and DBM.Options.WorldBossAlert and #inCombat == 0 then
@@ -6256,10 +6256,10 @@ do
 					mod:OnTimerRecovery()
 				end
 			end
-			if savedDifficulty == "worldboss" and not mod.noWBEsync then
+			if savedDifficulty == "worldboss" and mod.WBEsync then
 				if lastBossEngage[modId..playerRealm] and (GetTime() - lastBossEngage[modId..playerRealm] < 30) then return end--Someone else synced in last 10 seconds so don't send out another sync to avoid needless sync spam.
 				lastBossEngage[modId..playerRealm] = GetTime()--Update last engage time, that way we ignore our own sync
-				SendWorldSync(self, "WBE", modId.."\t"..playerRealm.."\t"..startHp.."\t8\t"..name)
+				SendWorldSync(self, "WBE", modId.."\t"..playerRealm.."\t"..startHp.."\t9\t"..name)
 			end
 		end
 	end
@@ -6432,10 +6432,10 @@ do
 					sendWhisper(k, msg)
 				end
 				fireEvent("DBM_Kill", mod)
-				if savedDifficulty == "worldboss" and not mod.noWBEsync then
+				if savedDifficulty == "worldboss" and mod.WBEsync then
 					if lastBossDefeat[modId..playerRealm] and (GetTime() - lastBossDefeat[modId..playerRealm] < 30) then return end--Someone else synced in last 10 seconds so don't send out another sync to avoid needless sync spam.
 					lastBossDefeat[modId..playerRealm] = GetTime()--Update last defeat time before we send it, so we don't handle our own sync
-					SendWorldSync(self, "WBD", modId.."\t"..playerRealm.."\t8\t"..name)
+					SendWorldSync(self, "WBD", modId.."\t"..playerRealm.."\t9\t"..name)
 				end
 				if self.Options.EventSoundVictory2 and self.Options.EventSoundVictory2 ~= "None" and self.Options.EventSoundVictory2 ~= "" then
 					if self.Options.EventSoundVictory2 == "Random" then
@@ -11611,8 +11611,8 @@ function bossModPrototype:RegisterCombat(cType, ...)
 	if self.noRegenDetection then
 		info.noRegenDetection = self.noRegenDetection
 	end
-	if self.noWBEsync then
-		info.noWBEsync = self.noWBEsync
+	if self.WBEsync then
+		info.WBEsync = self.WBEsync
 	end
 	if self.noBossDeathKill then
 		info.noBossDeathKill = self.noBossDeathKill
@@ -11725,10 +11725,10 @@ function bossModPrototype:DisableRegenDetection()
 	end
 end
 
-function bossModPrototype:DisableWBEngageSync()
-	self.noWBEsync = true
+function bossModPrototype:EnableWBEngageSync()
+	self.WBEsync = true
 	if self.combatInfo then
-		self.combatInfo.noWBEsync = true
+		self.combatInfo.WBEsync = true
 	end
 end
 
