@@ -34,7 +34,7 @@ mod.vb.phase = 1
 function mod:OnCombatStart(delay)
 	self.vb.interruptable = false
 	self.vb.phase = 1
-	if not self:IsDifficulty("normal5") then
+	if self:IsHeroic() then
         timerShockBarrior:Start(-delay)
     end
 end

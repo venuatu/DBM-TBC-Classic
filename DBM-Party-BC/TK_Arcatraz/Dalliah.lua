@@ -27,7 +27,7 @@ function mod:SPELL_CAST_START(args)
 		specwarnHeal:Play("kickcast")
 	elseif args:IsSpellID(36175, 36142) then
 		specwarnWhirlwind:Show()
-		specwarnWhirlwind:Play("whirlwind")--Probably get this sound file renamed to "whirlwind" in 7.0
+		specwarnWhirlwind:Play("whirlwind")
 	end
 end
 

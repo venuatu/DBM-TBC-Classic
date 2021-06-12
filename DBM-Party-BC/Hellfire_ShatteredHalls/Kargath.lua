@@ -9,7 +9,7 @@ mod:SetModelOffset(-0.4, 0.1, -0.4)
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"UNIT_SPELLCAST_START"
+	"UNIT_SPELLCAST_START 30738"
 )
 
 --186782 Some Random Orc Icon. Could not find red fel orc icon. Only green orcs or brown orcs. Brown closer to red than green is.

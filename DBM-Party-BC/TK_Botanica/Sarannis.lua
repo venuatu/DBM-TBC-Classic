@@ -7,5 +7,39 @@ mod:SetEncounterID(1925)
 mod:SetModelID(18929)
 mod:RegisterCombat("combat")
 
-mod:RegisterEventsInCombat(
-)
+local warnReinforcementsNow		= mod:NewSpellAnnounce(34803, 1)
+local warnReinforcementsSoon	= mod:NewSoonAnnounce(34803, 3)
+
+local timerReinforcements		= mod:NewCDTimer(60, 34803, nil, nil, nil, 2)
+
+function mod:OnCombatStart(delay)
+	if self:IsNormal() then
+		self:RegisterShortTermEvents("UNIT_HEALTH")
+	else
+		self:RegisterShortTermEvnts("UNIT_SPELLCAST_SUCCEEDED")
+		timerReinforcements:Start(60 - delay)
+		warnReinforcementsSoon:Start(55 - delay)
+	end
+end
+
+function mod:OnCombatEnd()
+	self:UnregisterShortTermEvents()
+end
+
+do
+	local UnitHealth, UnitHealthMax = UnitHealth, UnitHealthMax
+
+	function mod:UNIT_HEALTH(uId)
+		if self:GetUnitCreatureId(uId) == 17976 and UnitHealth(uId) / UnitHealthMax(uId) <= 0.60 then
+			warnReinforcementsSoon:Show()
+		end
+	end
+end
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, spellId)
+	if spellId == 34803 then
+		timerReinforcements:Start(60 )
+		warnReinforcementsSoon:Start(55)
+		warnReinforcementsNow:Show()
+	end
+end
