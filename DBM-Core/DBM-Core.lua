@@ -7835,8 +7835,8 @@ function DBM:IsTrivial(customLevel)
 	else
 		--First, auto bail and return non trivial if it's an instancce not in table to prevent nil error
 		if not instanceDifficultyBylevel[LastInstanceMapID] then return false end
-		--Content is trivial if player level is 10 higher than content involved
-		if playerLevel >= (instanceDifficultyBylevel[LastInstanceMapID][1]+10) then
+		--Content is trivial if player level is 10 higher than content involved for dungeons, 15 for raids.
+		if playerLevel >= (instanceDifficultyBylevel[LastInstanceMapID][1] + (instanceDifficultyBylevel[LastInstanceMapID][2] == 3 and 15 or 10)) then
 			return true
 		end
 	end
