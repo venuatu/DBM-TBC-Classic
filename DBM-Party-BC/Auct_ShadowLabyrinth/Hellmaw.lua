@@ -20,7 +20,7 @@ local timerFear     = mod:NewNextTimer(25, 33547, nil, nil, nil, 2)
 local enrageTimer	= mod:NewBerserkTimer(180)
 
 function mod:OnCombatStart(delay)
-	if self:IsHeroic() then
+	if self:IsDifficulty("heroic5", "timewalker") then
         enrageTimer:Start(-delay)
     end
 end
