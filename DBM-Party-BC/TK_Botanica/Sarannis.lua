@@ -18,7 +18,7 @@ function mod:OnCombatStart(delay)
 	else
 		self:RegisterShortTermEvnts("UNIT_SPELLCAST_SUCCEEDED")
 		timerReinforcements:Start(60 - delay)
-		warnReinforcementsSoon:Start(55 - delay)
+		warnReinforcementsSoon:Schedule(55 - delay)
 	end
 end
 
@@ -38,9 +38,9 @@ do
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, spellId)
-	if spellId == 34803 then
+	if spellId == 34803 and self:AntiSpam(3, 1) then
 		timerReinforcements:Start(60 )
-		warnReinforcementsSoon:Start(55)
+		warnReinforcementsSoon:Schedule(55)
 		warnReinforcementsNow:Show()
 	end
 end
