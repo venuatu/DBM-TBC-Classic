@@ -15,7 +15,7 @@ mod:RegisterEventsInCombat(
 local warnSacrifice		= mod:NewTargetNoFilterAnnounce(34661, 2)
 local warnEnrage		= mod:NewSpellAnnounce(34670, 2, nil, "Healer|Tank")
 
-local specWarnGTFO	= mod:NewSpecialWarningGTFO(34660, nil, nil, nil, 1, 2)
+local specWarnGTFO	= mod:NewSpecialWarningGTFO(34660, nil, nil, nil, 1, 8)
 
 local timerSacrifice	= mod:NewTargetTimer(8, 34661, nil, nil, nil, 3)
 local timerFrenzy		= mod:NewBuffActiveTimer(10, 34670, nil, "Healer|Tank")
@@ -41,10 +41,10 @@ end
 do
 	local player = UnitGUID("player")
 
-	function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId)
-		if spellId == 34660 and destGUID == player and self:AntiSpam(4, 5) then--Hellfire
-			specWarnGTFO:Show()
-			specWarnGTFO:Play("runaway")
+	function mod:SPELL_DAMAGE(_, _, _, _, destGUID, _, _, _, spellId, spellName)
+		if spellId == 34660 and destGUID == player and self:AntiSpam(4, 1) then--Hellfire
+			specWarnGTFO:Show(spellName)
+			specWarnGTFO:Play("watchfeet")
 		end
 	end
 	mod.SPELL_MISSED = mod.SPELL_DAMAGE

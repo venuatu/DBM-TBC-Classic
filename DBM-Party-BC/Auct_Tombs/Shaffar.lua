@@ -7,7 +7,7 @@ mod:SetModelID(19780)
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"UNIT_SPELLCAST_SUCCEEDED 32371"
+	"UNIT_SPELLCAST_SUCCEEDED"
 )
 
 local specWarnAdds	= mod:NewSpecialWarningAdds(32371, "-Healer", nil, nil, 1, 2)
