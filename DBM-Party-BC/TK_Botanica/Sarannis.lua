@@ -32,6 +32,7 @@ do
 	function mod:UNIT_HEALTH(uId)
 		if self:GetUnitCreatureId(uId) == 17976 and UnitHealth(uId) / UnitHealthMax(uId) <= 0.60 then
 			warnReinforcementsSoon:Show()
+			self:UnregisterShortTermEvents()
 		end
 	end
 end
