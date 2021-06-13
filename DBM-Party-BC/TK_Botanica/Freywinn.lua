@@ -8,10 +8,11 @@ mod:SetModelID(19045)
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_CAST_SUCCESS 34557"
+	"SPELL_CAST_SUCCESS 34557",
+	"SPELL_AURA_APPLIED 34752"
 )
 
-local specWarnFreezingTouch	= mod:NewSpecialWarningDispel(34752, "MagicDispeller", nil, 2, 1, 2)
+local specWarnFreezingTouch	= mod:NewSpecialWarningDispel(34752, "MagicDispeller", nil, nil, 1, 2)
 local specWarnAdds			= mod:NewSpecialWarningAdds(34557, "-Healer", nil, nil, 1, 2)
 
 function mod:SPELL_CAST_SUCCESS(args)
