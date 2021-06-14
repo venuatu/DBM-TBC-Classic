@@ -36,8 +36,8 @@ mod.vb.eggsLeft = 30
 mod.vb.firstEngageTime = nil
 
 function mod:OnCombatStart(delay)
-	timerAddsSpawn:Start()
 	self:SetStage(1)
+	timerAddsSpawn:Start()
 	self.vb.eggsLeft = 30
 	if not self.vb.firstEngageTime then
 		self.vb.firstEngageTime = GetServerTime()

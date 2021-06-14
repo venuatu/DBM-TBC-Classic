@@ -155,9 +155,9 @@ local function check_target_vulns(self)
 end
 
 function mod:OnCombatStart(delay)
+	self:SetStage(1)
 	timerBreathCD:Start(30-delay, L.Breath1)
 	timerBreathCD:Start(60-delay, L.Breath2)--60
-	self:SetStage(1)
 	mydebuffs = 0
 	table.wipe(vulnerabilities)
 	if self.Options.WarnVulnerable then--Don't register high cpu combat log events if option isn't enabled
