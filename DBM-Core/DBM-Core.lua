@@ -8330,7 +8330,7 @@ do
 			["Melee"] = true,
 			["Physical"] = true,
 			["HasInterrupt"] = true,
-			["MagicDispeller"] = (IsSpellKnown(23922) or IsSpellKnown(23923) or IsSpellKnown(23924) or IsSpellKnown(23925)),--Shield Slam
+			["MagicDispeller"] = (IsSpellKnown(23922) or IsSpellKnown(23923) or IsSpellKnown(23924) or IsSpellKnown(23925) or IsSpellKnown(25258) or IsSpellKnown(30356)),--Shield Slam
 		},
 		["DRUID1"] = {	--Balance Druid
 			["Healer"] = true,
