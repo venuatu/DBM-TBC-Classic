@@ -86,7 +86,7 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 	elseif msg == L.DBM_PRINCE_YELL_P3 then
 		self:SendSync("Phase3")
 	elseif msg == L.DBM_PRINCE_YELL_P2 then
-		sself:SetStage(2)
+		self:SetStage(2)
 		warnPhase2:Show()
 		--Doesn't seem to affect any timers.
 	end
