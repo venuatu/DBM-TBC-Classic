@@ -30,12 +30,11 @@ local timerThrow			= mod:NewCDTimer(20.6, 28338, nil, nil, nil, 5, nil, DBM_CORE
 mod:AddDropdownOption("ArrowsEnabled", {"Never", "TwoCamp", "ArrowsRightLeft", "ArrowsInverse"}, "ArrowsRightLeft", "misc")
 
 local currentCharge
-mod.vb.phase = 1
 local down = 0
 local lastShift = 0
 
 function mod:OnCombatStart(delay)
-	self.vb.phase = 1
+	self:SetStage(1)
 	currentCharge = nil
 	down = 0
 	self:ScheduleMethod(40.6 - delay, "TankThrow")
@@ -51,7 +50,7 @@ end
 
 function mod:SPELL_CAST_START(args)
 	if args.spellId == 28089 then
-		self.vb.phase = 2
+		self:SetStage(2)
 		timerNextShift:Start()
 		timerShiftCast:Start()
 		warnShiftCasting:Show()

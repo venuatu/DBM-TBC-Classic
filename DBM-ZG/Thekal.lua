@@ -29,10 +29,9 @@ local timerSimulKill	= mod:NewTimer(15, "TimerSimulKill", 24173)
 local timerBlind		= mod:NewTargetTimer(10, 21060, nil, nil, nil, 3)
 local timerGouge		= mod:NewTargetTimer(4, 12540, nil, nil, nil, 3)
 
-mod.vb.phase = 1
 
 function mod:OnCombatStart(delay)
-	self.vb.phase = 1
+	self:SetStage(1)
 end
 
 function mod:SPELL_CAST_START(args)
@@ -88,7 +87,7 @@ function mod:OnSync(msg, arg)
 			timerSimulKill:Start()
 		end
 	elseif msg == "YellPhase2" and self.vb.phase < 2 then
-		self.vb.phase = 2
+		self:SetStage(2)
 		warnPhase2:Show()
 		timerSimulKill:Stop()
 	end

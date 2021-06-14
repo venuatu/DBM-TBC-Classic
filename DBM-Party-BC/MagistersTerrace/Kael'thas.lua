@@ -29,11 +29,10 @@ local timerGravityLapse		= mod:NewBuffActiveTimer(35, 44194, nil, nil, nil, 6)
 local timerGravityLapseCD	= mod:NewNextTimer(13.5, 44194, nil, nil, nil, 6)
 
 mod.vb.interruptable = false
-mod.vb.phase = 1
 
 function mod:OnCombatStart(delay)
 	self.vb.interruptable = false
-	self.vb.phase = 1
+	self:SetStage(1)
 	if self:IsHeroic() then
         timerShockBarrior:Start(-delay)
     end
@@ -49,7 +48,7 @@ function mod:SPELL_CAST_START(args)
 		timerGravityLapse:Start()
 		timerGravityLapseCD:Schedule(35)--Show after current lapse has ended
 		if self.vb.phase < 2 then
-			self.vb.phase = 2
+			self:SetStage(2)
 			timerShockBarrior:Stop()
 			timerPhoenix:Stop()
 		end
@@ -82,7 +81,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, spellId)
 	if spellId == 47109 and self.vb.phase < 2 then--Power Feedback
-		self.vb.phase = 2
+		self:SetStage(2)
 		timerShockBarrior:Stop()
 		timerPhoenix:Stop()
 	end
@@ -90,7 +89,7 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if msg == L.KaelP2 and self.vb.phase < 2 then
-		self.vb.phase = 2
+		self:SetStage(2)
 		timerShockBarrior:Stop()
 		timerPhoenix:Stop()
 	end

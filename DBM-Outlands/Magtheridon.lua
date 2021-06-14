@@ -27,11 +27,10 @@ local timerPhase2			= mod:NewTimer(120, "timerP2", "135566", nil, nil, 6)
 local timerBlastNovaCD		= mod:NewCDCountTimer(54, 30616, nil, nil, nil, 2, nil, DBM_CORE_L.DEADLY_ICON)
 local timerDebris			= mod:NewNextTimer(15, 36449, nil, nil, nil, 2, nil, DBM_CORE_L.HEALER_ICON..DBM_CORE_L.TANK_ICON)--Only happens once per fight, after the phase 3 yell.
 
-mod.vb.phase = 1
 mod.vb.blastNovaCounter = 1
 
 function mod:OnCombatStart(delay)
-	self.vb.phase = 1
+	self:SetStage(1)
 	self.vb.blastNovaCounter = 1
 	timerPhase2:Start(-delay)
 end
@@ -61,12 +60,12 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if msg == L.DBM_MAG_YELL_PHASE2 or msg:find(L.DBM_MAG_YELL_PHASE2) then
-		self.vb.phase = 2
+		self:SetStage(2)
 		warnPhase2:Show()
 		timerBlastNovaCD:Start(nil, self.vb.blastNovaCounter)
 		timerPhase2:Cancel()
 	elseif msg == L.DBM_MAG_YELL_PHASE3 or msg:find(L.DBM_MAG_YELL_PHASE3) then
-		self.vb.phase = 3
+		self:SetStage(3)
 		warnPhase3:Show()
 		timerBlastNovaCD:Stop()
 		timerBlastNovaCD:Start(20, self.vb.blastNovaCounter)--NOT VERIFIED

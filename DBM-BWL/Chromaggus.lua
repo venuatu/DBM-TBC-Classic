@@ -39,7 +39,6 @@ local timerVuln			= mod:NewTimer(17, "TimerVulnCD")-- seen 16.94 - 25.53, avg 21
 mod:AddNamePlateOption("NPAuraOnVulnerable", 22277)
 mod:AddInfoFrameOption(22277, true)
 
-mod.vb.phase = 1
 local mydebuffs = 0
 
 local lastVulnName = nil
@@ -158,7 +157,7 @@ end
 function mod:OnCombatStart(delay)
 	timerBreathCD:Start(30-delay, L.Breath1)
 	timerBreathCD:Start(60-delay, L.Breath2)--60
-	self.vb.phase = 1
+	self:SetStage(1)
 	mydebuffs = 0
 	table.wipe(vulnerabilities)
 	if self.Options.WarnVulnerable then--Don't register high cpu combat log events if option isn't enabled
@@ -251,7 +250,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		timerFrenzy:Start()
 	elseif args.spellId == 23537 and args:IsDestTypeHostile() then
 		if self.vb.phase < 2 then
-			self.vb.phase = 2
+			self:SetStage(2)
 			warnPhase2:Show()
 		end
 	end
@@ -282,7 +281,7 @@ end
 function mod:UNIT_HEALTH(uId)
 	if UnitHealth(uId) / UnitHealthMax(uId) <= 0.25 and self:GetUnitCreatureId(uId) == 14020 and self.vb.phase == 1 then
 		warnPhase2Soon:Show()
-		self.vb.phase = 1.5
+		self:SetStage(1.5)
 	end
 end
 

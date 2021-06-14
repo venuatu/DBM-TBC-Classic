@@ -35,10 +35,8 @@ local timerHellfire				= mod:NewCDTimer(14.5, 30859, nil, nil, nil, 3)--Landing/
 local timerEnfeebleCD			= mod:NewNextTimer(30, 30843, nil, nil, nil, 3, nil, DBM_CORE_L.DEADLY_ICON)
 local timerEnfeeble				= mod:NewBuffFadesTimer(9, 30843)
 
-mod.vb.phase = 1
-
 function mod:OnCombatStart(delay)
-	self.vb.phase = 1
+	self:SetStage(1)
 	timerNextInfernal:Start(14.5-delay)--14-21?
 	timerEnfeebleCD:Start(30-delay)
 end
@@ -88,7 +86,7 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 	elseif msg == L.DBM_PRINCE_YELL_P3 then
 		self:SendSync("Phase3")
 	elseif msg == L.DBM_PRINCE_YELL_P2 then
-		self.vb.phase = 2
+		sself:SetStage(2)
 		warnPhase2:Show()
 		--Doesn't seem to affect any timers.
 	end
@@ -105,7 +103,7 @@ end
 function mod:OnSync(msg)
 	if not self:IsInCombat() then return end
 	if msg == "Phase3" then
-		self.vb.phase = 3
+		self:SetStage(3)
 		warnPhase3:Show()
 		timerNovaCD:Stop()
 		timerNextInfernal:Stop()

@@ -32,18 +32,16 @@ local timerDaring		= mod:NewTargetTimer(8, 30841, nil, "Tank|MagicDispeller", 2,
 local timerDevotion		= mod:NewTargetTimer(10, 30887, nil, "Tank|MagicDispeller", 2, 5, nil, DBM_CORE_L.TANK_ICON..DBM_CORE_L.MAGIC_ICON)
 local timerCombatStart	= mod:NewCombatTimer(55)
 
-mod.vb.phase = 0
 mod.vb.JulianneDied = 0
 mod.vb.RomuloDied = 0
 
 local function NextPhase(self)
-	self.vb.phase = self.vb.phase + 1
+	self:SetStage(0)
 end
 
 function mod:OnCombatStart(delay)
 	self.vb.JulianneDied = 0
 	self.vb.RomuloDied = 0
-	self.vb.phase = 0
 	NextPhase(self)
 end
 

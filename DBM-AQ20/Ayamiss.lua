@@ -19,10 +19,8 @@ local warnEnrage	= mod:NewTargetNoFilterAnnounce(8269, 3)
 
 local timerParalyze	= mod:NewTargetTimer(10, 25725, nil, nil, nil, 3)
 
-mod.vb.phase = 1
-
 function mod:OnCombatStart(delay)
-	self.vb.phase = 1
+	self:SetStage(1)
 end
 
 function mod:SPELL_AURA_APPLIED(args)
@@ -42,7 +40,7 @@ end
 
 function mod:UNIT_HEALTH(uId)
 	if self.vb.phase < 2 and self:GetUnitCreatureId(uId) == 15369 and UnitHealth(uId) / UnitHealthMax(uId) <= 0.70 then
-		self.vb.phase = 2
+		self:SetStage(2)
 		warnPhase2:Show()
 	end
 end

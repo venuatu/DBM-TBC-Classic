@@ -32,13 +32,12 @@ local timerAddsSpawn		= mod:NewTimer(47, "TimerAddsSpawn", 19879, nil, nil, 1)--
 
 mod:AddSpeedClearOption("BWL", true)
 
-mod.vb.phase = 1
 mod.vb.eggsLeft = 30
 mod.vb.firstEngageTime = nil
 
 function mod:OnCombatStart(delay)
 	timerAddsSpawn:Start()
-	self.vb.phase = 1
+	self:SetStage(1)
 	self.vb.eggsLeft = 30
 	if not self.vb.firstEngageTime then
 		self.vb.firstEngageTime = GetServerTime()
@@ -63,7 +62,7 @@ end
 function mod:SPELL_CAST_SUCCESS(args)
 	if args.spellId == 23040 and self.vb.phase < 2 then
 		warnPhase2:Show()
-		self.vb.phase = 2
+		self:SetStage(2)
 	--This may not be accurate, it depends on how large expanded combat log range is
 	elseif args.spellId == 19873 then
 		self.vb.eggsLeft = self.vb.eggsLeft - 1
@@ -98,6 +97,6 @@ end
 function mod:OnSync(msg, name)
 	if msg == "Phase2" and self.vb.phase < 2 then
 		warnPhase2:Show()
-		self.vb.phase = 2
+		self:SetStage(2)
 	end
 end
