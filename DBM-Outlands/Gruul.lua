@@ -15,6 +15,11 @@ mod:RegisterEventsInCombat(
 )
 
 --TODO, add an option that lets users choose between 11, 13, and 18, 18 being default
+--[[
+(ability.id = 33525 or ability.id = 33654) and type = "begincast"
+ or ability.id = 36297 and type = "cast"
+ or ability.id = 36300
+--]]
 local warnGrowth		= mod:NewStackAnnounce(36300, 2)
 local warnGroundSlam	= mod:NewSpellAnnounce(33525, 3)
 local warnShatter		= mod:NewSpellAnnounce(33654, 4)
@@ -26,7 +31,7 @@ local specWarnShatter	= mod:NewSpecialWarningMoveAway(33654, nil, nil, nil, 1, 6
 local timerGrowthCD		= mod:NewNextTimer(30, 36300, nil, nil, nil, 6)
 local timerGroundSlamCD	= mod:NewCDTimer(74, 33525, nil, nil, nil, 2)--74-80 second variation,and this is just from 2 pulls.
 local timerShatterCD	= mod:NewNextTimer(10, 33654, nil, nil, nil, 2, nil, DBM_CORE_L.DEADLY_ICON, nil, 1, 4)--10 seconds after ground slam
-local timerSilenceCD	= mod:NewCDTimer(32, 36297, nil, nil, nil, 5, nil, DBM_CORE_L.HEALER_ICON)--Also showing a HUGE variation of 32-48 seconds.
+--local timerSilenceCD	= mod:NewCDTimer(32, 36297, nil, nil, nil, 5, nil, DBM_CORE_L.HEALER_ICON)--Also showing a HUGE variation of 32-130 seconds.
 
 mod:AddDropdownOption("RangeDistance", {"Smaller", "Safe"}, "Safe", "misc")
 mod:AddRangeFrameOption(mod.Options.RangeDistance == "Smaller" and 11 or 18, 33654)
@@ -37,6 +42,7 @@ function mod:OnCombatStart(delay)
 	if self.Options.RangeFrame then
 		DBM.RangeCheck:Show(self.Options.RangeDistance == "Smaller" and 11 or 18)
 	end
+	DBM:AddMsg("Ground Slam timer is not broken. This is an ability that has a 74 second minimum cooldown window, but after coming off CD can be delayed up to 21 seconds on when it's cast. Basically it's a 74-95sec window. DBM shows timer for the start of that window, but cannot control whether or not the boss casts it at 74, 85, or 95. Use this knowledge to inform you of when the ability can NOT be cast, not when it will be.")
 end
 
 function mod:OnCombatEnd()
@@ -60,7 +66,7 @@ end
 function mod:SPELL_CAST_SUCCESS(args)
 	if args.spellId == 36297 then--Reverberation (Silence)
 		warnSilence:Show()
-		timerSilenceCD:Start()
+--		timerSilenceCD:Start()
 	end
 end
 
