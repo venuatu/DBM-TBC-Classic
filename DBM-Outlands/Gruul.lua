@@ -75,9 +75,9 @@ function mod:SPELL_AURA_APPLIED(args)
 		local amount = args.amount or 1
 		warnGrowth:Show(args.spellName, amount)
 		timerGrowthCD:Start()
-		if amount == 3 then--First silence is 15 seconds after 3rd growth.
-			timerSilenceCD:Start(15)
-		end
+--		if amount == 3 then--First silence is 15 (or 30?) seconds after 3rd growth.
+--			timerSilenceCD:Start(30)
+--		end
 	elseif args.spellId == 36240 and args:IsPlayer() and not self:IsTrivial() then--Cave In
 		specWarnCaveIn:Show(args.spellName)
 		specWarnCaveIn:Play("watchfeet")
