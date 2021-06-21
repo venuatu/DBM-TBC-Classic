@@ -67,8 +67,14 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 	elseif msg == L.DBM_MAG_YELL_PHASE3 or msg:find(L.DBM_MAG_YELL_PHASE3) then
 		self:SetStage(3)
 		warnPhase3:Show()
-		timerBlastNovaCD:Stop()
-		timerBlastNovaCD:Start(20, self.vb.blastNovaCounter)--NOT VERIFIED
+		--If time less than 20, extend existing timer to 20, else do nothing
+		if timerBlastNovaCD:GetRemaining(self.vb.blastNovaCounter) < 20 then
+			local elapsed, total = timerBlastNovaCD:GetTime(self.vb.blastNovaCounter)
+			local extend = 20 - (total-elapsed)
+			DBM:Debug("timerBlastNovaCD extended by: "..extend, 2)
+			timerBlastNovaCD:Stop()
+			timerBlastNovaCD:Update(elapsed, total+extend, self.vb.blastNovaCounter)
+		end
 		timerDebris:Start()
 	end
 end
