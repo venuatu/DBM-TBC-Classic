@@ -33,7 +33,11 @@ local timerBone				= mod:NewBuffActiveTimer(11, 37098, nil, nil, nil, 1)
 
 mod:AddSetIconOption("SetIconOnCharred", 30128, true, false, {1})
 
- mod.vb.lastBlastTarget = "none"
+mod.vb.lastBlastTarget = "none"
+
+function mod:OnCombatStart()
+	self.vb.lastBlastTarget = "none"
+end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(msg)
 	if msg == L.DBM_NB_EMOTE_PULL then
@@ -72,6 +76,7 @@ function mod:SPELL_AURA_APPLIED(args)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
+	self.vb.lastBlastTarget = "none"
 	if msg == L.DBM_NB_YELL_AIR then
 		WarnAir:Show()
 		timerAirPhase:Stop()
