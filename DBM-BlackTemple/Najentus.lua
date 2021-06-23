@@ -3,7 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(22887)
-mod:SetEncounterID(601, 2473)
+mod:SetEncounterID(WOW_PROJECT_ID ~= (WOW_PROJECT_BURNING_CRUSADE_CLASSIC or 5) and 601 or 2473)
 mod:SetModelID(21174)
 mod:SetUsedIcons(8)
 
