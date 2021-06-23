@@ -24,12 +24,16 @@ local WarnAir				= mod:NewAnnounce("DBM_NB_AIR_WARN", 2, "Interface\\AddOns\\DBM
 local warningBone			= mod:NewSpellAnnounce(37098, 3)
 
 local specWarnCharred		= mod:NewSpecialWarningGTFO(30129, nil, nil, nil, 1, 6)
-local specWarnSmoke			= mod:NewSpecialWarningTarget(30128, "Healer")
+local specWarnSmoke			= mod:NewSpecialWarningTarget(30128, "Healer", nil, nil, 1, 2)
 
 local timerNightbane		= mod:NewCombatTimer(36)
 local timerFearCD			= mod:NewCDTimer(31.5, 36922, nil, nil, nil, 2)
 local timerAirPhase			= mod:NewTimer(57, "timerAirPhase", "Interface\\AddOns\\DBM-Core\\textures\\CryptFiendUnBurrow.blp", nil, nil, 6)
 local timerBone				= mod:NewBuffActiveTimer(11, 37098, nil, nil, nil, 1)
+
+mod:AddSetIconOption("SetIconOnCharred", 30128, true, false, {1})
+
+ mod.vb.lastBlastTarget = "none"
 
 function mod:CHAT_MSG_MONSTER_EMOTE(msg)
 	if msg == L.DBM_NB_EMOTE_PULL then
@@ -44,18 +48,16 @@ function mod:SPELL_CAST_START(args)
 	end
 end
 
-do
-	local lastTime = 0
-	local lastTarget
-
-	function mod:SPELL_CAST_SUCCESS(args)
-		if args.spellId == 37098 then
-			warningBone:Show()
-			timerBone:Start()
-		elseif args.spellId == 30128 and (lastTarget ~= args.destName or ((args.timestamp - lastTime) > 16)) then
-			lastTime = args.timestamp
-			lastTarget = args.destName
-			specWarnSmoke:Show(args.destName)
+function mod:SPELL_CAST_SUCCESS(args)
+	if args.spellId == 37098 then
+		warningBone:Show()
+		timerBone:Start()
+	elseif args.spellId == 30128 and self.vb.lastBlastTarget ~= args.destName then
+		self.vb.lastBlastTarget = args.destName
+		specWarnSmoke:Show(args.destName)
+		specWarnSmoke:Play("targetchange")
+		if self.Options.SetIconOnCharred then
+			self:SetIcon(args.destName, 1)
 		end
 	end
 end
