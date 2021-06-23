@@ -3,7 +3,7 @@ local L		= mod:GetLocalizedStrings()
 
 mod:SetRevision("@file-date-integer@")
 mod:SetCreatureID(17521)
---mod:SetEncounterID(655, 2447)--used by all 3 of them, so not usuable
+--mod:SetEncounterID(WOW_PROJECT_ID ~= (WOW_PROJECT_BURNING_CRUSADE_CLASSIC or 5) and 655 or 2447)--used by all 3 of them, so not usuable
 mod:SetModelID(17053)
 mod:SetUsedIcons(8)
 mod:RegisterCombat("combat_yell", L.DBM_BBW_YELL_1)
