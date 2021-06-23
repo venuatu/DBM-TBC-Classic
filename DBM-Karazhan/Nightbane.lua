@@ -13,7 +13,7 @@ mod:RegisterEvents(
 
 mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 36922",
-	"SPELL_CAST_SUCCESS 37098",
+	"SPELL_CAST_SUCCESS 37098 30128",
 	"SPELL_AURA_APPLIED 30129 30130",
 	"CHAT_MSG_MONSTER_YELL"
 )
@@ -24,6 +24,7 @@ local WarnAir				= mod:NewAnnounce("DBM_NB_AIR_WARN", 2, "Interface\\AddOns\\DBM
 local warningBone			= mod:NewSpellAnnounce(37098, 3)
 
 local specWarnCharred		= mod:NewSpecialWarningGTFO(30129, nil, nil, nil, 1, 6)
+local specWarnSmoke			= mod:NewSpecialWarningTarget(30128, "Healer")
 
 local timerNightbane		= mod:NewCombatTimer(36)
 local timerFearCD			= mod:NewCDTimer(31.5, 36922, nil, nil, nil, 2)
@@ -43,10 +44,19 @@ function mod:SPELL_CAST_START(args)
 	end
 end
 
-function mod:SPELL_CAST_SUCCESS(args)
-	if args.spellId == 37098 then
-		warningBone:Show()
-		timerBone:Start()
+do
+	local lastTime = 0
+	local lastTarget
+
+	function mod:SPELL_CAST_SUCCESS(args)
+		if args.spellId == 37098 then
+			warningBone:Show()
+			timerBone:Start()
+		elseif args.spellId == 30128 and (lastTarget ~= args.destName or ((args.timestamp - lastTime) > 16)) then
+			lastTime = args.timestamp
+			lastTarget = args.destName
+			specWarnSmoke:Show(args.destName)
+		end
 	end
 end
 
