@@ -75,13 +75,26 @@ function mod:SPELL_AURA_APPLIED(args)
 	end
 end
 
-function mod:CHAT_MSG_MONSTER_YELL(msg)
-	self.vb.lastBlastTarget = "none"
-	if msg == L.DBM_NB_YELL_AIR then
-		WarnAir:Show()
-		timerAirPhase:Stop()
-		timerAirPhase:Start()
-	elseif msg == L.DBM_NB_YELL_GROUND or msg == L.DBM_NB_YELL_GROUND2 then--needed. because if you deal more 25% damage in air phase, air phase repeated and shroten. So need to update exact ground phase.
-		timerAirPhase:Update(43, 57)
+do
+	local function clearSetIcon(self)
+		if self.Options.SetIconOnCharred and self.vb.lastBlastTarget ~= "none" then
+			self:SetIcon(self.vb.lastBlastTarget , 0)
+		end
+	end
+
+	function mod:CHAT_MSG_MONSTER_YELL(msg)
+		self.vb.lastBlastTarget = "none"
+		if msg == L.DBM_NB_YELL_AIR then
+			WarnAir:Show()
+			timerAirPhase:Stop()
+			timerAirPhase:Start()
+			self:Unschedule(clearSetIcon)
+			self:Schedule(57, clearSetIcon, self)
+		elseif msg == L.DBM_NB_YELL_GROUND or msg == L.DBM_NB_YELL_GROUND2 then--needed. because if you deal more 25% damage in air phase, air phase repeated and shorten. So need to update exact ground phase.
+			timerAirPhase:Update(43, 57)
+			self:Unschedule(clearSetIcon)
+			self:Schedule(14, clearSetIcon, self)
+		end
 	end
 end
+
