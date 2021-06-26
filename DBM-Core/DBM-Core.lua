@@ -6691,6 +6691,26 @@ function DBM:GetGroupSize()
 	return LastGroupSize
 end
 
+--Public api for requesting what phase a boss is in, in case they missed the DBM_SetStage callback
+--ModId would be journal Id or mod string of mod.
+--If not mod is not provided, it'll simply return stage for first boss in combat table if a boss is engaged
+function DBM:GetStage(modId)
+	if modId then
+		local mod = self:GetModByName(modId)
+		if mod and mod.inCombat then
+			return mod.vb.phase
+		end
+	else
+		if #inCombat > 0 then--At least one boss is engaged
+			local mod = inCombat[1]--Get first mod in table
+			if mod then
+				return mod.vb.phase
+			end
+		end
+	end
+	return 0--Fallback, return 0
+end
+
 function DBM:HasMapRestrictions()
 	--Check playerX and playerY. if they are nil restrictions are active
 	--Restrictions active in all party, raid, pvp, arena maps. No restrictions in "none"
