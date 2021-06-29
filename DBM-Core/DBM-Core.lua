@@ -4342,6 +4342,7 @@ do
 
 	local syncHandlers = {}
 	local whisperSyncHandlers = {}
+	local guildSyncHandlers = {}
 
 	-- DBM uses the following prefixes since 4.1 as pre-4.1 sync code is going to be incompatible anways, so this is the perfect opportunity to throw away the old and long names
 	-- M = Mod
@@ -4688,7 +4689,7 @@ do
 		DBM:Schedule(5, SendVersion)--Send version if 5 seconds have past since last "Hi" sync
 	end
 
-	syncHandlers["GH"] = function(sender)
+	guildSyncHandlers["GH"] = function(sender)
 		if DBM.ReleaseRevision >= DBM.HighestRelease then--Do not send version to guild if it's not up to date, since this is only used for update notifcation
 			DBM:Unschedule(SendVersion, true)
 			--Throttle so we don't needlessly send tons of comms
@@ -4728,7 +4729,7 @@ do
 		DBM:GROUP_ROSTER_UPDATE()
 	end
 
-	syncHandlers["GV"] = function(sender, revision, version, displayVersion)
+	guildSyncHandlers["GV"] = function(sender, revision, version, displayVersion)
 		revision, version = tonumber(revision), tonumber(version)
 		if revision and version and displayVersion then
 			DBM:Debug("Received G version info from "..sender.." : Rev - "..revision..", Ver - "..version..", Rev Diff - "..(revision - DBM.Revision), 3)
@@ -4878,7 +4879,7 @@ do
 			end
 		end
 
-		syncHandlers["GCB"] = function(sender, modId, ver, difficulty, name)
+		guildSyncHandlers["GCB"] = function(sender, modId, ver, difficulty, name)
 			if not DBM.Options.ShowGuildMessages or not difficulty then return end
 			if not ver or not (ver == "5") then return end--Ignore old versions
 			if not bossesEngaged[modId] then
@@ -4891,7 +4892,7 @@ do
 			end
 		end
 
-		syncHandlers["GCE"] = function(sender, modId, ver, wipe, time, difficulty, name, wipeHP)
+		guildSyncHandlers["GCE"] = function(sender, modId, ver, wipe, time, difficulty, name, wipeHP)
 			if not DBM.Options.ShowGuildMessages or not difficulty then return end
 			if not ver or not (ver == "8") then return end--Ignore old versions
 			if bossesEngaged[modId] then
@@ -4908,7 +4909,7 @@ do
 			end
 		end
 
-		syncHandlers["WBE"] = function(sender, modId, realm, health, ver, name)
+		guildSyncHandlers["WBE"] = function(sender, modId, realm, health, ver, name)
 			if not ver or not (ver == "9") then return end--Ignore old versions
 			if lastBossEngage[modId..realm] and (GetTime() - lastBossEngage[modId..realm] < 30) then return end--We recently got a sync about this boss on this realm, so do nothing.
 			lastBossEngage[modId..realm] = GetTime()
@@ -4919,7 +4920,7 @@ do
 			end
 		end
 
-		syncHandlers["WBD"] = function(sender, modId, realm, ver, name)
+		guildSyncHandlers["WBD"] = function(sender, modId, realm, ver, name)
 			if not ver or not (ver == "9") then return end--Ignore old versions
 			if lastBossDefeat[modId..realm] and (GetTime() - lastBossDefeat[modId..realm] < 30) then return end
 			lastBossDefeat[modId..realm] = GetTime()
@@ -4930,7 +4931,7 @@ do
 			end
 		end
 
-		syncHandlers["WBA"] = function(sender, bossName, faction, spellId, time, ver)
+		guildSyncHandlers["WBA"] = function(sender, bossName, faction, spellId, time, ver)
 			DBM:Debug("WBA sync recieved")
 			if not ver or not (ver == "4") then return end--Ignore old versions
 			if lastBossEngage[bossName..faction] and (GetTime() - lastBossEngage[bossName..faction] < 30) then return end--We recently got a sync about this buff on this realm, so do nothing.
@@ -5242,6 +5243,8 @@ do
 			if (checkForSafeSender(sender, true) or DBM:GetRaidUnitId(sender)) then--Sender passes safety check, or is in group
 				handler = whisperSyncHandlers[prefix]
 			end
+		elseif channel == "GUILD" then
+			handler = guildSyncHandlers[prefix]
 		else
 			handler = syncHandlers[prefix]
 		end
