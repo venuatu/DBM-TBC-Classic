@@ -45,7 +45,7 @@ function mod:SPELL_CAST_START(args)
 	if args.spellId == 29511 then
 		warningRepentance:Show()
 		timerRepentance:Start()
---		timerRepentanceCD:Start()
+		timerRepentanceCD:Start()
 	end
 end
 
