@@ -6293,13 +6293,13 @@ function DBM:GetCurrentInstanceDifficulty()
 	local _, instanceType, difficulty, difficultyName, _, _, _, _, instanceGroupSize = GetInstanceInfo()
 	if difficulty == 0 or difficulty == 172 or (difficulty == 1 and instanceType == "none") then--draenor field returns 1, causing world boss mod bug.
 		return "worldboss", RAID_INFO_WORLD_BOSS.." - ", difficulty, instanceGroupSize
-	elseif difficulty == 1 then--5 man Normal Dungeon
+	elseif difficulty == 1 or difficulty == 173 then--5 man Normal Dungeon
 		return "normal5", difficultyName.." - ", difficulty, instanceGroupSize
-	elseif difficulty == 2 then--5 man Heroic Dungeon
+	elseif difficulty == 2 or difficulty == 174 then--5 man Heroic Dungeon
 		return "heroic5", difficultyName.." - ", difficulty, instanceGroupSize
-	elseif difficulty == 3 then--Legacy 10 man Normal Raid
+	elseif difficulty == 3 or difficulty == 175 then--Legacy 10 man Normal Raid
 		return "normal10", difficultyName.." - ", difficulty, instanceGroupSize
-	elseif difficulty == 4 then--Legacy 25 man Normal Raid
+	elseif difficulty == 4 or difficulty == 176 then--Legacy 25 man Normal Raid
 		return "normal25", difficultyName.." - ", difficulty, instanceGroupSize
 	elseif difficulty == 5 then--Legacy 10 man Heroic Raid
 		return "heroic10", difficultyName.." - ", difficulty, instanceGroupSize
@@ -7873,7 +7873,7 @@ do
 	local rangeCache = {}
 	local rangeUpdated = {}
 
-	function bossModPrototype:CheckBossDistance(cidOrGuid, onlyBoss, itemId, defaultReturn)
+	function bossModPrototype:CheckBossDistance(cidOrGuid, onlyBoss, itemId, distance, defaultReturn)
 		if not DBM.Options.DontShowFarWarnings then return true end--Global disable.
 		cidOrGuid = cidOrGuid or self.creatureId
 		local uId = DBM:GetUnitIdFromGUID(cidOrGuid, onlyBoss)
@@ -7884,7 +7884,7 @@ do
 				return inRange
 			else--IsItemInRange doesn't work on all bosses/npcs, but tank checks do
 				DBM:Debug("CheckBossDistance failed on IsItemInRange for: "..cidOrGuid, 2)
-				return self:CheckTankDistance(cidOrGuid, nil, onlyBoss, defaultReturn)--Return tank distance check fallback
+				return self:CheckTankDistance(cidOrGuid, distance, onlyBoss, defaultReturn)--Return tank distance check fallback
 			end
 		end
 		DBM:Debug("CheckBossDistance failed on uId for: "..cidOrGuid, 2)
@@ -9970,6 +9970,10 @@ do
 
 	function bossModPrototype:NewSpecialWarningSoak(text, optionDefault, ...)
 		return newSpecialWarning(self, "soak", text, nil, optionDefault, ...)
+	end
+
+	function bossModPrototype:NewSpecialWarningSoakCount(text, optionDefault, ...)
+		return newSpecialWarning(self, "soakcount", text, nil, optionDefault, ...)
 	end
 
 	function bossModPrototype:NewSpecialWarningJump(text, optionDefault, ...)
