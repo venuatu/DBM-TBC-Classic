@@ -10801,6 +10801,10 @@ do
 		return newTimer(self, "target", ...)
 	end
 
+	function bossModPrototype:NewTargetCountTimer(...)
+		return newTimer(self, "targetcount", ...)
+	end
+
 	function bossModPrototype:NewBuffActiveTimer(...)
 		return newTimer(self, "active", ...)
 	end
@@ -11525,7 +11529,7 @@ end
 
 function bossModPrototype:SetRevision(revision)
 	revision = parseCurseDate(revision or "")
-	if not revision or revision == "@project-date-integer@" then
+	if not revision or revision:find("project-date-integer") then
 		-- bad revision: either forgot the svn keyword or using github
 		revision = DBM.Revision
 	end
