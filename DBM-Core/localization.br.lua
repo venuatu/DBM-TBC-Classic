@@ -45,7 +45,7 @@ L.LOOT_SPEC_REMINDER			= "A sua especialização atual é %s. A sua escolha atua
 
 L.BIGWIGS_ICON_CONFLICT		= "DBM detectou que você tem ícones habilitados tanto no BigWigs quanto no DBM. Por favor desabilite um dos dois para evitar conflitos com o líder da raid"
 
-L.MOD_AVAILABLE				= "%s esta disponível para este conteúdo. Esta disponível em |HDBM:forums|h|cff3588ffdeadlybossmods.com|r. Está mensagem só será exibida uma vez."
+L.MOD_AVAILABLE				= "%s esta disponível para este conteúdo. Esta disponível em |Hgarrmission:DBM:forums|h|cff3588ffdeadlybossmods.com|r. Está mensagem só será exibida uma vez."
 
 L.COMBAT_STARTED				= "%s na mira. Boa sorte e divirta-se! :)"
 L.COMBAT_STARTED_IN_PROGRESS	= "Entrando em uma luta em progresso contra %s. Boa sorte e divirta-se! :)"
@@ -190,7 +190,7 @@ L.UPDATEREMINDER_NOTAGAIN	= "Exibir pop-up quando houver uma nova versão dispon
 
 L.MOVABLE_BAR				= "Arraste-me!"
 
-L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h te enviou um cronômetro do DBM: '%2$s'\n|HDBM:cancel:%2$s:nil|h|cff3588ff[Cancelar esse cronômetro]|r|h  |HDBM:ignore:%2$s:%1$s|h|cff3588ff[Ignorar cronômetros de %1$s]|r|h"
+L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h te enviou um cronômetro do DBM: '%2$s'\n|Hgarrmission:DBM:cancel:%2$s:nil|h|cff3588ff[Cancelar esse cronômetro]|r|h  |Hgarrmission:DBM:ignore:%2$s:%1$s|h|cff3588ff[Ignorar cronômetros de %1$s]|r|h"
 L.PIZZA_CONFIRM_IGNORE			= "Você tem certeza de que realmente deseja ignorar cronômetros de %s até o fim desta sessão?"
 L.PIZZA_ERROR_USAGE				= "Uso: /dbm [broadcast] timer <tempo> <texto>"
 
@@ -598,7 +598,7 @@ L.INSTANCE_INFO_STATS_DENIED		= "Negou a solicitação: %s"
 L.INSTANCE_INFO_STATS_AWAY		= "Ausente: %s"
 L.INSTANCE_INFO_STATS_NO_RESPONSE	= "Não possui uma versão recente do DBM instalada: %s"
 L.INSTANCE_INFO_RESULTS			= "Resultados da busca por  IDs de raide. Note que instâncias podem aparecer mais de uma vez, se houver jogadores com clientes de WoW em outra língua."
---L.INSTANCE_INFO_SHOW_RESULTS		= "Jogadores que ainda não responderam: %s\n|HDBM:showRaidIdResults|h|cff3588ff[Exibir resultados agora]|r|h"
+--L.INSTANCE_INFO_SHOW_RESULTS		= "Jogadores que ainda não responderam: %s\n|Hgarrmission:DBM:showRaidIdResults|h|cff3588ff[Exibir resultados agora]|r|h"
 L.INSTANCE_INFO_SHOW_RESULTS		= "Jogadores que ainda não responderam: %s"
 
 L.LAG_CHECKING						= "Verificando a latência da raide..."

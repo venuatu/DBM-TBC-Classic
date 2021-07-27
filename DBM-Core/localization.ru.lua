@@ -34,7 +34,7 @@ L.LOOT_SPEC_REMINDER			= "Ваша текущая специализация %s.
 
 L.BIGWIGS_ICON_CONFLICT		= "DBM обнаружил, что у вас включена установка меток в Bigwigs и DBM одновременно. Пожалуйста отключите метки в одном из них, чтобы избежать конфликта с лидером вашей группы"
 
-L.MOD_AVAILABLE				= "Для этого контента доступен дополнительный модуль %s. Вы можете скачать его с |HDBM:forums|h|cff3588ffdeadlybossmods.com|r или Curse.com. Это сообщение отображается один раз."
+L.MOD_AVAILABLE				= "Для этого контента доступен дополнительный модуль %s. Вы можете скачать его с |Hgarrmission:DBM:forums|h|cff3588ffdeadlybossmods.com|r или Curse.com. Это сообщение отображается один раз."
 
 L.COMBAT_STARTED				= "%s вступает в бой. Удачи! :)"
 L.COMBAT_STARTED_IN_PROGRESS	= "%s вступает в бой (в процессе). Удачи! :)"
@@ -170,7 +170,7 @@ L.OUT_OF_DATE_NAG				= "Ваша версия Deadly Boss Mods устарела 
 
 L.MOVABLE_BAR				= "Перетащите!"
 
-L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h транслирует DBM Timer: '%2$s'\n|HDBM:cancel:%2$s:nil|h|cff3588ff[Отменить этот DBM Timer]|r|h  |HDBM:ignore:%2$s:%1$s|h|cff3588ff[Игнорировать DBM Timer от %1$s]|r|h"
+L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h транслирует DBM Timer: '%2$s'\n|Hgarrmission:DBM:cancel:%2$s:nil|h|cff3588ff[Отменить этот DBM Timer]|r|h  |Hgarrmission:DBM:ignore:%2$s:%1$s|h|cff3588ff[Игнорировать DBM Timer от %1$s]|r|h"
 --L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h транслирует вам таймер DBM"
 L.PIZZA_CONFIRM_IGNORE			= "Игнорировать DBM таймеры от %s на время текущего сеанса?"
 L.PIZZA_ERROR_USAGE				= "Использование: /dbm [broadcast] timer <time> <text>. <time> должно быть больше 1."

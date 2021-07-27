@@ -58,7 +58,7 @@ L.UPDATEREMINDER_NOTAGAIN	= "Visualizza un pop-up quando e' disponibile una nuov
 
 L.MOVABLE_BAR				= "Trascinami!"
 
-L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h ti ha mandato un Timer DBM: '%2$s'\n|HDBM:cancella:%2$s:nil|h|cff3588ff[Cancella questo Timer]|r|h  |HDBM:ignora:%2$s:%1$s|h|cff3588ff[Ignora timer da %1$s]|r|h"
+L.PIZZA_SYNC_INFO					= "|Hplayer:%1$s|h[%1$s]|h ti ha mandato un Timer DBM: '%2$s'\n|Hgarrmission:DBM:cancella:%2$s:nil|h|cff3588ff[Cancella questo Timer]|r|h  |Hgarrmission:DBM:ignora:%2$s:%1$s|h|cff3588ff[Ignora timer da %1$s]|r|h"
 L.PIZZA_CONFIRM_IGNORE			= "Sei sicuro di voler ignorare i Timer DMB da %s per questa sessione?"
 L.PIZZA_ERROR_USAGE				= "Uso: /dbm [broadcast] timer <time> <text>"
 
@@ -253,7 +253,7 @@ L.INSTANCE_INFO_STATS_DENIED		= "Hanno rifiutato la richiesta: %s"
 L.INSTANCE_INFO_STATS_AWAY		= "In pausa: %s"
 L.INSTANCE_INFO_STATS_NO_RESPONSE	= "Nessuna versione di DBM installata: %s"
 L.INSTANCE_INFO_RESULTS			= "Risultati della Scansione ID di Incursione. Guarda che le istanze potrebbero essere riportate piu' volte se ci sono dei client di gioco localizzati nella tua incursione."
-L.INSTANCE_INFO_SHOW_RESULTS		= "Players yet to respond: %s\n|HDBM:showRaidIdResults|h|cff3588ff[Show results now]|r|h"
+L.INSTANCE_INFO_SHOW_RESULTS		= "Players yet to respond: %s\n|Hgarrmission:DBM:showRaidIdResults|h|cff3588ff[Show results now]|r|h"
 
 --LDB
 L.LDB_TOOLTIP_HELP1	= "Click per aprire DBM"
