@@ -18,8 +18,16 @@ externals:
     tag: latest
 
 ignore:
+  - DBM-Core/!SortList.txt
+  - DBM-Core/Boss Mods.luadoc
   - DBM-Core/Libs/LibDeflate/docs
   - DBM-Core/Libs/LibDeflate/examples
+  - DBM-Core/Libs/LibDeflate/LibDeflate.toc
+  - DBM-Core/Libs/LibDeflate/README.md
+  - DBM-Core/Libs/LibDeflate/CONTRIBUTING.md
+  - DBM-Core/Libs/LibDeflate/changelog.md
+  - DBM-Core/Libs/LibStub/tests
+  - DBM-Core/Libs/LibDataBroker-1.1/README.textile
 
 enable-nolib-creation: no
 
