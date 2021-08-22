@@ -33,6 +33,7 @@ local timerPriest		= mod:NewTimer(20, "TimerPriest", 39414, nil, nil, 1)
 
 local berserkTimer		= mod:NewBerserkTimer(600)
 
+mod:AddRangeFrameOption(8, 33045)--Range may be larger pre nerf. it was 8 post nerf
 mod:AddSetIconOption("WrathIcon", 33045, true, false, {8})--42783 used later
 mod:AddInfoFrameOption(33044)
 
@@ -48,9 +49,6 @@ end
 function mod:OnCombatEnd()
 	if self.Options.RangeFrame then
 		DBM.RangeCheck:Hide()
-	end
-	if self.Options.HudMapOnSharedFate then
-		DBM.HudMap:Disable()
 	end
 	if self.Options.InfoFrame then
 		DBM.InfoFrame:Hide()
