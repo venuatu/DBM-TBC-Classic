@@ -236,16 +236,16 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 		timerPhase1mob:Start(8.4, L.Telonicus)
 	elseif msg == L.YellPhase2 or msg:find(L.YellPhase2) then
 		self:SetStage(2)
-		timerPhase:Start(105)
+		timerPhase:Start(105)--105
 		warnPhase2:Show()
-		warnPhase3:Schedule(105)
+		warnPhase3:Schedule(105)--210
 	elseif msg == L.YellPhase3 or msg:find(L.YellPhase3) then
 		self:SetStage(3)
 		if self.Options.RangeFrame then
 			DBM.RangeCheck:Show(10)
 		end
 		self:Schedule(10, function()
-			timerPhase:Start(173)
+			timerPhase:Start(73)--83 pre nerf, 183 post nerf
 		end)
 	elseif msg == L.YellPhase4 or msg:find(L.YellPhase4) then
 		self:SetStage(4)
