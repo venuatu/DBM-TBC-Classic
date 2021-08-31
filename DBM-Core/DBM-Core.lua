@@ -10344,7 +10344,9 @@ do
 				end
 			end
 			fireEvent("DBM_TimerStart", id, msg, timer, self.icon, self.type, self.spellId, colorId, self.mod.id, self.keep, self.fade, self.name, guid)
-			tinsert(self.startedTimers, id)
+			if not findEntry(self.startedTimers, id) then--Make sure timer doesn't exist already before adding it
+				tinsert(self.startedTimers, id)
+			end
 			if not self.keep then--Don't ever remove startedTimers on a schedule, if it's a keep timer
 				self.mod:Unschedule(removeEntry, self.startedTimers, id)
 				self.mod:Schedule(timer, removeEntry, self.startedTimers, id)
