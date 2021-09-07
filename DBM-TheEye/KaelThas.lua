@@ -245,7 +245,7 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 			DBM.RangeCheck:Show(10)
 		end
 		self:Schedule(10, function()
-			timerPhase:Start(73)--83 pre nerf, 183 post nerf
+			timerPhase:Start(123)--123 pre nerf, 183 post nerf
 		end)
 	elseif msg == L.YellPhase4 or msg:find(L.YellPhase4) then
 		self:SetStage(4)
