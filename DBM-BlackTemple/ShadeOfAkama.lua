@@ -24,7 +24,7 @@ local warnSorc			= mod:NewAnnounce("warnAshtongueSorcerer", 2, 40520)
 local specWarnAdds		= mod:NewSpecialWarningAddsCustom(40480, "-Healer", nil, nil, 1, 2)
 
 local timerCombatStart	= mod:NewCombatTimer(12)
-local timerAddsCD		= mod:NewAddsCustomTimer(25, 216726)--NewAddsCustomTimer
+local timerAddsCD		= mod:NewAddsCustomTimer(25, 40480)--NewAddsCustomTimer
 local timerDefenderCD	= mod:NewTimer(25, "timerAshtongueDefender", 41180, nil, nil, 1)
 local timerSorcCD		= mod:NewTimer(25, "timerAshtongueSorcerer", 40520, nil, nil, 1)
 
