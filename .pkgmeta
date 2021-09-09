@@ -4,6 +4,7 @@ externals:
   DBM-Core/Libs/CallbackHandler-1.0: https://repos.wowace.com/wow/callbackhandler/trunk/CallbackHandler-1.0
 
   DBM-Core/Libs/LibChatAnims: https://repos.wowace.com/wow/libchatanims/trunk/LibChatAnims
+  DBM-Core/Libs/LibFrameFade: https://github.com/Meorawr/LibFrameFade
   DBM-Core/Libs/LibDataBroker-1.1: git://github.com/tekkub/libdatabroker-1-1.git
   DBM-Core/Libs/LibDBIcon-1.0: https://repos.wowace.com/wow/libdbicon-1-0/trunk/LibDBIcon-1.0
   DBM-Core/Libs/LibDurability: https://repos.wowace.com/wow/libdurability/trunk/LibDurability
