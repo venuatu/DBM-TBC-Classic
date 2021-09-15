@@ -29,6 +29,7 @@ local warnNaga			= mod:NewAnnounce("WarnNaga", 3, 2120)
 local warnLoot			= mod:NewAnnounce("WarnLoot", 4, 38132)
 local warnPhase3		= mod:NewPhaseAnnounce(3)
 
+local specWarnCore		= mod:NewSpecialWarning("SpecWarnCore", nil, nil, nil, 1, 8)
 local specWarnCharge	= mod:NewSpecialWarningMoveAway(38280, nil, nil, nil, 1, 2)
 local yellCharge		= mod:NewYell(38280)
 local specWarnElemental	= mod:NewSpecialWarning("SpecWarnElemental")--Changed from soon to a now warning. the soon warning not accurate because of 11 second variation so not useful special warning.
@@ -204,12 +205,20 @@ function mod:CHAT_MSG_LOOT(msg)
 	end
 end
 
-function mod:OnSync(event, playerName)
-	if not self:IsInCombat() then return end
-	if event == "LootMsg" and playerName then
-		playerName = DBM:GetUnitFullName(playerName)
-		if self:AntiSpam(2, playerName) then
-			warnLoot:Show(playerName)
+do
+	local myName = UnitName("player")
+	function mod:OnSync(event, playerName)
+		if not self:IsInCombat() then return end
+		if event == "LootMsg" and playerName then
+			playerName = DBM:GetUnitFullName(playerName)
+			if self:AntiSpam(2, playerName) then
+				if playerName == myName then
+					specWarnCore:Show()
+					specWarnCore:Play("useitem")
+				else
+					warnLoot:Show(playerName)
+				end
+			end
 		end
 	end
 end
