@@ -210,7 +210,7 @@ do
 	function mod:OnSync(event, playerName)
 		if not self:IsInCombat() then return end
 		if event == "LootMsg" and playerName then
-			playerName = DBM:GetUnitFullName(playerName)
+			playerName = DBM:GetUnitFullName(playerName) or playerName
 			if self:AntiSpam(2, playerName) then
 				if playerName == myName then
 					specWarnCore:Show()
