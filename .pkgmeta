@@ -1,56 +1,50 @@
-package-as: DBM-Core
+package-as: DBM-Outlands
 
 externals:
-  DBM-Core/Libs/CallbackHandler-1.0: https://repos.wowace.com/wow/callbackhandler/trunk/CallbackHandler-1.0
-
-  DBM-Core/Libs/LibChatAnims: https://repos.wowace.com/wow/libchatanims/trunk/LibChatAnims
-  DBM-Core/Libs/LibDataBroker-1.1: git://github.com/tekkub/libdatabroker-1-1.git
-  DBM-Core/Libs/LibDBIcon-1.0: https://repos.wowace.com/wow/libdbicon-1-0/trunk/LibDBIcon-1.0
-  DBM-Core/Libs/LibDurability: https://repos.wowace.com/wow/libdurability/trunk/LibDurability
-  DBM-Core/Libs/LibLatency: https://repos.wowace.com/wow/liblatency/trunk/LibLatency
-  DBM-Core/Libs/LibSharedMedia-3.0: https://repos.wowace.com/wow/libsharedmedia-3-0/trunk/LibSharedMedia-3.0
-  DBM-Core/Libs/LibStub: https://repos.wowace.com/wow/libstub/trunk
-  DBM-Core/Libs/LibDeflate:
-    url: https://github.com/SafeteeWoW/LibDeflate
-    tag: latest
-  DBM-Core/Libs/LibSerialize:
-    url: https://github.com/rossnichols/LibSerialize
-    tag: latest
+  DBM-Outlands: https://github.com/DeadlyBossMods/DBM-Unified
+  DBM-Outlands/Libs/CallbackHandler-1.0: https://repos.wowace.com/wow/callbackhandler/trunk/CallbackHandler-1.0
+  DBM-Outlands/Libs/LibChatAnims: https://repos.wowace.com/wow/libchatanims/trunk/LibChatAnims
+  DBM-Outlands/Libs/LibDBIcon-1.0: https://repos.wowace.com/wow/libdbicon-1-0/trunk/LibDBIcon-1.0
+  DBM-Outlands/Libs/LibDurability: https://repos.wowace.com/wow/libdurability/trunk/LibDurability
+  DBM-Outlands/Libs/LibLatency: https://repos.wowace.com/wow/liblatency/trunk/LibLatency
+  DBM-Outlands/Libs/LibSharedMedia-3.0: https://repos.wowace.com/wow/libsharedmedia-3-0/trunk/LibSharedMedia-3.0
+  DBM-Outlands/Libs/LibStub: https://repos.wowace.com/wow/libstub/trunk
+  DBM-Outlands/Libs/LibDataBroker-1.1: https://github.com/tekkub/libdatabroker-1-1
+  DBM-Outlands/Libs/LibDeflate: https://github.com/SafeteeWoW/LibDeflate
+  DBM-Outlands/Libs/LibSerialize: https://github.com/rossnichols/LibSerialize
 
 ignore:
-  - DBM-Core/!SortList.txt
-  - DBM-Core/Boss Mods.luadoc
-  - DBM-Core/Libs/LibDeflate/docs
-  - DBM-Core/Libs/LibDeflate/examples
-  - DBM-Core/Libs/LibDeflate/LibDeflate.toc
-  - DBM-Core/Libs/LibDeflate/README.md
-  - DBM-Core/Libs/LibDeflate/CONTRIBUTING.md
-  - DBM-Core/Libs/LibDeflate/changelog.md
-  - DBM-Core/Libs/LibStub/tests
-  - DBM-Core/Libs/LibDataBroker-1.1/README.textile
+  - DBM-Outlands/Libs/LibDeflate/docs
+  - DBM-Outlands/Libs/LibDeflate/examples
+  - DBM-Outlands/Libs/LibDeflate/LibDeflate.toc
+  - DBM-Outlands/Libs/LibDeflate/README.md
+  - DBM-Outlands/Libs/LibDeflate/CONTRIBUTING.md
+  - DBM-Outlands/Libs/LibDeflate/changelog.md
+  - DBM-Outlands/Libs/LibStub/tests
+  - DBM-Outlands/Libs/LibDataBroker-1.1/README.textile
 
 enable-nolib-creation: no
 
 move-folders:
-  DBM-Core/DBM-DefaultSkin: DBM-DefaultSkin
-  DBM-Core/DBM-GUI: DBM-GUI
-  DBM-Core/DBM-StatusBarTimers: DBM-StatusBarTimers
-  DBM-Core/DBM-Core: DBM-Core
-  DBM-Core/DBM-Party-Classic: DBM-Party-Classic
-  DBM-Core/DBM-Party-BC: DBM-Party-BC
-  DBM-Core/DBM-AQ20: DBM-AQ20
-  DBM-Core/DBM-AQ40: DBM-AQ40
-  DBM-Core/DBM-Azeroth: DBM-Azeroth
-  DBM-Core/DBM-BlackTemple: DBM-BlackTemple
-  DBM-Core/DBM-BWL: DBM-BWL
-  DBM-Core/DBM-Hyjal: DBM-Hyjal
-  DBM-Core/DBM-Karazhan: DBM-Karazhan
-  DBM-Core/DBM-MC: DBM-MC
-  DBM-Core/DBM-Naxx: DBM-Naxx
-  DBM-Core/DBM-Onyxia: DBM-Onyxia
-  DBM-Core/DBM-Outlands: DBM-Outlands
-  DBM-Core/DBM-Serpentshrine: DBM-Serpentshrine
-  DBM-Core/DBM-Sunwell: DBM-Sunwell
-  DBM-Core/DBM-TheEye: DBM-TheEye
-  DBM-Core/DBM-ZG: DBM-ZG
-  DBM-Core/DBM-ZulAman: DBM-ZulAman
+  DBM-Outlands/DBM-Party-Classic: DBM-Party-Classic
+  DBM-Outlands/DBM-Party-BC: DBM-Party-BC
+  DBM-Outlands/DBM-AQ20: DBM-AQ20
+  DBM-Outlands/DBM-AQ40: DBM-AQ40
+  DBM-Outlands/DBM-Azeroth: DBM-Azeroth
+  DBM-Outlands/DBM-BlackTemple: DBM-BlackTemple
+  DBM-Outlands/DBM-BWL: DBM-BWL
+  DBM-Outlands/DBM-Hyjal: DBM-Hyjal
+  DBM-Outlands/DBM-Karazhan: DBM-Karazhan
+  DBM-Outlands/DBM-MC: DBM-MC
+  DBM-Outlands/DBM-Naxx: DBM-Naxx
+  DBM-Outlands/DBM-Onyxia: DBM-Onyxia
+  DBM-Outlands/DBM-Outlands: DBM-Outlands
+  DBM-Outlands/DBM-Serpentshrine: DBM-Serpentshrine
+  DBM-Outlands/DBM-Sunwell: DBM-Sunwell
+  DBM-Outlands/DBM-TheEye: DBM-TheEye
+  DBM-Outlands/DBM-ZG: DBM-ZG
+  DBM-Outlands/DBM-ZulAman: DBM-ZulAman
+  DBM-Outlands/DBM-Core: DBM-Core
+  DBM-Outlands/DBM-GUI: DBM-GUI
+  DBM-Outlands/DBM-StatusBarTimers: DBM-StatusBarTimers
+  DBM-Outlands/Libs: DBM-Core/Libs
