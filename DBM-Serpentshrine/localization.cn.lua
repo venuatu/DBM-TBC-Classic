@@ -189,5 +189,6 @@ L:SetOptionLocalization{
 
 L:SetMiscLocalization{
 	DBM_VASHJ_YELL_PHASE2	= "机会来了！一个活口都不要留下！",
+	DBM_VASHJ_YELL_PHASE3	= "你们最好找掩护。",
 	LootMsg				= "(.+)获得了物品：.*Hitem:(%d+)"
 }
