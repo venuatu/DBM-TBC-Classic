@@ -10,6 +10,10 @@ on:
     branches:
       - master
   workflow_dispatch:
+    inputs:
+      SHA:
+        description: 'Commit SHA from DBM Unified'
+        required: false
 
 jobs:
   build:
@@ -29,7 +33,7 @@ jobs:
         uses: BigWigsMods/packager@master
         if: ${{ github.event_name != 'pull_request' }}
         with:
-          args: -g bcc
+          args: -g bcc -n "{package-name}-${{ github.event.inputs.SHA || GITHUB_SHA::7 }}{classic}"
         env:
           CF_API_KEY: ${{ secrets.CF_API_KEY }}
           GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
