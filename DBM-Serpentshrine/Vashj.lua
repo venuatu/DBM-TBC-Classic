@@ -6,6 +6,8 @@ mod:SetCreatureID(21212)
 mod:SetEncounterID(628, 2463)
 mod:SetModelID(20748)
 mod:SetUsedIcons(1)
+mod:SetHotfixNoticeRev(20210919000000)
+mod:SetMinSyncRevision(20210919000000)
 
 mod:RegisterCombat("combat")
 
@@ -43,13 +45,11 @@ local timerNaga			= mod:NewTimer(47.5, "TimerNaga", 2120, nil, nil, 1)
 
 mod:AddRangeFrameOption(10, 38280)
 mod:AddSetIconOption("ChargeIcon", 38280, false, false, {1})
---mod:AddBoolOption("AutoChangeLootToFFA", true)
 
 mod.vb.shieldLeft = 4
 mod.vb.nagaCount = 1
 mod.vb.striderCount = 1
 mod.vb.elementalCount = 1
---local lootmethod, masterlooterRaidID
 local elementals = {}
 
 function mod:StriderSpawn()
@@ -73,22 +73,12 @@ function mod:OnCombatStart(delay)
 	self.vb.nagaCount = 1
 	self.vb.striderCount = 1
 	self.vb.elementalCount = 1
---	if IsInGroup() and DBM:GetRaidRank() == 2 then
---		lootmethod, _, masterlooterRaidID = GetLootMethod()
---	end
 end
 
 function mod:OnCombatEnd()
 	if self.Options.RangeFrame then
 		DBM.RangeCheck:Hide()
 	end
---	if IsInGroup() and self.Options.AutoChangeLootToFFA and DBM:GetRaidRank() == 2 then
---		if masterlooterRaidID then
---			SetLootMethod(lootmethod, "raid"..masterlooterRaidID)
---		else
---			SetLootMethod(lootmethod)
---		end
---	end
 end
 
 function mod:SPELL_AURA_APPLIED(args)
@@ -159,41 +149,9 @@ end
 
 function mod:CHAT_MSG_MONSTER_YELL(msg)
 	if msg == L.DBM_VASHJ_YELL_PHASE2 or msg:find(L.DBM_VASHJ_YELL_PHASE2) then
-		self:SetStage(2)
-		self.vb.nagaCount = 1
-		self.vb.striderCount = 1
-		self.vb.elementalCount = 1
-		self.vb.shieldLeft = 4
-		warnPhase2:Show()
-		timerNaga:Start(nil, tostring(self.vb.nagaCount))
-		warnNaga:Schedule(42.5, tostring(self.vb.elementalCount))
-		self:ScheduleMethod(47.5, "NagaSpawn")
-		timerElementalCD:Start(nil, tostring(self.vb.elementalCount))
-		warnElemental:Schedule(45, tostring(self.vb.elementalCount))
-		timerStrider:Start(nil, tostring(self.vb.striderCount))
-		warnStrider:Schedule(57, tostring(self.vb.striderCount))
-		self:ScheduleMethod(63, "StriderSpawn")
---		if IsInGroup() and self.Options.AutoChangeLootToFFA and DBM:GetRaidRank() == 2 then
---			SetLootMethod("freeforall")
---		end
+		self:SendSync("Phase2")
 	elseif msg == L.DBM_VASHJ_YELL_PHASE3 or msg:find(L.DBM_VASHJ_YELL_PHASE3) then
-		self:SetStage(3)
-		warnPhase3:Show()
-		timerNaga:Cancel()
-		warnNaga:Cancel()
-		timerElementalCD:Cancel()
-		warnElemental:Cancel()
-		timerStrider:Cancel()
-		warnStrider:Cancel()
-		self:UnscheduleMethod("NagaSpawn")
-		self:UnscheduleMethod("StriderSpawn")
---		if IsInGroup() and self.Options.AutoChangeLootToFFA and DBM:GetRaidRank() == 2 then
---			if masterlooterRaidID then
---				SetLootMethod(lootmethod, "raid"..masterlooterRaidID)
---			else
---				SetLootMethod(lootmethod)
---			end
---		end
+		self:SendSync("Phase3")
 	end
 end
 
@@ -207,9 +165,9 @@ end
 
 do
 	local myName = UnitName("player")
-	function mod:OnSync(event, playerName)
+	function mod:OnSync(msg, playerName)
 		if not self:IsInCombat() then return end
-		if event == "LootMsg" and playerName then
+		if msg == "LootMsg" and playerName then
 			playerName = DBM:GetUnitFullName(playerName) or playerName
 			if self:AntiSpam(2, playerName) then
 				if playerName == myName then
@@ -219,6 +177,32 @@ do
 					warnLoot:Show(playerName)
 				end
 			end
+		elseif msg == "Phase2" and self.vb.phase < 2 then
+			self:SetStage(2)
+			self.vb.nagaCount = 1
+			self.vb.striderCount = 1
+			self.vb.elementalCount = 1
+			self.vb.shieldLeft = 4
+			warnPhase2:Show()
+			timerNaga:Start(nil, tostring(self.vb.nagaCount))
+			warnNaga:Schedule(42.5, tostring(self.vb.elementalCount))
+			self:ScheduleMethod(47.5, "NagaSpawn")
+			timerElementalCD:Start(nil, tostring(self.vb.elementalCount))
+			warnElemental:Schedule(45, tostring(self.vb.elementalCount))
+			timerStrider:Start(nil, tostring(self.vb.striderCount))
+			warnStrider:Schedule(57, tostring(self.vb.striderCount))
+			self:ScheduleMethod(63, "StriderSpawn")
+		elseif msg == "Phase3" and self.vb.phase < 3 then
+			self:SetStage(3)
+			warnPhase3:Show()
+			timerNaga:Cancel()
+			warnNaga:Cancel()
+			timerElementalCD:Cancel()
+			warnElemental:Cancel()
+			timerStrider:Cancel()
+			warnStrider:Cancel()
+			self:UnscheduleMethod("NagaSpawn")
+			self:UnscheduleMethod("StriderSpawn")
 		end
 	end
 end

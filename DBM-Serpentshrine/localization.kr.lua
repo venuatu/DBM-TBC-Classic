@@ -161,8 +161,7 @@ L:SetOptionLocalization{
 	TimerStrider			= "다음 포자손 타이머 바 보기",
 	TimerNaga				= "다음 나가 타이머 바 보기",
 	SpecWarnElemental		= "오염된 정령 등장 특수 경고 보기",
-	SpecWarnCore		= "오염된 핵을 가졌을 때 특수 경고 보기",
-	AutoChangeLootToFFA		= "2단계에서 전리품 획득 설정을 자유로 자동 변경"
+	SpecWarnCore		= "오염된 핵을 가졌을 때 특수 경고 보기"
 }
 
 L:SetMiscLocalization{

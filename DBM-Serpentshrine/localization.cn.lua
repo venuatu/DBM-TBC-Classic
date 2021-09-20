@@ -182,9 +182,7 @@ L:SetOptionLocalization{
 	TimerElemental		= "显示下一个被污染的元素出现的时间",
 	TimerStrider		= "显示下一个盘牙巡逻者出现的时间",
 	TimerNaga			= "显示盘牙精英出现的时间",
-	SpecWarnElemental	= "显示特别警报：当被污染的元素到来时",
-	ChargeIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TEXT:format(38280),
-	AutoChangeLootToFFA	= "第3阶段自动转换拾取方式为自由拾取"
+	SpecWarnElemental	= "显示特别警报：当被污染的元素到来时"
 }
 
 L:SetMiscLocalization{

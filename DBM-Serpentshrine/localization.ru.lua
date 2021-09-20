@@ -174,9 +174,7 @@ L:SetOptionLocalization{
 	TimerStrider		= "Показывать таймер о следующем Страннике",
 	TimerNaga			= "Показывать таймер о следующем Гвардейце",
 	SpecWarnElemental	= "Показывать специальное предупреждение о появлении Нечистого элементаля",
-	SpecWarnCore		= "Показывать специальное предупреждение когда Ядро порчи на тебе",
-	ChargeIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TEXT:format(38280),
-	AutoChangeLootToFFA	= "Переключение режима добычи на Каждый за себя на Фазе 2"
+	SpecWarnCore		= "Показывать специальное предупреждение когда Ядро порчи на тебе"
 }
 
 L:SetMiscLocalization{

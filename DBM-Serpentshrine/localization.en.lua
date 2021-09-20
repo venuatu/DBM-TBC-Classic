@@ -174,8 +174,7 @@ L:SetOptionLocalization{
 	TimerNaga			= "Show timer for next Naga",
 	SpecWarnElemental	= "Show special warning when Tainted Elemental coming",
 	SpecWarnCore		= "Show special warning when Tainted Core is on you",
-	ChargeIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TEXT:format(38280),
-	AutoChangeLootToFFA	= "Switch loot mode to Free for All in Phase 2"
+	ChargeIcon			= DBM_CORE_L.AUTO_ICONS_OPTION_TEXT:format(38280)
 }
 
 L:SetMiscLocalization{
