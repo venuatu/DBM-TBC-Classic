@@ -44,6 +44,7 @@ move-folders:
   DBM-Outlands/DBM-TheEye: DBM-TheEye
   DBM-Outlands/DBM-ZG: DBM-ZG
   DBM-Outlands/DBM-ZulAman: DBM-ZulAman
+  DBM-Outlands/DBM-WorldEvents: DBM-WorldEvents
   DBM-Outlands/DBM-Core: DBM-Core
   DBM-Outlands/DBM-GUI: DBM-GUI
   DBM-Outlands/DBM-StatusBarTimers: DBM-StatusBarTimers
