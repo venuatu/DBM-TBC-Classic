@@ -184,13 +184,13 @@ do
 			self.vb.elementalCount = 1
 			self.vb.shieldLeft = 4
 			warnPhase2:Show()
-			timerNaga:Start(nil, tostring(self.vb.nagaCount))
-			warnNaga:Schedule(42.5, tostring(self.vb.elementalCount))
+			timerNaga:Start(nil, self.vb.nagaCount)
+			warnNaga:Schedule(42.5, self.vb.elementalCount)
 			self:ScheduleMethod(47.5, "NagaSpawn")
-			timerElementalCD:Start(nil, tostring(self.vb.elementalCount))
-			warnElemental:Schedule(45, tostring(self.vb.elementalCount))
-			timerStrider:Start(nil, tostring(self.vb.striderCount))
-			warnStrider:Schedule(57, tostring(self.vb.striderCount))
+			timerElementalCD:Start(nil, self.vb.elementalCount)
+			warnElemental:Schedule(45, self.vb.elementalCount)
+			timerStrider:Start(nil, self.vb.striderCount)
+			warnStrider:Schedule(57, self.vb.striderCount)
 			self:ScheduleMethod(63, "StriderSpawn")
 		elseif msg == "Phase3" and self.vb.phase < 3 then
 			self:SetStage(3)
