@@ -12,8 +12,8 @@ mod:RegisterEventsInCombat(
 )
 
 local warnStaticCharge		= mod:NewTargetAnnounce(31715, 3)
-
 local warnLevitate			= mod:NewTargetNoFilterAnnounce(31704, 2, nil, "RemoveMagic|Healer")
+
 local specWarnStaticCharge	= mod:NewSpecialWarningMoveAway(31715, nil, nil, nil, 1, 2)
 
 function mod:SPELL_AURA_APPLIED(args)

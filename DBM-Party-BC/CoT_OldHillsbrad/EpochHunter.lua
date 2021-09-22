@@ -10,7 +10,7 @@ mod:SetModelOffset(0, 0, 8)
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED 33834"
+	"SPELL_AURA_APPLIED 33834 31914"
 )
 
 local warnSandBreath		= mod:NewSpellAnnounce(31914, 2)

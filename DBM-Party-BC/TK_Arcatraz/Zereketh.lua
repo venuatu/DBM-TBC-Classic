@@ -22,6 +22,19 @@ local specWarnGTFO	= mod:NewSpecialWarningGTFO(36121, nil, nil, nil, 1, 8)
 
 local timerSoC      = mod:NewTargetTimer(18, 39367, nil, "Healer", 2, 3, nil, DBM_CORE_L.MAGIC_ICON)
 
+function mod:OnCombatStart(delay)
+	if not self:IsTrivial() then
+		self:RegisterShortTermEvents(
+			"SPELL_DAMAGE 36121 39004",
+			"SPELL_MISSED 36121 39004"
+		)
+	end
+end
+
+function mod:OnCombatEnd()
+	self:UnregisterShortTermEvents()
+end
+
 function mod:SPELL_CAST_START(args)
 	if args:IsSpellID(36127, 39005) then
 		specwarnNova:Show()

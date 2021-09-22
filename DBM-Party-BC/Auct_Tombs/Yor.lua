@@ -11,7 +11,7 @@ mod:SetModelOffset(0, 1, 2)
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_CAST_SUCCESS"
+	"SPELL_CAST_SUCCESS 36405"
 )
 
 local warnStomp	= mod:NewSpellAnnounce(36405, 2)
