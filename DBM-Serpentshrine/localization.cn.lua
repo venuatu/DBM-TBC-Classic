@@ -177,11 +177,13 @@ L:SetOptionLocalization{
 	WarnElemental		= "显示被污染的元素出现的预警",
 	WarnStrider			= "显示盘牙巡逻者出现的预警",
 	WarnNaga			= "显示盘牙精英出现的预警",
-	WarnShield			= "显示第2阶段护盾警报 ",
-	WarnLoot			= "警报是谁拾取了污染之核",
-	TimerElemental		= "显示下一个被污染的元素出现的时间",
-	TimerStrider		= "显示下一个盘牙巡逻者出现的时间",
+	WarnShield			= "显示第2阶段护盾消失警报",
+	WarnLoot			= "警告是谁拾取了污染之核",
+	TimerElementalActive	= "为下一次被污染的元素出现显示计时器",
+	TimerElemental		= "显示下一次被污染的元素出现的时间",
+	TimerStrider		= "显示下一次盘牙巡逻者出现的时间",
 	TimerNaga			= "显示盘牙精英出现的时间",
+	SpecWarnCore		= "显示特别警报：当被污染之核在你身上",
 	SpecWarnElemental	= "显示特别警报：当被污染的元素到来时"
 }
 
