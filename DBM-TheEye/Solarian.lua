@@ -55,7 +55,7 @@ function mod:OnCombatEnd()
 end
 
 function mod:SPELL_AURA_APPLIED(args)
-	if args.spellId == 42783 or args.spellId == 33045 then
+	if (args.spellId == 42783 or args.spellId == 33045) and self:AntiSpam(1, args.destName) then
 		if args:IsPlayer() then
 			specWarnWrath:Show()
 			specWarnWrath:Play("runout")
