@@ -17,8 +17,8 @@ mod:RegisterEventsInCombat(
 	"SPELL_CAST_START 38253",
 	"SPELL_CAST_SUCCESS 38316",
 	"UNIT_DIED",
-	"CHAT_MSG_MONSTER_YELL",
-	"CHAT_MSG_LOOT"
+	"CHAT_MSG_MONSTER_YELL"
+--	"CHAT_MSG_LOOT"
 )
 
 local warnCharge		= mod:NewTargetNoFilterAnnounce(38280, 4)
@@ -28,10 +28,10 @@ local warnElemental		= mod:NewAnnounce("WarnElemental", 4, 31687)
 local warnStrider		= mod:NewAnnounce("WarnStrider", 3, 475)
 local warnNaga			= mod:NewAnnounce("WarnNaga", 3, 2120)
 --local warnShield		= mod:NewAnnounce("WarnShield", 3)
-local warnLoot			= mod:NewAnnounce("WarnLoot", 4, 38132)
+--local warnLoot			= mod:NewAnnounce("WarnLoot", 4, 38132)
 local warnPhase3		= mod:NewPhaseAnnounce(3)
 
-local specWarnCore		= mod:NewSpecialWarning("SpecWarnCore", nil, nil, nil, 1, 8)
+--local specWarnCore		= mod:NewSpecialWarning("SpecWarnCore", nil, nil, nil, 1, 8)
 local specWarnCharge	= mod:NewSpecialWarningMoveAway(38280, nil, nil, nil, 1, 2)
 local yellCharge		= mod:NewYell(38280)
 local specWarnElemental	= mod:NewSpecialWarning("SpecWarnElemental")--Changed from soon to a now warning. the soon warning not accurate because of 11 second variation so not useful special warning.
@@ -155,6 +155,7 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 	end
 end
 
+--[[
 function mod:CHAT_MSG_LOOT(msg)
 	-- DBM:AddMsg(msg) --> Meridium receives loot: [Magnetic Core]
 	local player, itemID = msg:match(L.LootMsg)
@@ -162,22 +163,13 @@ function mod:CHAT_MSG_LOOT(msg)
 		self:SendSync("LootMsg", player)
 	end
 end
+--]]
 
 do
 	local myName = UnitName("player")
 	function mod:OnSync(msg, playerName)
 		if not self:IsInCombat() then return end
-		if msg == "LootMsg" and playerName then
-			playerName = DBM:GetUnitFullName(playerName) or playerName
-			if self:AntiSpam(2, playerName) then
-				if playerName == myName then
-					specWarnCore:Show()
-					specWarnCore:Play("useitem")
-				else
-					warnLoot:Show(playerName)
-				end
-			end
-		elseif msg == "Phase2" and self.vb.phase < 2 then
+		if msg == "Phase2" and self.vb.phase < 2 then
 			self:SetStage(2)
 			self.vb.nagaCount = 1
 			self.vb.striderCount = 1
@@ -203,6 +195,16 @@ do
 			warnStrider:Cancel()
 			self:UnscheduleMethod("NagaSpawn")
 			self:UnscheduleMethod("StriderSpawn")
+--		elseif msg == "LootMsg" and playerName then
+			--[[playerName = DBM:GetUnitFullName(playerName) or playerName
+			if self:AntiSpam(2, playerName) then
+				if playerName == myName then
+					specWarnCore:Show()
+					specWarnCore:Play("useitem")
+				else
+					warnLoot:Show(playerName)
+				end
+			end--]]
 		end
 	end
 end
