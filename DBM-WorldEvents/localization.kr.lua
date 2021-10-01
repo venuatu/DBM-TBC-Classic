@@ -6,6 +6,10 @@ local L
 ----------------------------
 L = DBM:GetModLocalization("d286")
 
+L:SetGeneralLocalization{
+	name = "아훈"
+}
+
 L:SetWarningLocalization({
 	Emerged			= "등장",
 	specWarnAttack	= "아훈 약화 - 공격 시작!"
@@ -32,6 +36,10 @@ L:SetMiscLocalization({
 --------------------
 L = DBM:GetModLocalization("d287")
 
+L:SetGeneralLocalization{
+	name = "코렌 다이어브루"
+}
+
 L:SetWarningLocalization({
 	specWarnBrew		= "다른 맥주가 넘어오기 전에 가방에 있는 맥주를 사용하세요!",
 	specWarnBrewStun	= "힌트: 기절했습니다. 다음엔 맥주를 꼭 마시세요!"
@@ -50,6 +58,10 @@ L:SetMiscLocalization{
 --  The Headless Horseman  --
 -----------------------------
 L = DBM:GetModLocalization("d285")
+
+L:SetGeneralLocalization{
+	name = "저주받은 기사"
+}
 
 L:SetWarningLocalization({
 	WarnPhase				= "%d단계",
