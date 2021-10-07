@@ -97,7 +97,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		if self.Options.ChargeIcon then
 			self:SetIcon(args.destName, 1, 20)
 		end
-	elseif args:IsSpellId(38575, 360327) and args:IsPlayer() and self:AntiSpam() then
+	elseif args:IsSpellID(38575, 360327) and args:IsPlayer() and self:AntiSpam() then
 		specWarnToxic:Show()
 		specWarnToxic:Play("runaway")
 	end
