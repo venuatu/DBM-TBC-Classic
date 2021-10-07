@@ -12,7 +12,7 @@ mod:SetMinSyncRevision(20210919000000)
 mod:RegisterCombat("combat")
 
 mod:RegisterEventsInCombat(
-	"SPELL_AURA_APPLIED 38280 38575",
+	"SPELL_AURA_APPLIED 38280 360327",
 	"SPELL_AURA_REMOVED 38280 38132",
 	"SPELL_CAST_START 38253",
 	"SPELL_CAST_SUCCESS 38316",
@@ -35,7 +35,7 @@ local warnPhase3		= mod:NewPhaseAnnounce(3)
 local specWarnCharge	= mod:NewSpecialWarningMoveAway(38280, nil, nil, nil, 1, 2)
 local yellCharge		= mod:NewYell(38280)
 local specWarnElemental	= mod:NewSpecialWarning("SpecWarnElemental")--Changed from soon to a now warning. the soon warning not accurate because of 11 second variation so not useful special warning.
-local specWarnToxic		= mod:NewSpecialWarningMove(38575, nil, nil, nil, 1, 2)
+local specWarnToxic		= mod:NewSpecialWarningMove(360327, nil, nil, nil, 1, 2)
 
 local timerCharge		= mod:NewTargetTimer(20, 38280, nil, nil, nil, 3)
 local timerElemental	= mod:NewTimer(22, "TimerElementalActive", 39088, nil, nil, 1)--Blizz says they are active 20 seconds per patch notes, but my logs don't match those results. 22 second up time.
@@ -97,7 +97,7 @@ function mod:SPELL_AURA_APPLIED(args)
 		if self.Options.ChargeIcon then
 			self:SetIcon(args.destName, 1, 20)
 		end
-	elseif args.spellId == 38575 and args:IsPlayer() and self:AntiSpam() then
+	elseif args.spellId == 360327 and args:IsPlayer() and self:AntiSpam() then
 		specWarnToxic:Show()
 		specWarnToxic:Play("runaway")
 	end
